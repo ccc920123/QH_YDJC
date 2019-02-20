@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/modelnotification"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/dp_5"
+    android:layout_marginRight="@dimen/dp_5"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titlemodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/title2modenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/nomodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dsrmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/lxfsmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sfzhmmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/dabhmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/fzjgmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/zjcxmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hphmmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/cllxmodenotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/wfxwflyjmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/wpmcmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/smmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/jtjcmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/sjmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/dsryymodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bclrqmmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bzmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/qmmsjmodenotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+</LinearLayout>

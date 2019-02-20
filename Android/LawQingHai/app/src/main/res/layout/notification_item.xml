@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/summary_itembg"
+              android:paddingTop="@dimen/dp_10"
+              android:paddingBottom="@dimen/dp_10"
+              android:paddingLeft="@dimen/dp_15"
+              android:paddingRight="@dimen/dp_15"
+              android:layout_margin="7dp"
+              android:id="@+id/item_linear"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:drawableLeft="@drawable/tit"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:textSize="15sp"
+            android:text="@string/notificationno"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_weight="1.0"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/gray01" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/summarytype"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/hpzl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="1.0"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/summaryhphm"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/hphm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="1.0"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/summarydsr"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/dsr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/summaryzjhm"
+            android:textSize="15sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/zjhm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="1.0"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/gray01" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginTop="@dimen/dp_2"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:text="@string/notificationtype"/>
+        <TextView
+            android:id="@+id/notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_weight="1.0"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginTop="@dimen/dp_2"
+        >
+        <Button
+            android:id="@+id/summaryxq"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="@string/summarydse"
+            android:textSize="15sp"
+            android:textColor="@color/orange"
+            android:background="@drawable/summary_button_xq_selector"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:tag="1"
+            />
+
+        <Button
+            android:id="@+id/summarydy"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="@string/summarydy"
+            android:textSize="15sp"
+            android:textColor="@color/blue_bg"
+            android:background="@drawable/summary_button_dy_selector"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:tag="2"
+            />
+
+    </LinearLayout>
+</LinearLayout>

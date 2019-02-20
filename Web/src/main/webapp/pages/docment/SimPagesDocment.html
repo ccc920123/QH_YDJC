@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>简易处罚书</title>
+    <link rel="stylesheet" href="../../css/common.css"/>
+
+
+    <!--<script src="./alarmDetail.js"/>-->
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+
+</head>
+<body>
+<table border='1'
+       style='margin:10px;width:850px;text-align: center;table-layout:fixed;word-break: break-all;word-wrap: break-word;'>
+
+    <tr class="alarmtd" align="center" style='background-color: cornflowerblue'>
+        <td colspan='6' style='padding-left:20px;font-weight:bold;font-size:18px;color:black;text-align:left;'> 车辆信息
+        </td>
+    </tr>
+    <tr>
+        <td class="alarmtd">号牌种类</td>
+        <td colspan="2" id="hpzl"></td>
+        <td class="alarmtd">号牌号码</td>
+        <td colspan="2" id="hphm"></td>
+    </tr>
+    <tr>
+        <td class="alarmtd">预警类型</td>
+        <td colspan="2" id="bklx"></td>
+        <td class="alarmtd">预警子类型</td>
+        <td colspan="2" id="bkzlx"></td>
+    </tr>
+    <tr>
+        <td class="alarmtd">预警时间</td>
+        <td colspan="2" id="yjsj"></td>
+        <td class="alarmtd">过车时间</td>
+        <td colspan="2" id="gcsj"></td>
+
+    </tr>
+
+    <tr>
+        <td class="alarmtd">卡口名称</td>
+        <td colspan='5' id="kkmc"></td>
+    </tr>
+
+
+    <tr>
+        <td class="alarmtd" colspan='6'
+            style='padding-left:20px;background-color: cornflowerblue;font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            车辆信息
+        </td>
+    </tr>
+    <tr>
+        <td class="alarmtd">车辆品牌</td>
+        <td colspan="2" id="clpp1"></td>
+        <td class="alarmtd">使用性质</td>
+        <td colspan="2" id="syxz"></td>
+    </tr>
+    <tr>
+        <td class="alarmtd">发证机关</td>
+        <td colspan="2" id="fzjg"></td>
+        <td class="alarmtd">机动车所有人</td>
+        <td colspan="2" id="syr"></td>
+
+    </tr>
+    <tr>
+        <td class="alarmtd">排量/功率</td>
+        <td colspan="2" id="plgl"></td>
+        <td class="alarmtd">发动机号</td>
+        <td colspan="2" id="fdjh"></td>
+
+    </tr>
+    <tr>
+        <td class="alarmtd">车辆识别代码</td>
+        <td colspan='5' id="clsbdh"></td>
+    </tr>
+
+    <tr>
+        <td class="alarmtd" colspan='6'
+            style='padding-left:20px;background-color: cornflowerblue; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            驾驶人信息
+        </td>
+    </tr>
+    <tr>
+        <td class="alarmtd">签收结果</td>
+        <td colspan="2" id="qsjg"></td>
+        <td class="alarmtd">是否出警</td>
+        <td colspan="2" id="sfcjlj"></td>
+
+    </tr>
+    <tr>
+        <td class="alarmtd">拦截情况</td>
+        <td colspan="2" id="ljclqk"></td>
+        <td class="alarmtd">是否嫌疑车辆</td>
+        <td colspan="2" id="sfxycl"></td>
+
+    </tr>
+
+    <tr>
+        <td class="alarmtd">出警人员</td>
+        <td colspan="2" id="czr"></td>
+        <td class="alarmtd">处置结果</td>
+        <td colspan="2" id="czjg"></td>
+
+    </tr>
+
+    <tr>
+        <td class="alarmtd">拦截情况描述</td>
+        <td colspan="5" id="ljqkms"> </td>
+
+    </tr>
+    <tr>
+        <td class="alarmtd">文书类型</td>
+        <td colspan="2" id="wslb"></td>
+        <td class="alarmtd">文书编号</td>
+        <td id="wsbh"colspan="2" onclick='lookWrit(this)' style='cursor: pointer;color:blue;'
+        >
+        </td>
+
+    </tr>
+    <tr>
+        <td class="alarmtd" colspan='6'
+            style='padding-left:20px;background-color: cornflowerblue; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            照片
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="7" colspan="2">
+            <br>
+            <div id="layer-photos-yjzp" class="layer-photos-demo">
+                <img layer-pid="yjzps" id="yjzps" style="width: 150px;height: 100px"
+                     layer-src=""
+                     src="" alt="预警图片">
+            </div>
+            <br>
+            <p>预警照片</p>
+        </td>
+        <td rowspan="7" colspan="4">
+            <div id="layer-photos-ljzp" class="layer-photos-demo">
+                <img id="ljzp1" style="width: 100px;height: 80px" src="" alt="拦截照片">
+                <img id="ljzp2" style="width: 100px;height: 80px" src="" alt="拦截照片">
+                <img id="ljzp3" style="width: 100px;height: 80px" src="" alt="拦截照片">
+            </div>
+            <br>
+            <p>拦截照片</p>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

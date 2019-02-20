@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="../plugs/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/common/utilAjax.js"></script>
+<script >
+$(function(){
+    $('#confirmSubmit') .click(function(){
+        alert('22222222222222');
+        Upload();
+    })
+    function Upload() {
+        var url = 'http://127.0.0.1:59995/Web/uploadPhoto';
+        var form = new FormData($("test")[0]);
+        form.append("file", document.getElementById("file").files[0]);
+        form.append("id", '666666666666666');
+        form.append("zpzl", '8000');
+        form.append("psr", '4444');
+        $.ajax({
+            url: url,
+            data: form,
+            type: 'post',
+            processData: false,
+            contentType: false,
+            cache: false,//上传文件无需缓存
+            success: function (response) {
+                if (Boolean(response.meta.success)) {
+                }
+                else mymsg(response.meta.message, 5);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    }
+
+})
+
+</script>
+<body>
+<!--新增-->
+<div id="addNewDiv"  style="z-index:99999;">
+    <table class="addNewTable">
+
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>图片：</td>
+            <td><form id="test" enctype="multipart/form-data">
+                选择文件:<input id="file" data-role="none" type="file" name="file" width="120px">
+
+            </form></td>
+        </tr>
+
+    </table>
+
+    <div class="filterBtnDiv">
+        <button id="confirmSubmit" class="filterBtn">保存</button>
+        <button id="confirmCancel" class="filterBtn btnCancel">取消</button>
+        </br>
+    </div>
+
+</div>
+
+</body>
+</html>

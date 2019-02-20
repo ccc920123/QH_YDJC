@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.VehiclesDao">
+  <!--查询最近一小时内的信息 AND xrsj >= #{2}-->
+   <select id="selectOneHourVehByHphmHpzl" resultType="com.scxd.beans.biz.Q09Return" >
+       SELECT  zdcllx,cllx,wfcs,sfyqwjy AS yqwjy,sfyqwbf AS yqwbf,lxdh,zsxxdz AS lxdz,
+      hphm,hpzl,clpp1 AS clpp,sfdqc,csys,zsxzqh,jdcbgyy AS yjdcbgyy,hpqyrq,ccdjrq,
+      syr AS jdcsyr,syxz,clsbdh,gcjk,bxzzrq,hgzbh AS hgbzbh,fdjh,xszbh,zt AS clzt,
+      pl,gl,dybj,cwkc AS wkc,yxqz AS jyyxqz,cwkk AS wkk,cwkg AS wkg,fzjg
+       FROM biz_veh_info WHERE hphm = #{0} AND hpzl = #{1}
+   </select>
+<!--AND xrsj >= #{2}-->
+    <select id="selectVehByHphmHpzl" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM biz_veh_info WHERE hphm = #{0} AND hpzl = #{1}
+    </select>
+
+    <delete id="deleteVehByHphmHpzl" parameterType="String">
+        DELETE  FROM biz_veh_info WHERE hphm = #{0} AND hpzl = #{1}
+    </delete>
+
+    <insert id="insertVehicles" parameterType="java.util.Map">
+        INSERT INTO biz_veh_info
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            ${key}
+        </foreach>
+        VALUES
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            #{map[${key}]}
+        </foreach>
+    </insert>
+
+    <select id="selectVehicles" parameterType="String" resultType="com.scxd.beans.biz.Q09Return">
+         SELECT
+      zdcllx,cllx,wfcs,sfyqwjy AS yqwjy,sfyqwbf AS yqwbf,lxdh,zsxxdz AS lxdz,
+      hphm,hpzl,clpp1 AS clpp,sfdqc,csys,zsxzqh,jdcbgyy AS yjdcbgyy,hpqyrq,ccdjrq,
+      syr AS jdcsyr,syxz,clsbdh,gcjk,bxzzrq,hgzbh AS hgbzbh,fdjh,xszbh,zt AS clzt,
+      pl,gl,dybj,cwkc AS wkc,yxqz AS jyyxqz,cwkk AS wkk,cwkg AS wkg,fzjg,zbzl,clxh,sfzmhm
+         FROM biz_veh_info WHERE hphm = #{0} AND hpzl = #{1} AND  ROWNUM=1
+    </select>
+
+  <select id="selectHpzl" parameterType="String" resultType="String">
+      SELECT hpzl FROM biz_veh_info WHERE hphm = #{0}
+  </select>
+
+    <insert id="insertVehMessage" parameterType="com.scxd.beans.pojo.test.BizVehInfoBean" >
+        insert into BIZ_VEH_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="zt != null">
+                ZT,
+            </if>
+            <if test="yxqz != null">
+                YXQZ,
+            </if>
+            <if test="fzjg != null">
+                FZJG,
+            </if>
+            <if test="hphm != null">
+                HPHM,
+            </if>
+            <if test="hpzl != null">
+                HPZL,
+            </if>
+            <if test="clpp1 != null">
+                CLPP1,
+            </if>
+            <if test="sfdqc != null">
+                SFDQC,
+            </if>
+            <if test="csys != null">
+                CSYS,
+            </if>
+            <if test="zsxzqh != null">
+                ZSXZQH,
+            </if>
+            <if test="jdcbgyy != null">
+                JDCBGYY,
+            </if>
+            <if test="hpqyrq != null">
+                HPQYRQ,
+            </if>
+            <if test="ccdjrq != null">
+                CCDJRQ,
+            </if>
+            <if test="syr != null">
+                SYR,
+            </if>
+            <if test="syxz != null">
+                SYXZ,
+            </if>
+            <if test="clsbdh != null">
+                CLSBDH,
+            </if>
+            <if test="gcjk != null">
+                GCJK,
+            </if>
+            <if test="bxzzrq != null">
+                BXZZRQ,
+            </if>
+            <if test="hgzbh != null">
+                HGZBH,
+            </if>
+            <if test="fdjh != null">
+                FDJH,
+            </if>
+            <if test="xszbh != null">
+                XSZBH,
+            </if>
+            <if test="pl != null">
+                PL,
+            </if>
+            <if test="gl != null">
+                GL,
+            </if>
+            <if test="dybj != null">
+                DYBJ,
+            </if>
+            <if test="cwkc != null">
+                CWKC,
+            </if>
+            <if test="cwkk != null">
+                CWKK,
+            </if>
+            <if test="cwkg != null">
+                CWKG,
+            </if>
+            <if test="zdcllx != null">
+                ZDCLLX,
+            </if>
+            <if test="cllx != null">
+                CLLX,
+            </if>
+            <if test="wfcs != null">
+                WFCS,
+            </if>
+            <if test="sfwfwcl != null">
+                SFWFWCL,
+            </if>
+            <if test="sfyqwjy != null">
+                SFYQWJY,
+            </if>
+            <if test="sfyqwbf != null">
+                SFYQWBF,
+            </if>
+            <if test="lxdh != null">
+                LXDH,
+            </if>
+            <if test="zsxxdz != null">
+                ZSXXDZ,
+            </if>
+            <if test="xrsj != null">
+                XRSJ,
+            </if>
+            <if test="qzbfqz != null">
+                QZBFQZ,
+            </if>
+            <if test="clxh != null">
+                CLXH,
+            </if>
+            <if test="zbzl != null">
+                ZBZL,
+            </if>
+            <if test="fdjxh != null">
+                FDJXH,
+            </if>
+            <if test="ccrq != null">
+                CCRQ,
+            </if>
+            <if test="hlj != null">
+                HLJ,
+            </if>
+            <if test="zzl != null">
+                ZZL,
+            </if>
+            <if test="rlzl != null">
+                RLZL,
+            </if>
+            <if test="hdzk != null">
+                HDZK,
+            </if>
+            <if test="qlj != null">
+                QLJ,
+            </if>
+            <if test="zj != null">
+                ZJ,
+            </if>
+            <if test="hdzzl != null">
+                HDZZL,
+            </if>
+            <if test="zs != null">
+                ZS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="zt != null">
+                #{zt,jdbcType=VARCHAR},
+            </if>
+            <if test="yxqz != null">
+                #{yxqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fzjg != null">
+                #{fzjg,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null">
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null">
+                #{hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp1 != null">
+                #{clpp1,jdbcType=VARCHAR},
+            </if>
+            <if test="sfdqc != null">
+                #{sfdqc,jdbcType=VARCHAR},
+            </if>
+            <if test="csys != null">
+                #{csys,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxzqh != null">
+                #{zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="jdcbgyy != null">
+                #{jdcbgyy,jdbcType=VARCHAR},
+            </if>
+            <if test="hpqyrq != null">
+                #{hpqyrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ccdjrq != null">
+                #{ccdjrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="syr != null">
+                #{syr,jdbcType=VARCHAR},
+            </if>
+            <if test="syxz != null">
+                #{syxz,jdbcType=VARCHAR},
+            </if>
+            <if test="clsbdh != null">
+                #{clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="gcjk != null">
+                #{gcjk,jdbcType=VARCHAR},
+            </if>
+            <if test="bxzzrq != null">
+                #{bxzzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hgzbh != null">
+                #{hgzbh,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null">
+                #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="xszbh != null">
+                #{xszbh,jdbcType=VARCHAR},
+            </if>
+            <if test="pl != null">
+                #{pl,jdbcType=DECIMAL},
+            </if>
+            <if test="gl != null">
+                #{gl,jdbcType=VARCHAR},
+            </if>
+            <if test="dybj != null">
+                #{dybj,jdbcType=VARCHAR},
+            </if>
+            <if test="cwkc != null">
+                #{cwkc,jdbcType=DECIMAL},
+            </if>
+            <if test="cwkk != null">
+                #{cwkk,jdbcType=DECIMAL},
+            </if>
+            <if test="cwkg != null">
+                #{cwkg,jdbcType=DECIMAL},
+            </if>
+            <if test="zdcllx != null">
+                #{zdcllx,jdbcType=VARCHAR},
+            </if>
+            <if test="cllx != null">
+                #{cllx,jdbcType=VARCHAR},
+            </if>
+            <if test="wfcs != null">
+                #{wfcs,jdbcType=DECIMAL},
+            </if>
+            <if test="sfwfwcl != null">
+                #{sfwfwcl,jdbcType=VARCHAR},
+            </if>
+            <if test="sfyqwjy != null">
+                #{sfyqwjy,jdbcType=VARCHAR},
+            </if>
+            <if test="sfyqwbf != null">
+                #{sfyqwbf,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxxdz != null">
+                #{zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="xrsj != null">
+                #{xrsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="qzbfqz != null">
+                #{qzbfqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="clxh != null">
+                #{clxh,jdbcType=VARCHAR},
+            </if>
+            <if test="zbzl != null">
+                #{zbzl,jdbcType=DECIMAL},
+            </if>
+            <if test="fdjxh != null">
+                #{fdjxh,jdbcType=VARCHAR},
+            </if>
+            <if test="ccrq != null">
+                #{ccrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hlj != null">
+                #{hlj,jdbcType=DECIMAL},
+            </if>
+            <if test="zzl != null">
+                #{zzl,jdbcType=DECIMAL},
+            </if>
+            <if test="rlzl != null">
+                #{rlzl,jdbcType=VARCHAR},
+            </if>
+            <if test="hdzk != null">
+                #{hdzk,jdbcType=DECIMAL},
+            </if>
+            <if test="qlj != null">
+                #{qlj,jdbcType=DECIMAL},
+            </if>
+            <if test="zj != null">
+                #{zj,jdbcType=DECIMAL},
+            </if>
+            <if test="hdzzl != null">
+                #{hdzzl,jdbcType=DECIMAL},
+            </if>
+            <if test="zs != null">
+                #{zs,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertVehMessageC21" parameterType="com.scxd.beans.pojo.test.BizVehInfoBean" >
+        insert into BIZ_VEH_INFO
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="zt != null" >
+                ZT,
+            </if>
+            <if test="yxqz != null" >
+                YXQZ,
+            </if>
+            <if test="fzjg != null" >
+                FZJG,
+            </if>
+            <if test="hphm != null" >
+                HPHM,
+            </if>
+            <if test="hpzl != null" >
+                HPZL,
+            </if>
+            <if test="clpp1 != null" >
+                CLPP1,
+            </if>
+            <if test="sfdqc != null" >
+                SFDQC,
+            </if>
+            <if test="csys != null" >
+                CSYS,
+            </if>
+            <if test="zsxzqh != null" >
+                ZSXZQH,
+            </if>
+            <if test="jdcbgyy != null" >
+                JDCBGYY,
+            </if>
+            <if test="hpqyrq != null" >
+                HPQYRQ,
+            </if>
+            <if test="ccdjrq != null" >
+                CCDJRQ,
+            </if>
+            <if test="syr != null" >
+                SYR,
+            </if>
+            <if test="syxz != null" >
+                SYXZ,
+            </if>
+            <if test="clsbdh != null" >
+                CLSBDH,
+            </if>
+            <if test="gcjk != null" >
+                GCJK,
+            </if>
+            <if test="bxzzrq != null" >
+                BXZZRQ,
+            </if>
+            <if test="hgzbh != null" >
+                HGZBH,
+            </if>
+            <if test="fdjh != null" >
+                FDJH,
+            </if>
+            <if test="xszbh != null" >
+                XSZBH,
+            </if>
+            <if test="pl != null" >
+                PL,
+            </if>
+            <if test="gl != null" >
+                GL,
+            </if>
+            <if test="dybj != null" >
+                DYBJ,
+            </if>
+            <if test="cwkc != null" >
+                CWKC,
+            </if>
+            <if test="cwkk != null" >
+                CWKK,
+            </if>
+            <if test="cwkg != null" >
+                CWKG,
+            </if>
+            <if test="zdcllx != null" >
+                ZDCLLX,
+            </if>
+            <if test="cllx != null" >
+                CLLX,
+            </if>
+            <if test="wfcs != null" >
+                WFCS,
+            </if>
+            <if test="sfwfwcl != null" >
+                SFWFWCL,
+            </if>
+            <if test="sfyqwjy != null" >
+                SFYQWJY,
+            </if>
+            <if test="sfyqwbf != null" >
+                SFYQWBF,
+            </if>
+            <if test="lxdh != null" >
+                LXDH,
+            </if>
+            <if test="zsxxdz != null" >
+                ZSXXDZ,
+            </if>
+            <if test="xrsj != null" >
+                XRSJ,
+            </if>
+            <if test="qzbfqz != null" >
+                QZBFQZ,
+            </if>
+            <if test="clxh != null" >
+                CLXH,
+            </if>
+            <if test="zbzl != null" >
+                ZBZL,
+            </if>
+            <if test="fdjxh != null" >
+                FDJXH,
+            </if>
+            <if test="ccrq != null" >
+                CCRQ,
+            </if>
+            <if test="hlj != null" >
+                HLJ,
+            </if>
+            <if test="zzl != null" >
+                ZZL,
+            </if>
+            <if test="rlzl != null" >
+                RLZL,
+            </if>
+            <if test="hdzk != null" >
+                HDZK,
+            </if>
+            <if test="qlj != null" >
+                QLJ,
+            </if>
+            <if test="zj != null" >
+                ZJ,
+            </if>
+            <if test="hdzzl != null" >
+                HDZZL,
+            </if>
+            <if test="zs != null" >
+                ZS,
+            </if>
+            <if test="dabh != null" >
+                DABH,
+            </if>
+            <if test="qpzk != null" >
+                QPZK,
+            </if>
+            <if test="hbdbqk != null" >
+                HBDBQK,
+            </if>
+            <if test="sjhm != null" >
+                SJHM,
+            </if>
+            <if test="hxnbkd != null" >
+                HXNBKD,
+            </if>
+            <if test="hxnbgd != null" >
+                HXNBGD,
+            </if>
+            <if test="hxnbcd != null" >
+                HXNBCD,
+            </if>
+            <if test="zzg != null" >
+                ZZG,
+            </if>
+            <if test="clpp2 != null" >
+                CLPP2,
+            </if>
+            <if test="jyhgbzbh != null" >
+                JYHGBZBH,
+            </if>
+            <if test="zxxs != null" >
+                ZXXS,
+            </if>
+            <if test="hpzk != null" >
+                HPZK,
+            </if>
+            <if test="djrq != null" >
+                DJRQ,
+            </if>
+            <if test="sfzmhm != null" >
+                SFZMHM,
+            </if>
+            <if test="gbthps != null" >
+                GBTHPS,
+            </if>
+            <if test="zqyzl != null" >
+                ZQYZL,
+            </if>
+            <if test="zzxxdz != null" >
+                ZZXXDZ,
+            </if>
+            <if test="sfzmmc != null" >
+                SFZMMC,
+            </if>
+            <if test="ltgg != null" >
+                LTGG,
+            </if>
+            <if test="lts != null" >
+                LTS,
+            </if>
+            <if test="glbm != null" >
+                GLBM,
+            </if>
+            <if test="zzcmc != null" >
+                ZZCMC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="zt != null" >
+                #{zt,jdbcType=VARCHAR},
+            </if>
+            <if test="yxqz != null" >
+                #{yxqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fzjg != null" >
+                #{fzjg,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null" >
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null" >
+                #{hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp1 != null" >
+                #{clpp1,jdbcType=VARCHAR},
+            </if>
+            <if test="sfdqc != null" >
+                #{sfdqc,jdbcType=VARCHAR},
+            </if>
+            <if test="csys != null" >
+                #{csys,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxzqh != null" >
+                #{zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="jdcbgyy != null" >
+                #{jdcbgyy,jdbcType=VARCHAR},
+            </if>
+            <if test="hpqyrq != null" >
+                #{hpqyrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ccdjrq != null" >
+                #{ccdjrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="syr != null" >
+                #{syr,jdbcType=VARCHAR},
+            </if>
+            <if test="syxz != null" >
+                #{syxz,jdbcType=VARCHAR},
+            </if>
+            <if test="clsbdh != null" >
+                #{clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="gcjk != null" >
+                #{gcjk,jdbcType=VARCHAR},
+            </if>
+            <if test="bxzzrq != null" >
+                #{bxzzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hgzbh != null" >
+                #{hgzbh,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null" >
+                #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="xszbh != null" >
+                #{xszbh,jdbcType=VARCHAR},
+            </if>
+            <if test="pl != null" >
+                #{pl,jdbcType=DECIMAL},
+            </if>
+            <if test="gl != null" >
+                #{gl,jdbcType=VARCHAR},
+            </if>
+            <if test="dybj != null" >
+                #{dybj,jdbcType=VARCHAR},
+            </if>
+            <if test="cwkc != null" >
+                #{cwkc,jdbcType=DECIMAL},
+            </if>
+            <if test="cwkk != null" >
+                #{cwkk,jdbcType=DECIMAL},
+            </if>
+            <if test="cwkg != null" >
+                #{cwkg,jdbcType=DECIMAL},
+            </if>
+            <if test="zdcllx != null" >
+                #{zdcllx,jdbcType=VARCHAR},
+            </if>
+            <if test="cllx != null" >
+                #{cllx,jdbcType=VARCHAR},
+            </if>
+            <if test="wfcs != null" >
+                #{wfcs,jdbcType=DECIMAL},
+            </if>
+            <if test="sfwfwcl != null" >
+                #{sfwfwcl,jdbcType=VARCHAR},
+            </if>
+            <if test="sfyqwjy != null" >
+                #{sfyqwjy,jdbcType=VARCHAR},
+            </if>
+            <if test="sfyqwbf != null" >
+                #{sfyqwbf,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null" >
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxxdz != null" >
+                #{zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="xrsj != null" >
+                #{xrsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="qzbfqz != null" >
+                #{qzbfqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="clxh != null" >
+                #{clxh,jdbcType=VARCHAR},
+            </if>
+            <if test="zbzl != null" >
+                #{zbzl,jdbcType=DECIMAL},
+            </if>
+            <if test="fdjxh != null" >
+                #{fdjxh,jdbcType=VARCHAR},
+            </if>
+            <if test="ccrq != null" >
+                #{ccrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hlj != null" >
+                #{hlj,jdbcType=DECIMAL},
+            </if>
+            <if test="zzl != null" >
+                #{zzl,jdbcType=DECIMAL},
+            </if>
+            <if test="rlzl != null" >
+                #{rlzl,jdbcType=VARCHAR},
+            </if>
+            <if test="hdzk != null" >
+                #{hdzk,jdbcType=DECIMAL},
+            </if>
+            <if test="qlj != null" >
+                #{qlj,jdbcType=DECIMAL},
+            </if>
+            <if test="zj != null" >
+                #{zj,jdbcType=DECIMAL},
+            </if>
+            <if test="hdzzl != null" >
+                #{hdzzl,jdbcType=DECIMAL},
+            </if>
+            <if test="zs != null" >
+                #{zs,jdbcType=DECIMAL},
+            </if>
+            <if test="dabh != null" >
+                #{dabh,jdbcType=VARCHAR},
+            </if>
+            <if test="qpzk != null" >
+                #{qpzk,jdbcType=VARCHAR},
+            </if>
+            <if test="hbdbqk != null" >
+                #{hbdbqk,jdbcType=VARCHAR},
+            </if>
+            <if test="sjhm != null" >
+                #{sjhm,jdbcType=VARCHAR},
+            </if>
+            <if test="hxnbkd != null" >
+                #{hxnbkd,jdbcType=VARCHAR},
+            </if>
+            <if test="hxnbgd != null" >
+                #{hxnbgd,jdbcType=VARCHAR},
+            </if>
+            <if test="hxnbcd != null" >
+                #{hxnbcd,jdbcType=VARCHAR},
+            </if>
+            <if test="zzg != null" >
+                #{zzg,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp2 != null" >
+                #{clpp2,jdbcType=VARCHAR},
+            </if>
+            <if test="jyhgbzbh != null" >
+                #{jyhgbzbh,jdbcType=VARCHAR},
+            </if>
+            <if test="zxxs != null" >
+                #{zxxs,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzk != null" >
+                #{hpzk,jdbcType=VARCHAR},
+            </if>
+            <if test="djrq != null" >
+                #{djrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sfzmhm != null" >
+                #{sfzmhm,jdbcType=VARCHAR},
+            </if>
+            <if test="gbthps != null" >
+                #{gbthps,jdbcType=VARCHAR},
+            </if>
+            <if test="zqyzl != null" >
+                #{zqyzl,jdbcType=VARCHAR},
+            </if>
+            <if test="zzxxdz != null" >
+                #{zzxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzmmc != null" >
+                #{sfzmmc,jdbcType=VARCHAR},
+            </if>
+            <if test="ltgg != null" >
+                #{ltgg,jdbcType=VARCHAR},
+            </if>
+            <if test="lts != null" >
+                #{lts,jdbcType=VARCHAR},
+            </if>
+            <if test="glbm != null" >
+                #{glbm,jdbcType=VARCHAR},
+            </if>
+            <if test="zzcmc != null" >
+                #{zzcmc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

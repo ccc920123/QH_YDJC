@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/addUser.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+    <style type="text/css">
+        .inputtext2 {
+            height: 24px;
+            line-height: 24px;
+            border: solid 1px #d9d9d9;
+            background-color: #fff;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            margin: 4px 0;
+            padding: 0 6px;
+        }
+        .inputtext{
+            height: 24px;
+            width: 200px;
+            line-height: 24px;
+            border: solid 1px #d9d9d9;
+            background-color: #fff;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            margin: 4px 0;
+            padding: 0 6px;
+        }
+
+        /*.inputtext自适应*/
+        @media screen and (min-width: 1280px) {
+            .inputtext2 {
+                width: 100px
+            }
+            .inputtext {
+                width: 150px
+            }
+        }
+
+        @media screen and (max-width: 1279px) {
+            .inputtext2 {
+                width: 94%
+            }
+        }
+
+    </style>
+</head>
+<body>
+<!--新增-->
+<!--新增-->
+<div id="addNewDiv" style="z-index:99999;">
+    <table class="addNewTable">
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>所属部门：</td>
+            <td><input type="text" id="ssbmname" class="inputtext ssbmname" readonly="readonly"></td>
+            <td class="s_head"><span class="color_red">*</span>登录账号：</td>
+            <td><input type="text" id="loginname" class="inputtext" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>真实姓名：</td>
+            <td><input type="text" id="realname" class="inputtext"></td>
+            <td class="s_head"><span class="color_red">*</span>身份证号码：</td>
+            <td><input type="text" id="sfzhm" class="inputtext" maxlength="18"
+                       onkeyup="value=value.replace(/^[a-zA-Z]+\D*|^\d{0,16}[a-zA-Z]+|[^0-9Xx]/g,'') "
+                       onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+            </td>
+        </tr>
+        <tr>
+            <!-- <td class="s_head"><span class="color_red hidden">*</span>密码有效期：</td>
+             <td><input type="text" id="mmyxq" class="inputtext wicon hidden" readonly>
+
+             </td>-->
+            <td class="s_head"><span class="color_red ">*</span>联系电话：</td>
+            <td><input type="text" id="lxdh" class="inputtext"></td>
+            <td class="s_head"><span class="color_red">*</span>人员类型：</td>
+            <td><input id="radio1" type="radio" name="rylx" title="警员" value="1" checked/><label for="radio1">警员</label>
+                <input id="radio2" type="radio" name="rylx" title="非警员" value="0"/><label for="radio2">非警员</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span><span id="rybhSpan">警员/人员编号：</span></td>
+            <td><input type="text" id="rybh" class="inputtext" maxlength="20"
+                       onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+            ></td>
+            <td class="s_head"><span class="color_red">*</span>账户有效期：</td>
+            <td><input type="text" id="zhyxq" class="inputtext" readonly></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>密码有效期：</td>
+            <td><input type="text" id="mmyxq" class="inputtext" readonly></td>
+            <td class="s_head"><span class="color_red">*</span>登录时间：</td>
+            <td>
+                <div style="display:inline">
+                    <input type="text" id="dlkssj" class="inputtext2" readonly> 至
+                    <input type="text" id="dljssj" class="inputtext2" readonly>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head">开启IP限制：</td>
+            <td><input class="" id="cbkqipxz" name="cbkqipxz" type="checkbox"></td>
+            <!--onclick="clickip(this)"-->
+            <td class="s_head">固定IP地址1：</td>
+            <td><input type="text" id="ipaddress1" class="inputtext" value="" onkeyup="javascript:validateIP()"></td>
+        </tr>
+        <tr>
+            <td class="s_head">固定IP地址2：</td>
+            <td><input type="text" id="ipaddress2" class="inputtext" value="" onkeyup="javascript:validateIP()"></td>
+            <td class="s_head">固定IP地址3：</td>
+            <td><input type="text" id="ipaddress3" class="inputtext" value="" onkeyup="javascript:validateIP()"></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>账号状态：</td>
+            <td><select id="zt">
+                <option value="1">正常</option>
+                <option value="0">停用</option>
+                <option value="2">锁定</option>
+            </select></td>
+            <td class="s_head">联系地址：</td>
+            <td><input type="text" id="lxdz" class="inputtext"></td>
+        </tr>
+
+        <tr>
+            <!-- <td class="s_head"><span class="color_red hidden">*</span>用户有效期：</td>
+             <td><input type="text" id="yhyxq" class="inputtext wicon hidden" readonly>
+
+             </td>-->
+            <td class="s_head">备注：</td>
+            <td>
+            <textarea id="bz" class="inputtext" name="" width="200px;" cols="100" rows="10"
+                      style="height:50px;"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>角色类型：</td>
+            <td id="roles">
+                <select id="jslx" style="width:150px;height: 30px;line-height: 30px;">
+                    <option value="">---选择角色类型---</option>
+                    <option value="1">业务办理</option>
+                    <option value="2">系统管理</option>
+                    <option value="3">安全管理</option>
+                    <option value="4">审计管理</option>
+                </select>
+                <!--<span class="cb_span"><input type="radio" name="role" value="1">业务办理</span>-->
+                <!--<span class="cb_span"><input type="radio" name="role" value="2">系统管理</span>-->
+                <!--<span class="cb_span"><input type="radio" name="role" value="3">安全管理</span>-->
+                <!--<span class="cb_span"><input type="radio" name="role" value="4">审计管理</span>-->
+            <!--</td>-->
+                <span class="color_red">*</span>
+                角色名称：
+                <select id="jsmc" style="width:150px;height: 30px;line-height: 30px;">
+                    <option value="">---选择角色名称---</option>
+                </select>
+            </td>
+
+            <td class="s_head">是否使用PDA</td>
+            <td id="sfsypda">
+                <span class="cb_span"><input type="checkbox" class="sfsypda" value="1">是</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="s_head">注：</td>
+            <td colspan="3" style="color: red" id="message">新增或重置用户密码时均默认为'abc_1234'</td>
+        </tr>
+
+    </table>
+
+
+    <div class="filterBtnDiv">
+        <button id="confirmSubmit" class="filterBtn">提交</button>
+
+        <button id="resetSubmit" class="filterBtn" style="display:none">重置密码</button>
+
+        <button id="confirmCancel" class="filterBtn btnCancel">取消</button>
+        </br>
+        <!--<label style="color: red">*</label>-->
+
+
+    </div>
+
+    <input id="user_id"  type="text" class="hidden ">
+    <input id="ssbmbh" type="text" class="hidden ">
+    <input id="roles1" type="text" class="hidden ">
+    <input id="kqipxz" type="text" class="hidden ">
+
+</div>
+</body>

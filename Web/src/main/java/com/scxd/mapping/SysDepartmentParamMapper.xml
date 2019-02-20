@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysDepartmentParamMapper">
+    <select id="getCSZByBmbhAndCsdm" resultType="java.lang.String">
+    Select csz from
+
+(
+
+Select a.bmbh,b.csmc,b.csz
+
+From sys_department a
+
+Left Outer Join
+
+sys_department_param b On a.bmbh = b.bmbh and b.zt =1 and b.csdm =#{csz}
+
+START WITH a.bmbh=#{bmbh}
+
+CONNECT BY PRIOR a.sjzdbmbh=a.bmbh
+)
+
+Where csz is not null and rownum =1
+
+  </select>
+
+
+    <select id="getZDBMBHs" resultType="java.lang.String">
+        SELECT BMBH FROM SYS_DEPARTMENT_PARAM WHERE CSDM='JCZHJKXLH'
+    </select>
+
+
+
+    <select id="getDepartParamMessage" resultType="com.scxd.beans.management.ParamsBean">
+        Select rownum rn,bmbh,bmmc,csdm gjz,csmc, csz,ms,id,case when bmbh=#{bmbh} then 0 else 1 end sfjc from
+
+(
+
+Select a.bmbh,a.name bmmc,b.csdm,b.csmc,b.csz,b.ms,b.id
+
+From sys_department a
+
+Left Outer Join
+
+sys_department_param b On a.bmbh = b.bmbh and b.zt =1 and b.csdm =#{csz}
+
+START WITH a.bmbh=#{bmbh}
+
+CONNECT BY PRIOR a.sjzdbmbh=a.bmbh
+
+)
+
+Where csz is not null and rownum =1
+    </select>
+
+    <select id="getAllParamDM" resultType="java.lang.String">
+        select a.csdm from sys_department_param a where a.bmbh='630000000000'and csmc like  concat(concat('%',#{csmc}),'%')
+        and rownum between (#{page}-1)*#{pageSize} +1 and #{page}*#{pageSize}
+    </select>
+
+    <update id="updateDepartmentParams" >
+        update sys_department_param SET csz=#{csz} where id=#{id}
+    </update>
+    <insert id="insertBean" parameterType="com.scxd.beans.management.ParamsBean">
+        insert into sys_department_param
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="gjz != null">
+                CSDM,
+            </if>
+            <if test="bmbh != null">
+                BMBH,
+            </if>
+            <if test="csmc != null">
+                CSMC,
+            </if>
+            <if test="csz != null">
+                CSZ,
+            </if>
+            <if test="ms != null">
+                MS,
+            </if>
+                ZT
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="gjz != null">
+                #{gjz,jdbcType=VARCHAR},
+            </if>
+            <if test="bmbh != null">
+                #{bmbh,jdbcType=VARCHAR},
+            </if>
+            <if test="csmc != null">
+                #{csmc,jdbcType=VARCHAR},
+            </if>
+            <if test="csz != null">
+                #{csz,jdbcType=VARCHAR},
+            </if>
+            <if test="ms != null">
+                #{ms,jdbcType=VARCHAR},
+            </if>
+            1
+        </trim>
+
+    </insert>
+    <delete id="deleteByID">
+        DELETE  sys_department_param where id=#{0}
+    </delete>
+</mapper>

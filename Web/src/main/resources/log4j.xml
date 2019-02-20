@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+    <!--log4j可以指定多个输出目的地-->
+<!--指定输出到控制台-->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <!--可以灵活地指定布局模式-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <!--指定格式-->
+            <param name="ConversionPattern" value="[%d{HH:MM:SS}] %p - %C{1}.%M(%L) | %m%n"/>
+        </layout>
+    </appender>
+    <!--指定输出到文件-->
+    <!--每天产生一个日志文件-->
+    <appender name="DAILY" class="org.apache.log4j.DailyRollingFileAppender">
+        <!--产生的文件名为log-->
+        <param name="File" value="logs/log.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:MM:SS}] %p - %C{1}.%M(%L) | %m%n"/>
+        </layout>
+    </appender>
+    <!-- 下面是打印 mybatis语句的配置 -->
+    <logger name="com.ibatis" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="java.sql.Connection" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="java.sql.Statement" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="java.sql.PreparedStatement" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="java.sql.ResultSet" additivity="true">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="com.scxd.dao.mapper">
+        <level value="DEBUG" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DAILY"/>
+    </root>
+
+</log4j:configuration>
+

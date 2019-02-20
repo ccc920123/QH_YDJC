@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>文书管理</title>
+
+
+     <!--<script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/alarm.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+    <style type="text/css" >
+        /*.inputtext自适应*/
+        @media screen and (min-width: 1280px) {
+            .inputtext {width: 100px}
+        }
+        @media screen and (max-width: 1279px){
+            .inputtext {width: 94%}
+        }
+
+    </style>
+</head>
+<body>
+<table  class="dept"  >
+    <tr  >
+        <!-- 左边树 -->
+        <td class="deptLeft">
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+        </td>
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%">
+                    <tr>
+                        <td style="text-align: center">预警时间：</td>
+                        <td style="padding-left: 5px;padding-right: 5px">
+                            <input type="text"  id="ksrq" class="inputtext"  readonly>
+                        </td>
+                        <td style="text-align: center">
+                            -
+                        </td>
+                        <td style="padding-left: 5px;padding-right: 5px">
+                            <input  type="text" id="jsrq" class="inputtext" readonly>
+                        </td>
+                        <td style="text-align: center" colspan="2">签收情况：</td>
+                        <td style="text-align: center">
+                            <select id="yjzt" class="inputtext">
+                                <option value=""></option>
+                                <option value="0">未签收</option>
+                                <option value="1">已签收</option>
+                                <option value="2">已反馈</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">号牌号码：</td>
+                        <td style="padding-left: 5px;padding-right: 5px">
+                            <input type="text"  id="hphm" class="inputtext"  >
+                        </td>
+                        <td style="text-align: center">
+                            -
+                        </td>
+                        <td style="text-align: center">预警类型：</td>
+                        <td colspan="2" style="padding-left: 5px;padding-right: 5px">
+                            <select id="yjlx" class="inputtext" >
+                                <option value=""></option>
+                                <option value="31">无牌车辆</option>
+                                <option value="03">假牌车辆</option>
+                                <option value="02">套牌车辆</option>
+                                <option value="49">嫌疑无牌</option>
+                                <option value="04">逾期未年检车辆</option>
+                                <option value="05">逾期未报废车辆</option>
+                                <option value="43">黄标车管控</option>
+                                <option value="34">车辆所有人驾驶证异常</option>
+                                <option value="35">重点关注大客车</option>
+                                <option value="45">影响安全驾驶行为</option>
+                            </select>
+                        </td>
+                        <td  style="text-align: center;">
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div>&nbsp;查询信息条数&nbsp;:&nbsp;<span id="total"></span></div>
+
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>号牌号码</td>
+                        <td>号牌种类</td>
+                        <td>预警类型</td>
+                        <td>卡口名称</td>
+                        <td>预警时间</td>
+                        <td>签收情况</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

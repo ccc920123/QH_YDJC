@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.BizVioSurveMapper">
+
+
+    <select id="getSurveTotal" resultType="java.lang.Integer">
+        SELECT count(*) FROM biz_vio_surve h
+         WHERE
+           wfsj &gt;= #{0} AND wfsj  &lt;= #{1} AND lrr = #{4}
+    </select>
+    <!--取违法监控列表-->
+    <select id="selectVioSurveList" resultType="com.scxd.beans.biz.Q19Return">
+        SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM (SELECT tzsh AS jdsbh,hpzl,hphm,b.wfms wfxw,wfsj FROM biz_vio_surve h
+         left join biz_codewfdm b on h.wfxw=b.wfxw
+         WHERE
+           wfsj &gt;= #{0} AND wfsj  &lt;= #{1} AND lrr = #{4}
+        ) A
+        WHERE ROWNUM &lt;= #{3} ORDER BY A.wfsj DESC
+        )
+        WHERE RN &gt; #{2}
+    </select>
+
+    <!--获取电子监控详情图片-->
+    <select id="selectZPS" parameterType="String" resultType="String">
+        SELECT p.sx1 FROM biz_photo_info p
+        WHERE p.glid IN(SELECT v.id FROM biz_vio_surve v WHERE v.tzsh = #{0})
+    </select>
+
+    <!--获取违法监控详情-->
+    <select id="selectVioSurveByJdsbh" parameterType="String" resultType="com.scxd.beans.biz.Q22Return">
+SELECT v.*,c.fltw AS flyj ,c.wfnr ,v.tzsh jdsbh ,d.bmqc,f.cllx FROM biz_vio_surve v
+  left join sys_user k on k.loginname=v.lrr
+ left join sys_department d on k.ssbmbh=d.bmbh
+ left join biz_codewfdm c  on v.wfxw=c.wfxw
+ left join biz_veh_info f on v.hpzl=f.hpzl and v.hphm=f.hphm
+        WHERE v.tzsh = #{0} and rownum=1
+    </select>
+
+    <!--写入电子监控信息-->
+    <insert id="insertVioSurve" parameterType="java.util.Map">
+        INSERT INTO biz_vio_surve
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            ${key}
+        </foreach>
+        VALUES
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            #{map[${key}]}
+        </foreach>
+    </insert>
+    <delete id="deleteVioSure" parameterType="java.lang.String">
+        delete from biz_vio_surve
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <update id="updatePrint">
+        UPDATE biz_vio_surve SET DYBJ =1,DYCS=  CASE WHEN DYCS IS NULL THEN 0 ELSE DYCS + 1 END WHERE tzsh=#{xh}
+    </update>
+
+
+    <select id="getMaxTzsh" resultType="java.lang.String">
+select tzsh from(
+select tzsh,rownum rn from
+(
+select tzsh  from biz_vio_surve order by  cjsj
+) )where rn=(select count(*) from biz_vio_surve)
+    </select>
+    <select id="getSurveDocumentBH" resultType="java.lang.String">
+
+        SELECT SEQ_SURVE_DOCMENT.NEXTVAL FROM DUAL
+    </select>
+
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.BizVioSurveBean" >
+        insert into BIZ_VIO_SURVE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="zsxzqh != null" >
+                ZSXZQH,
+            </if>
+            <if test="zsxxdz != null" >
+                ZSXXDZ,
+            </if>
+            <if test="dh != null" >
+                DH,
+            </if>
+            <if test="lxfs != null" >
+                LXFS,
+            </if>
+            <if test="clfl != null" >
+                CLFL,
+            </if>
+            <if test="hpzl != null" >
+                HPZL,
+            </if>
+            <if test="hphm != null" >
+                HPHM,
+            </if>
+            <if test="jdcsyr != null" >
+                JDCSYR,
+            </if>
+            <if test="syxz != null" >
+                SYXZ,
+            </if>
+            <if test="jtfs != null" >
+                JTFS,
+            </if>
+            <if test="wfsj != null" >
+                WFSJ,
+            </if>
+            <if test="xzqh != null" >
+                XZQH,
+            </if>
+            <if test="wfdd != null" >
+                WFDD,
+            </if>
+            <if test="lddm != null" >
+                LDDM,
+            </if>
+            <if test="ddms != null" >
+                DDMS,
+            </if>
+            <if test="ddgls != null" >
+                DDGLS,
+            </if>
+            <if test="wfdz != null" >
+                WFDZ,
+            </if>
+            <if test="wfxw != null" >
+                WFXW,
+            </if>
+            <if test="scz != null" >
+                SCZ,
+            </if>
+            <if test="bzz != null" >
+                BZZ,
+            </if>
+            <if test="fzjg != null" >
+                FZJG,
+            </if>
+            <if test="zqmj != null" >
+                ZQMJ,
+            </if>
+            <if test="cjjg != null" >
+                CJJG,
+            </if>
+            <if test="fdjh != null" >
+                FDJH,
+            </if>
+            <if test="clsbdh != null" >
+                CLSBDH,
+            </if>
+            <if test="csys != null" >
+                CSYS,
+            </if>
+            <if test="clpp != null" >
+                CLPP,
+            </if>
+            <if test="tzsh != null" >
+                TZSH,
+            </if>
+            <if test="tzrq != null" >
+                TZRQ,
+            </if>
+            <if test="cjfs != null" >
+                CJFS,
+            </if>
+            <if test="spdz != null" >
+                SPDZ,
+            </if>
+            <if test="sbbh != null" >
+                SBBH,
+            </if>
+            <if test="dybj != null" >
+                DYBJ,
+            </if>
+            <if test="dycs != null" >
+                DYCS,
+            </if>
+            <if test="xh != null" >
+                XH,
+            </if>
+            <if test="lrr != null" >
+                LRR,
+            </if>
+            <if test="cjsj != null" >
+                CJSJ,
+            </if>
+            <if test="wsjyw != null" >
+                WSJYW,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxzqh != null" >
+                #{zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxxdz != null" >
+                #{zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="dh != null" >
+                #{dh,jdbcType=VARCHAR},
+            </if>
+            <if test="lxfs != null" >
+                #{lxfs,jdbcType=VARCHAR},
+            </if>
+            <if test="clfl != null" >
+                #{clfl,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null" >
+                #{hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null" >
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="jdcsyr != null" >
+                #{jdcsyr,jdbcType=VARCHAR},
+            </if>
+            <if test="syxz != null" >
+                #{syxz,jdbcType=VARCHAR},
+            </if>
+            <if test="jtfs != null" >
+                #{jtfs,jdbcType=VARCHAR},
+            </if>
+            <if test="wfsj != null" >
+                #{wfsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="xzqh != null" >
+                #{xzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="wfdd != null" >
+                #{wfdd,jdbcType=VARCHAR},
+            </if>
+            <if test="lddm != null" >
+                #{lddm,jdbcType=VARCHAR},
+            </if>
+            <if test="ddms != null" >
+                #{ddms,jdbcType=VARCHAR},
+            </if>
+            <if test="ddgls != null" >
+                #{ddgls,jdbcType=VARCHAR},
+            </if>
+            <if test="wfdz != null" >
+                #{wfdz,jdbcType=VARCHAR},
+            </if>
+            <if test="wfxw != null" >
+                #{wfxw,jdbcType=VARCHAR},
+            </if>
+            <if test="scz != null" >
+                #{scz,jdbcType=VARCHAR},
+            </if>
+            <if test="bzz != null" >
+                #{bzz,jdbcType=VARCHAR},
+            </if>
+            <if test="fzjg != null" >
+                #{fzjg,jdbcType=VARCHAR},
+            </if>
+            <if test="zqmj != null" >
+                #{zqmj,jdbcType=VARCHAR},
+            </if>
+            <if test="cjjg != null" >
+                #{cjjg,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null" >
+                #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="clsbdh != null" >
+                #{clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="csys != null" >
+                #{csys,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp != null" >
+                #{clpp,jdbcType=VARCHAR},
+            </if>
+            <if test="tzsh != null" >
+                #{tzsh,jdbcType=VARCHAR},
+            </if>
+            <if test="tzrq != null" >
+                #{tzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cjfs != null" >
+                #{cjfs,jdbcType=VARCHAR},
+            </if>
+            <if test="spdz != null" >
+                #{spdz,jdbcType=VARCHAR},
+            </if>
+            <if test="sbbh != null" >
+                #{sbbh,jdbcType=VARCHAR},
+            </if>
+            <if test="dybj != null" >
+                #{dybj,jdbcType=DECIMAL},
+            </if>
+            <if test="dycs != null" >
+                #{dycs,jdbcType=DECIMAL},
+            </if>
+            <if test="xh != null" >
+                #{xh,jdbcType=VARCHAR},
+            </if>
+            <if test="lrr != null" >
+                #{lrr,jdbcType=VARCHAR},
+            </if>
+            <if test="cjsj != null" >
+                #{cjsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wsjyw != null" >
+                #{wsjyw,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

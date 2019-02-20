@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../css/user.css"/>-->
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>菜单管理</title>
+
+    <!--<script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="MenuManage.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+
+</head>
+<body>
+<table class="dept">
+    <tr>
+        <!-- 左边树 -->
+        <td class="deptLeft">
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+        </td>
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search" style="display: none">
+                <table class="s_table" width="100%">
+                    <td  colspan="2" align="center">
+                        <button type="button" id="addNexMenu" class="filterBtn query">新增</button>
+                    </td>
+                </table>
+            </div>
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>功能</td>
+                        <td>所属菜单</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+<!--弹出层  新增-->
+<div id="addNewDiv" class="hidden">
+    <table class="addNewTable">
+        <tr>
+            <td class="s_head">功能<span class="color_red">*</span>：</td>
+            <td>
+                <select name="" id= "qxid" class="inputtext">
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head" >是否限警员</td>
+            <td >
+            <label> <input id="radio1" type="radio" name="sfxzjy" title="是" value="1"  />是</label>
+            <label><input  id="radio2" type="radio" name="sfxzjy" title="否" value="0" checked/>否</label>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<!--<table  class="addNewTable">-->
+    <!--<tr>-->
+        <!--<td class="s_head" >菜单名称<span class="color_red">*</span></td>-->
+        <!--<td ><input type="text" id="name" class="inputtext" ></td>-->
+        <!--<td class="s_head" >菜单代码<span class="color_red">*</span></td>-->
+        <!--<td ><input type="text" id="id" class="inputtext" ></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td class="s_head" >菜单URL<span class="color_red">*</span></td>-->
+        <!--<td ><input type="text" id="navigateurl" class="inputtext" ></td>-->
+
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td class="s_head" >排序</td>-->
+        <!--<td ><input type="text" id="sortcode" class="inputtext" ></td>-->
+        <!--<td class="s_head" >状态</td>-->
+        <!--<td >-->
+            <!--<select type="text" id="state" class="inputtext" >-->
+                <!--<option value="1">启用</option>-->
+                <!--<option value="0">停用</option>-->
+            <!--</select>-->
+        <!--</td>-->
+
+    <!--</tr>-->
+
+    <!--<tr>-->
+        <!--<td class="s_head" >是否核心业务</td>-->
+        <!--<td >-->
+            <!--<label> <input  type="radio" name="sfhxyw" title="是" value="1"  />是</label>-->
+            <!--<label><input  type="radio" name="sfhxyw" title="否" value="0" />否</label>-->
+        <!--</td>-->
+        <!--<td class="s_head" >菜单种类</td>-->
+        <!--<td >-->
+            <!--<select id="menu_type">-->
+                <!--<option value="1">业务办理</option>-->
+                <!--<option value="2">系统管理</option>-->
+                <!--<option value="3">安全管理</option>-->
+                <!--<option value="4">审计管理</option>-->
+            <!--</select>-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td class="s_head" >可否授权传播</td>-->
+        <!--<td >-->
+            <!--<label> <input  type="radio" name="sfsqcb" title="是" value="1"  />是</label>-->
+            <!--<label><input  type="radio" name="sfsqcb" title="否" value="0" />否</label>-->
+        <!--</td>-->
+        <!--<td class="s_head" >是否限警员</td>-->
+        <!--<td >-->
+            <!--<label> <input id="radio1" type="radio" name="sfxzjy" title="是" value="1"  />是</label>-->
+            <!--<label><input  id="radio2" type="radio" name="sfxzjy" title="否" value="0" />否</label>-->
+        <!--</td>-->
+
+    <!--</tr>-->
+
+    <!--<tr>-->
+        <!--<td class="s_head" >菜单子权限</td>-->
+        <!--<td >-->
+            <!--<label><input type="checkbox" name="cdzqx" value="1"  checked disabled/>查询</label>-->
+            <!--<label><input type="checkbox" name="cdzqx" value="2"  />新增</label>-->
+            <!--<label><input type="checkbox" name="cdzqx" value="3"  />修改</label>-->
+            <!--<label><input type="checkbox" name="cdzqx" value="4"  />删除</label>-->
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+</body>
+</html>

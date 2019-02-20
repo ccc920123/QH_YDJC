@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.MonitoringMapper">
+
+    <!--移动集成指挥接入支队-->
+    <select id="selectIntegratedCommand"  resultType="java.util.Map">
+        SELECT F.* FROM(
+        SELECT H.*,ROWNUM RN FROM
+         (
+        SELECT E.* FROM
+        ( SELECT d.bmbh,d.name,C.total FROM sys_department d
+        LEFT JOIN ( SELECT count(B.total) AS total,r.glbm FROM (SELECT 1 AS total,a.kkbh FROM biz_alarm_info a WHERE a.yjsj &gt;= #{3})B, biz_road_blocks r WHERE B.kkbh = r.kkbh GROUP BY r.glbm )C
+        ON d.bmbh = C.glbm START WITH d.bmbh = #{0} CONNECT BY PRIOR d.bmbh = d.sjzdbmbh ORDER BY C.total ASC )E
+         ,sys_department_param p WHERE p.csdm = 'SFJSYJ' AND p.csz = '1' AND p.bmbh = E.bmbh
+        )H
+        WHERE ROWNUM &lt;= #{2})F
+        WHERE RN &gt; #{1}
+    </select>
+
+    <select id="selectTotalByBmbh" parameterType="String" resultType="int">
+       SELECT COUNT(*) FROM (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{0}
+       CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)A ,sys_department_param p
+       WHERE p.csdm = 'SFJSYJ' AND p.csz = '1' AND p.bmbh = A.bmbh
+    </select>
+
+    <!--查询表空间-->
+    <select id="selectTableSpace" resultType="java.util.Map">
+      Select
+  TO_CHAR(ROUND((D.TOT_GROOTTE_MB - F.TOTAL_BYTES) / D.TOT_GROOTTE_MB * 100,2),'990.99') || '%' "表空间占用量",
+  F.TOTAL_BYTES "剩余容量"
+  FROM (SELECT TABLESPACE_NAME,
+  ROUND(SUM(BYTES) / (1024 * 1024), 2) TOTAL_BYTES,
+  ROUND(MAX(BYTES) / (1024 * 1024), 2) MAX_BYTES
+  FROM SYS.DBA_FREE_SPACE
+  GROUP BY TABLESPACE_NAME) F,
+  (SELECT DD.TABLESPACE_NAME,
+   ROUND(SUM(DD.BYTES) / (1024 * 1024), 2) TOT_GROOTTE_MB
+  FROM SYS.DBA_DATA_FILES DD
+   GROUP BY DD.TABLESPACE_NAME) D
+   WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME And F.TABLESPACE_NAME= 'ICS_DATA'
+  ORDER BY 1
+    </select>
+
+        <!--警务通在线监控-->
+       <select id="selectPoliceService" resultType="java.util.Map">
+        SELECT A.* FROM
+        (SELECT o.optime,p.mc,u.realname
+         FROM sys_operate_log o
+         LEFT JOIN sys_pda_info p ON p.wym = o.opdevice
+         LEFT JOIN sys_user u ON u.loginname = o.opuser
+         WHERE o.optime &gt;= #{0}
+         ORDER BY  o.optime DESC)A
+         WHERE ROWNUM &lt;=5
+       </select>
+</mapper>

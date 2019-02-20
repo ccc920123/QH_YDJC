@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/titlebg_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@mipmap/ic_back_left" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/more"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/search"/>
+
+    </LinearLayout>
+
+    <com.scxd.lawqinghai.widget.MyScrollerView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="70dp"/>
+
+        </LinearLayout>
+
+    </com.scxd.lawqinghai.widget.MyScrollerView>
+
+    <LinearLayout
+        android:id="@+id/sreach_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#50000000"
+        android:padding="7dp"
+        android:layout_below="@+id/title_layout">
+
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edit_background"
+            android:textColor="@color/text_color"
+            android:textSize="17sp"
+            android:padding="7dp"/>
+
+        <Button
+            android:id="@+id/query"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/ic_button_blue"
+            android:layout_marginLeft="10dp"
+            android:text="查找"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15"/>
+        <Button
+            android:id="@+id/cancle"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/ic_button_blue"
+            android:layout_marginLeft="7dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sreach_tools"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/text_style_02">
+
+        <ImageView
+            android:id="@+id/syg"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/syg"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#acacac"/>
+        <ImageView
+            android:id="@+id/sreach_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/sreach_black"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#acacac"/>
+        <ImageView
+            android:id="@+id/xyg"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/xyg"/>
+    </LinearLayout>
+</RelativeLayout>

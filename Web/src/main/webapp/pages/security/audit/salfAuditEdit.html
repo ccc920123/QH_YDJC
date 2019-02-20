@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>安全审计策略详情</title>
+    <link rel="stylesheet" href="../../../css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../css/dept.css"/>
+    <link rel="stylesheet" href="../../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../../css/user.css"/>
+    <script type="text/javascript" src="../../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../../js/common/utilAjax.js"></script>
+    <script src="./surve.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="salfAuditEdit.js"></script>
+
+</head>
+<body>
+
+<table class="addNewTable">
+    <tr>
+        <td class="s_head">安全审计策略类型</td>
+        <td>
+            <select id="safetype" class="inputtext" disabled="disabled">
+                <option value="1">高频访问</option>
+                <option value="2">规定时间外访问</option>
+                <option value="3">账户长期未使用</option>
+            </select></td>
+    </tr>
+    <tr>
+        <td class="s_head">安全审计策略子类型</td>
+        <td><input type="text" id="safechildtype" class="inputtext" readonly ></td>
+    </tr>
+    <tr>
+        <td class="s_head">策略值</td>
+        <td><input type="text" id="safevalue" class="inputtext" ></td>
+    </tr>
+    <tr>
+        <td class="s_head">策略值说明</td>
+        <td><textarea type="text" id="remarks" class="inputtext"></textarea></td>
+    </tr>
+    <tr>
+        <td class="s_head">是否开启</td>
+        <td><label><input type="radio" name="state" value="1" title="是">是</label>
+            <label> <input type="radio" name="state" value="0" title="否">否</label></td>
+    </tr>
+
+</table>
+<div class="filterBtnDiv">
+    <button id="submit" class="filterBtn" style="width: 60px">提交</button>
+    <button id="close" class="filterBtn" style="width: 60px">关闭</button>
+
+    </br>
+</div>
+</body>
+</html>

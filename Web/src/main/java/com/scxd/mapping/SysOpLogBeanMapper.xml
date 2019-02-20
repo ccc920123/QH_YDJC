@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysOpLogBeanMapper">
+
+    <resultMap id="BaseResultMap" type="com.scxd.beans.pojo.SysOpLogBean">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="USERID" jdbcType="DECIMAL" property="userid"/>
+        <result column="ORGID" jdbcType="VARCHAR" property="orgid"/>
+        <result column="OP_TIME" jdbcType="TIMESTAMP" property="opTime"/>
+        <result column="OP_TYPE" jdbcType="DECIMAL" property="opType"/>
+        <result column="OP_MODULE" jdbcType="VARCHAR" property="opModule"/>
+        <result column="OP_CONTENT" jdbcType="VARCHAR" property="opContent"/>
+        <result column="OP_RESULT" jdbcType="DECIMAL" property="opResult"/>
+        <result column="OP_RESULT_INFO" jdbcType="CLOB" property="opResultInfo"/>
+        <result column="OP_IP" jdbcType="VARCHAR" property="opIp"/>
+        <result column="CTIME" jdbcType="TIMESTAMP" property="ctime"/>
+        <result column="UNAME" jdbcType="VARCHAR" property="uname"/>
+        <result column="CHECKDIGIT" jdbcType="VARCHAR" property="checkdigit"/>
+        <result column="LOG_TYPE" jdbcType="DECIMAL" property="logType"/>
+        <result column="FUNC_TYPE" jdbcType="DECIMAL" property="funcType"/>
+        <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
+    </resultMap>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+      *
+        from SYS_OP_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_OP_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SysOpLogBean">
+        insert into SYS_OP_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="userid != null">
+                USERID,
+            </if>
+            <if test="orgid != null">
+                ORGID,
+            </if>
+            <if test="opTime != null">
+                OP_TIME,
+            </if>
+            <if test="opType != null">
+                OP_TYPE,
+            </if>
+            <if test="opModule != null">
+                OP_MODULE,
+            </if>
+            <if test="opContent != null">
+                OP_CONTENT,
+            </if>
+            <if test="opResult != null">
+                OP_RESULT,
+            </if>
+            <if test="opResultInfo != null">
+                OP_RESULT_INFO,
+            </if>
+            <if test="opIp != null">
+                OP_IP,
+            </if>
+            <if test="ctime != null">
+                CTIME,
+            </if>
+            <if test="uname != null">
+                UNAME,
+            </if>
+            <if test="checkdigit != null">
+                CHECKDIGIT,
+            </if>
+            <if test="logType != null">
+                LOG_TYPE,
+            </if>
+            <if test="funcType != null">
+                FUNC_TYPE,
+            </if>
+            <if test="realname != null">
+                REALNAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=DECIMAL},
+            </if>
+            <if test="orgid != null">
+                #{orgid,jdbcType=VARCHAR},
+            </if>
+            <if test="opTime != null">
+                #{opTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="opType != null">
+                #{opType,jdbcType=DECIMAL},
+            </if>
+            <if test="opModule != null">
+                #{opModule,jdbcType=VARCHAR},
+            </if>
+            <if test="opContent != null">
+                #{opContent,jdbcType=VARCHAR},
+            </if>
+            <if test="opResult != null">
+                #{opResult,jdbcType=DECIMAL},
+            </if>
+            <if test="opResultInfo != null">
+                #{opResultInfo,jdbcType=CLOB},
+            </if>
+            <if test="opIp != null">
+                #{opIp,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null">
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uname != null">
+                #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="checkdigit != null">
+                #{checkdigit,jdbcType=VARCHAR},
+            </if>
+            <if test="logType != null">
+                #{logType,jdbcType=DECIMAL},
+            </if>
+            <if test="funcType != null">
+                #{funcType,jdbcType=DECIMAL},
+            </if>
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scxd.beans.pojo.SysOpLogBean">
+        update SYS_OP_LOG
+        <set>
+            <if test="userid != null">
+                USERID = #{userid,jdbcType=DECIMAL},
+            </if>
+            <if test="orgid != null">
+                ORGID = #{orgid,jdbcType=VARCHAR},
+            </if>
+            <if test="opTime != null">
+                OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="opType != null">
+                OP_TYPE = #{opType,jdbcType=DECIMAL},
+            </if>
+            <if test="opModule != null">
+                OP_MODULE = #{opModule,jdbcType=VARCHAR},
+            </if>
+            <if test="opContent != null">
+                OP_CONTENT = #{opContent,jdbcType=VARCHAR},
+            </if>
+            <if test="opResult != null">
+                OP_RESULT = #{opResult,jdbcType=DECIMAL},
+            </if>
+            <if test="opResultInfo != null">
+                OP_RESULT_INFO = #{opResultInfo,jdbcType=CLOB},
+            </if>
+            <if test="opIp != null">
+                OP_IP = #{opIp,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null">
+                CTIME = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uname != null">
+                UNAME = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="checkdigit != null">
+                CHECKDIGIT = #{checkdigit,jdbcType=VARCHAR},
+            </if>
+            <if test="logType != null">
+                LOG_TYPE = #{logType,jdbcType=DECIMAL},
+            </if>
+            <if test="funcType != null">
+                FUNC_TYPE = #{funcType,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="getDeviceDefaltLog" resultType="com.scxd.beans.pojo.SysOpLogBean">
+  SELECT *   FROM SYS_OP_LOG where OP_TYPE=1 and OP_IP=#{ip} and CTIME>#{lasttime} and LOG_TYPE=#{logType}
+    </select>
+
+    <select id="selectSysOperateLog" resultType="com.scxd.beans.pojo.SysOpLogBean">
+    SELECT *   FROM SYS_OP_LOG where OP_TYPE=1 and UNAME=#{loginname} and CTIME>#{lasttime} and LOG_TYPE=#{logType}
+</select>
+    <select id="queryOperationListTotal" resultType="java.lang.Integer">
+        select count(*)from sys_op_log a
+        <where>
+            a.log_type=#{logType} and a.orgid in (select bmbh from sys_department a
+
+            START WITH a.bmbh=#{bmbh}
+
+            CONNECT BY PRIOR a.bmbh=a.sjzdbmbh)
+            <if test="czlx!=null and czlx!=''">
+                AND a.OP_TYPE=#{czlx}
+            </if>
+            <if test="czr!=null and czr!=''">
+                AND a.UNAME=#{czr} or a.REALNAME=#{czr}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND a.OP_TIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND a.OP_TIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND a.OP_TIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+    </select>
+    <select id="queryOperationList" resultType="java.util.Map">
+        WITH TS AS(
+        select rownum rn ,H.* FROM (
+        select a.id,b.dmmc optype,c.dmmc opmodule,a.realname,d.name bmmc,case when a.op_result=1 then '成功' else '失败' end
+        opresult ,a.op_time from sys_op_log a
+        left join (select dmz,dmmc from biz_code_info where dmlb=1041) b on a.op_type=b.dmz
+        left join (select dmz,dmmc from biz_code_info where dmlb=1042) c on a.op_module=c.dmz
+        left join sys_department d on a.orgid=d.bmbh
+        <where>
+            a.log_type=#{logType} and a.orgid in (select bmbh from sys_department a
+            START WITH a.bmbh=#{bmbh}
+            CONNECT BY PRIOR a.bmbh=a.sjzdbmbh)
+            <if test="czlx!=null and czlx!=''">
+                AND a.OP_TYPE=#{czlx}
+            </if>
+            <if test="czr!=null and czr!=''">
+                AND a.UNAME=#{czr} or a.REALNAME=#{czr}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND a.OP_TIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND a.OP_TIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND a.OP_TIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+        order by a.OP_TIME desc) H)
+        SELECT TS.* FROM TS WHERE RN BETWEEN (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+    </select>
+    <select id="queryOperationDetail" resultType="com.scxd.beans.management.OperationLogBean">
+select b.dmmc CZLX,
+       to_char(a.op_time, 'yyyy-mm-dd hh24:mi:ss') CZSJ,
+       a.realname CZR,
+       d.name BMMC,
+       a.op_ip IP,
+       case
+         when a.op_result = 1 then
+          '成功'
+         else
+          '失败'
+       end CZJG,
+       c.dmmc MK,
+       a.realname || '于' || to_char(a.op_time, 'yyyy-mm-dd hh24:mi:ss') || '使用' ||
+       c.dmmc || '功能进行了' || b.dmmc || '操作' MS
+  from sys_op_log a
+  left join (select dmz, dmmc from biz_code_info where dmlb = 1041) b
+    on a.op_type = b.dmz
+  left join (select dmz, dmmc from biz_code_info where dmlb = 1042) c
+    on a.op_module = c.dmz
+  left join sys_department d
+    on a.orgid = d.bmbh
+ where a.id=#{id}
+    </select>
+
+    <select id="queryLoginStatisticsList" resultType="java.util.Map">
+        WITH T AS
+ (SELECT S.UNAME, S.OP_RESULT, S.OP_TYPE
+    FROM SYS_OP_LOG S
+    <where>
+        S.LOG_TYPE = 1
+        <choose>
+            <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                AND  S.OP_TIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                AND S.OP_TIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+            </when>
+            <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                AND S.OP_TIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <otherwise>
+
+            </otherwise>
+
+        </choose>
+    </where>
+  ),
+A AS
+ (SELECT UNAME, COUNT(*) DLCS FROM T WHERE T.OP_TYPE = 1 GROUP BY UNAME),
+B AS
+ (SELECT UNAME, COUNT(*) DCCS FROM T WHERE T.OP_TYPE = 2 GROUP BY UNAME),
+C AS
+ (SELECT UNAME, COUNT(*) CGCS FROM T WHERE T.OP_RESULT = 1 GROUP BY UNAME),
+D AS
+ (SELECT UNAME, COUNT(*) SBCS FROM T WHERE T.OP_RESULT = 2 GROUP BY UNAME)
+SELECT ROWNUM RN, A.UNAME, NVL(A.DLCS, 0) DLCS, NVL(B.DCCS, 0) DCCS, NVL(C.CGCS, 0) CGCS, NVL(D.SBCS, 0) SBCS
+  FROM A
+  LEFT JOIN B
+    ON A.UNAME = B.UNAME
+  LEFT JOIN C
+    ON A.UNAME = C.UNAME
+  LEFT JOIN D
+    ON A.UNAME = D.UNAME
+
+    </select>
+    <select id="queryOpStatisticsList" resultType="java.util.Map">
+WITH T AS
+ (SELECT S.OP_TYPE, COUNT(*) TIMES
+    FROM SYS_OP_LOG S
+        <where>
+            S.LOG_TYPE = 2
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND  S.OP_TIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND S.OP_TIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND S.OP_TIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+   GROUP BY OP_TYPE)
+SELECT ROWNUM RN, B.DMMC, NVL(T.TIMES,0) TIMES
+  FROM T
+  LEFT JOIN(
+SELECT DMZ, DMMC
+  FROM BIZ_CODE_INFO
+ WHERE DMLB = 1041) B
+    ON T.OP_TYPE = DMZ
+
+    </select>
+    <select id="querySalfStatisticsList" resultType="java.util.Map">
+        WITH T AS
+        (SELECT S.UNAME, COUNT(*) TIMES
+        FROM SYS_OP_LOG S
+        <where>
+            S.LOG_TYPE = 3
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND  S.OP_TIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND S.OP_TIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND S.OP_TIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+        GROUP BY UNAME)
+        SELECT ROWNUM RN, T.UNAME, NVL(T.TIMES,0) TIMES
+        FROM T
+
+
+    </select>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.PhotoDao">
+
+    <insert id="insertPhotoByObj" parameterType="com.scxd.beans.biz.BizPhotoInfo">
+        INSERT INTO biz_photo_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="glid != null">
+                GLID,
+            </if>
+            <if test="zpzl != null">
+                ZPZL,
+            </if>
+            <if test="pssj != null">
+                PSSJ,
+            </if>
+            <if test="psry != null">
+                PSRY,
+            </if>
+            <if test="zp != null">
+                ZP,
+            </if>
+            <if test="sx1 != null">
+                SX1,
+            </if>
+            <if test="sx2 != null">
+                SX2,
+            </if>
+            <if test="sx3 != null">
+                SX3,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="glid != null">
+                #{glid,jdbcType=VARCHAR},
+            </if>
+            <if test="zpzl != null">
+                #{zpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="pssj != null">
+                #{pssj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="psry != null">
+                #{psry,jdbcType=VARCHAR},
+            </if>
+            <if test="zp != null">
+                #{zp,jdbcType=BLOB},
+            </if>
+            <if test="sx1 != null">
+                #{sx1,jdbcType=VARCHAR},
+            </if>
+            <if test="sx2 != null">
+                #{sx2,jdbcType=VARCHAR},
+            </if>
+            <if test="sx3 != null">
+                #{sx3,jdbcType=TIMESTAMP},
+            </if>
+
+        </trim>
+    </insert>
+    <select id="getFeedBackPhotosByYjxh" parameterType="java.lang.String" resultType="com.scxd.beans.biz.BizPhotoInfo">
+    select *  from biz_photo_info where glid=#{yjxh} and zpzl='7002'
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.scxd.beans.biz.BizPhotoInfo">
+         select *  from biz_photo_info where id=#{id}
+    </select>
+
+    <select id="selectZPByglidAndZpzl" resultType="com.scxd.beans.biz.BizPhotoInfo">
+       select *  from biz_photo_info where glid=#{glid} and zpzl=#{zpzl}
+    </select>
+    <delete id="deleteByUrl">
+    DELETE  FROM  biz_photo_info  WHERE  sx1=#{url}
+</delete>
+
+    <delete id="deleteByGlid">
+            DELETE  FROM  biz_photo_info  WHERE  GLID=#{glid} AND ZPZL=#{zpzl}
+
+    </delete>
+</mapper>

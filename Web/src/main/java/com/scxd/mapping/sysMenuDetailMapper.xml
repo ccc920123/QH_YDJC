@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysMenuDetailMapper">
+
+  <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SysMenuDetail">
+    insert into SYS_MENU_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="menuId != null">
+        MENU_ID,
+      </if>
+      <if test="qxid != null">
+        QXID,
+      </if>
+      <if test="sfxzjy != null">
+        SFXZJY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=DECIMAL},
+      </if>
+      <if test="qxid != null">
+        #{qxid,jdbcType=DECIMAL},
+      </if>
+      <if test="sfxzjy != null">
+        #{sfxzjy,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scxd.beans.pojo.SysMenuDetail">
+    update SYS_MENU_DETAIL
+    <set>
+      <if test="menuId != null">
+        MENU_ID = #{menuId,jdbcType=DECIMAL},
+      </if>
+      <if test="qxid != null">
+        QXID = #{qxid,jdbcType=DECIMAL},
+      </if>
+      <if test="sfxzjy != null">
+        SFXZJY = #{sfxzjy,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+<select id="selectMenuDetailByMenuIDAndQXID" resultType="com.scxd.beans.pojo.SysMenu">
+select *  from sys_menu where parentid=#{parentid} and qxid=#{qxid}
+</select>
+  <select id="selectMenuDetail" resultType="com.scxd.beans.pojo.SysMenuDetail">
+select rownum rn,a.menu_id id,a.menu_id,a.sfxzjy sfxzjy, b.name menu_name,a.qxid ,a.name menu_name,c.dmmc qx_name  from sys_menu A
+left join sys_menu b on a.parentid=b.menu_id
+ left join (select * from biz_code_info where dmlb=1038) C on    c.dmz=a.qxid
+where a.menu_id in ( select menu_id  from sys_menu b
+START WITH b.menu_id=#{menuid}
+CONNECT BY PRIOR b.menu_id=b.parentid)
+and a.levelnum=4
+  </select>
+  <delete id="deleteBYQXID" >
+    DELETE from sys_menu where menu_id=#{id}
+  </delete>
+  <update id="updateSfxzjy" parameterType="com.scxd.beans.pojo.SysMenu">
+    UPDATE  sys_menu SET sfxzjy=#{sfxzjy} where menu_id=#{menuId} and qxid=#{qxid}
+  </update>
+  <select id="selectMenuPression" parameterType="String" resultType="java.util.Map">
+ select a.menu_id
+  from sys_menu a
+ inner join sys_menu_role b
+    on a.menu_id = b.menu_id
+ where a.state = 1
+   and b.role_id =
+       (select role_id
+          from sys_user_role
+         where user_id = #{userId})
+</select>
+
+</mapper>

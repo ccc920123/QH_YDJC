@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.BizVioInfoMapper">
+
+    <!--查询违法列表-->
+    <select id="selectVioInfo"  resultType="com.scxd.beans.biz.Q13Return">
+        SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM
+        (
+        select t.* from (
+       SELECT c.xh,dsr,c.wfsj,c.wfdz, b.wfms as wfxw,c.fkje,c.wfjfs AS wfjf,
+        CASE when clbj=0 or (clbj is null and jkbj=0 and clsj is null) THEN  0
+         when (clbj=1 or clsj is not null) and jkbj=0 then 1
+        ELSE 2 end as wfzt FROM biz_vio_info c left join biz_codewfdm b on  c.wfxw=b.wfxw
+        WHERE hpzl = #{hpzl} AND hphm = #{hphm} AND cxly = '1') T ORDER BY t.wfzt ASC  ,t.wfsj DESC
+        ) A
+        WHERE ROWNUM &lt;= #{end}
+        )
+        WHERE RN > #{start}
+    </select>
+
+    <!--查询最近一天内有无机动车违法信息-->
+    <select id="selectVioByDate"  resultType="com.scxd.beans.biz.Q13Return">
+          SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM
+        (
+         select t.* from (
+      SELECT c.xh,dsr,c.wfsj,c.wfdz, b.wfms as wfxw,c.fkje,c.wfjfs AS wfjf,
+        CASE when clbj=0 or (clbj is null and jkbj=0 and clsj is null) THEN  0
+         when (clbj=1 or clsj is not null) and jkbj=0 then 1
+        ELSE 2 end as wfzt FROM biz_vio_info c left join biz_codewfdm b on  c.wfxw=b.wfxw
+        WHERE hpzl = #{hpzl} AND hphm = #{hphm} AND cjsj >= #{date} AND cxly = '1') T ORDER BY t.wfzt ASC  ,t.wfsj DESC
+        ) A
+        WHERE ROWNUM &lt;= #{end}
+        )
+        WHERE RN > #{start}
+    </select>
+
+    <!--查询驾驶人违法信息-->
+    <select id="selectVioDriByDate" resultType="com.scxd.beans.biz.Q16Return">
+        SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM
+        (
+        select t.* from (
+        SELECT c.id AS xh,c.hphm,c.fkje,c.wfjfs AS wfjf,c.wfsj, b.wfms as wfxw ,c.wfdz,jkbj,
+        CASE when clbj=0 or (clbj is null and jkbj=0 and clsj is null) THEN  0
+        when (clbj=1 or clsj is not null) and jkbj=0 then 1
+        ELSE 2 end as wfzt
+        FROM biz_vio_info c left join biz_codewfdm b on  c.wfxw=b.wfxw
+        <where>
+            jszh = #{sfzmhm} AND cxly = '0'
+            <if test="date != null">AND cjsj &gt;= #{date}</if>
+        </where>)
+        T ORDER BY t.wfzt ASC  ,t.wfsj DESC
+        ) A
+        WHERE ROWNUM &lt;= #{end}
+        )
+        WHERE RN > #{start}
+
+    </select>
+
+    <!--删除时间超过一天的陈旧信息-->
+    <delete id="deleteVioInfo" parameterType="java.util.Date">
+        DELETE FROM biz_vio_info WHERE cjsj &lt;= #{0}
+    </delete>
+
+    <!--删除过期照片数据-->
+   <delete id="deleteZP" >
+       DELETE FROM biz_photo_info p WHERE p.glid IN(
+       SELECT v.id FROM biz_vio_info v WHERE v.cjsj &lt;= #{date} and v.hphm=#{hphm} and v.hpzl=#{hpzl})
+   </delete>
+
+    <!--通过序号查询机动车违法详细信息-->
+    <select id="selectVioByXH" parameterType="String" resultType="com.scxd.beans.biz.Q14Return">
+        SELECT a.id,wfsj,zsxzqh,wfdd,wfdz,NVL(n.xm,a.zqmj) zqmj,fxjg,jtfs,xxly,lrr,lrsj,jsjqbj,jszh,fzjg,
+          dabh,dsr,zjcx,dh,syxz,hpzl,hphm,lxfs,zsxxdz,clfl,cfzl,a.wfjfs,fkje,jbr,
+          clsj,cljgmc as cljg,jkbj,dldm,sgly,jdcsyr AS syr,clyt,a.wfxw AS wfdm,t.wfms as wfmc,zkys,jlts,cflb,cfbh,cjjgmc,jdsbh,jdslb
+        FROM biz_vio_info a left join biz_codewfdm t on  a.wfxw=t.wfxw
+        left join biz_police_info n on  a.zqmj=n.rybh
+        WHERE a.xh = #{0} AND a.cxly = '1'
+    </select>
+
+    <!--通过id查询驾驶人违法详情-->
+    <select id="selectVioById" parameterType="String" resultType="com.scxd.beans.biz.Q14Return">
+         SELECT a.id,wfsj,zsxzqh,wfdd,wfdz,NVL(n.xm,a.zqmj) zqmj,fxjg,jtfs,xxly,lrr,lrsj,jsjqbj,jszh,fzjg,
+          dabh,dsr,zjcx,dh,syxz,hpzl,hphm,lxfs,zsxxdz,clfl,cfzl,a.wfjfs,fkje,jbr,
+          clsj,cljgmc as cljg,jkbj,dldm,sgly,jdcsyr AS syr,clyt,a.wfxw AS wfdm,t.wfms as wfmc,zkys,jlts,cflb,cfbh,cjjgmc,jdsbh,jdslb
+        FROM biz_vio_info a left join biz_codewfdm t on  a.wfxw=t.wfxw
+        left join biz_police_info n on  a.zqmj=n.rybh
+        WHERE a.id = #{0} AND a.cxly = '0'
+    </select>
+
+    <!--分页查询违法代码列表-->
+    <select id="selectVioCodeList" resultType="com.scxd.beans.biz.Q23Return">
+        SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM (SELECT wfxw AS wfdm,wfnr,wfjfs AS wfjf ,fltw AS flyj FROM biz_codewfdm
+
+
+        <where>
+            <if test='map.wfdm != null and map.wfdm != "" '> AND  wfxw LIKE '%' || #{map.wfdm} || '%'</if>
+            <if test='map.wfnr != null and map.wfnr != "" '>AND wfnr LIKE '%' || #{map.wfnr} || '%'</if>
+        </where>
+
+        ) A
+        WHERE ROWNUM &lt;= #{2}
+        )
+        WHERE RN &gt; #{1}
+    </select>
+
+    <!--违法代码总数查询-->
+    <select id="selectXXTS" parameterType="java.util.Map" resultType="int">
+     SELECT COUNT(*) AS xxts FROM biz_codewfdm
+        <where>
+            <if test="wfdm != null and '' != wfdm"> wfxw LIKE '%' || #{wfdm} || '%'</if>
+            <if test="wfnr != null and '' != wfnr">AND wfnr LIKE '%' || #{wfnr} || '%'</if>
+        </where>
+    </select>
+
+    <!--违法代码详情-->
+    <select id="selectVioCodeInfo" parameterType="String" resultType="com.scxd.beans.biz.Q24Return">
+      select t.wfxw  wfdm,
+       t.wfms,
+       t.wfnr,
+       t.wfgd,
+       t.fltw flyj,
+       t.wfjfs wfjf,
+       t.fkje_min fkjemin,
+       t.fkje_max fkjemax,
+       t.fkje_dut fkjedut,
+       t.zkys_min  zkysmin,
+       t.zkys_max  zkysmax,
+       t.zkys_dut zkysdut,
+       t.jlsj_min jlsjmin,
+       t.jlsj_max jlsjmax,
+       t.jlsj_dut ,
+       t.qzcslx,
+       t.jgbj,
+       t.fkbj,
+       t.zkbj,
+       t.dxbj,
+       t.jlbj,
+       t.cxvbj,
+       t.cxdbj
+  from biz_codewfdm t WHERE t.wfxw = #{0}
+    </select>
+
+    <!--删除违法代码信息-->
+    <delete id="deleteVioCode">
+        DELETE FROM biz_codewfdm
+    </delete>
+
+
+    <!--将综合平台违法信息写入数据库-->
+    <insert id="insertVioInfoList" parameterType="java.util.List" >
+        INSERT ALL
+        <foreach collection="listvio" item="vio" index="i">
+        INTO BIZ_VIO_INFO
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="vio.id != null" >
+                ID,
+            </if>
+            <if test="vio.xh != null" >
+                XH,
+            </if>
+            <if test="vio.cjjg != null" >
+                CJJG,
+            </if>
+            <if test="vio.cjjgmc != null" >
+                CJJGMC,
+            </if>
+            <if test="vio.fdjh != null" >
+                FDJH,
+            </if>
+            <if test="vio.clsbdh != null" >
+                CLSBDH,
+            </if>
+            <if test="vio.csys != null" >
+                CSYS,
+            </if>
+            <if test="vio.clpp != null" >
+                CLPP,
+            </if>
+            <if test="vio.tzsh != null" >
+                TZSH,
+            </if>
+            <if test="vio.tzbj != null" >
+                TZBJ,
+            </if>
+            <if test="vio.tzrq != null" >
+                TZRQ,
+            </if>
+            <if test="vio.cjfs != null" >
+                CJFS,
+            </if>
+            <if test="vio.wfbh != null" >
+                WFBH,
+            </if>
+            <if test="vio.jdslb != null" >
+                JDSLB,
+            </if>
+            <if test="vio.jdsbh != null" >
+                JDSBH,
+            </if>
+            <if test="vio.wsjyw != null" >
+                WSJYW,
+            </if>
+            <if test="vio.ryfl != null" >
+                RYFL,
+            </if>
+            <if test="vio.jszh != null" >
+                JSZH,
+            </if>
+            <if test="vio.dabh != null" >
+                DABH,
+            </if>
+            <if test="vio.fzjg != null" >
+                FZJG,
+            </if>
+            <if test="vio.zjcx != null" >
+                ZJCX,
+            </if>
+            <if test="vio.dsr != null" >
+                DSR,
+            </if>
+            <if test="vio.zsxzqh != null" >
+                ZSXZQH,
+            </if>
+            <if test="vio.zsxxdz != null" >
+                ZSXXDZ,
+            </if>
+            <if test="vio.dh != null" >
+                DH,
+            </if>
+            <if test="vio.lxfs != null" >
+                LXFS,
+            </if>
+            <if test="vio.clfl != null" >
+                CLFL,
+            </if>
+            <if test="vio.hpzl != null" >
+                HPZL,
+            </if>
+            <if test="vio.hphm != null" >
+                HPHM,
+            </if>
+            <if test="vio.jdcsyr != null" >
+                JDCSYR,
+            </if>
+            <if test="vio.syxz != null" >
+                SYXZ,
+            </if>
+            <if test="vio.jtfs != null" >
+                JTFS,
+            </if>
+            <if test="vio.wfsj != null" >
+                WFSJ,
+            </if>
+            <if test="vio.wfdd != null" >
+                WFDD,
+            </if>
+            <if test="vio.wfdz != null" >
+                WFDZ,
+            </if>
+            <if test="vio.wfxw != null" >
+                WFXW,
+            </if>
+            <if test="vio.wfjfs != null" >
+                WFJFS,
+            </if>
+            <if test="vio.fkje != null" >
+                FKJE,
+            </if>
+            <if test="vio.scz != null" >
+                SCZ,
+            </if>
+            <if test="vio.bzz != null" >
+                BZZ,
+            </if>
+            <if test="vio.znj != null" >
+                ZNJ,
+            </if>
+            <if test="vio.zqmj != null" >
+                ZQMJ,
+            </if>
+            <if test="vio.jkfs != null" >
+                JKFS,
+            </if>
+            <if test="vio.fxjg != null" >
+                FXJG,
+            </if>
+            <if test="vio.fxjgmc != null" >
+                FXJGMC,
+            </if>
+            <if test="vio.cljg != null" >
+                CLJG,
+            </if>
+            <if test="vio.cljgmc != null" >
+                CLJGMC,
+            </if>
+            <if test="vio.cfzl != null" >
+                CFZL,
+            </if>
+            <if test="vio.clbj != null" >
+                CLBJ,
+            </if>
+            <if test="vio.clsj != null" >
+                CLSJ,
+            </if>
+            <if test="vio.jkbj != null" >
+                JKBJ,
+            </if>
+            <if test="vio.jkrq != null" >
+                JKRQ,
+            </if>
+            <if test="vio.pzbh != null" >
+                PZBH,
+            </if>
+            <if test="vio.jsjqbj != null" >
+                JSJQBJ,
+            </if>
+            <if test="vio.jllx != null" >
+                JLLX,
+            </if>
+            <if test="vio.lrr != null" >
+                LRR,
+            </if>
+            <if test="vio.lrsj != null" >
+                LRSJ,
+            </if>
+            <if test="vio.jbr != null">
+                JBR,
+            </if>
+            <if test="vio.jbr1 != null" >
+                JBR1,
+            </if>
+            <if test="vio.jbr2 != null" >
+                JBR2,
+            </if>
+            <if test="vio.sgdj != null" >
+                SGDJ,
+            </if>
+            <if test="vio.cldxbj != null" >
+                CLDXBJ,
+            </if>
+            <if test="vio.xxly != null" >
+                XXLY,
+            </if>
+            <if test="vio.xrms != null" >
+                XRMS,
+            </if>
+            <if test="vio.jsjg != null" >
+                JSJG,
+            </if>
+            <if test="vio.fsjg != null" >
+                FSJG,
+            </if>
+            <if test="vio.gxsj != null" >
+                GXSJ,
+            </if>
+            <if test="vio.bz != null" >
+                BZ,
+            </if>
+            <if test="vio.ysznj != null" >
+                YSZNJ,
+            </if>
+            <if test="vio.cjsj != null" >
+                CJSJ,
+            </if>
+            <if test="vio.cxly != null" >
+                CXLY,
+            </if>
+            <if test="vio.dldm != null" >
+                DLDM,
+            </if>
+            <if test="vio.sgly != null" >
+                SGLY,
+            </if>
+            <if test="vio.clyt != null" >
+                CLYT,
+            </if>
+            <if test="vio.zkys != null" >
+                ZKYS,
+            </if>
+            <if test="vio.jlts != null" >
+                JLTS,
+            </if>
+            <if test="vio.cflb != null" >
+                CFLB,
+            </if>
+            <if test="vio.cfbh != null" >
+                CFBH,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="vio.id != null" >
+                #{vio.id,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.xh != null" >
+                #{vio.xh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cjjg != null" >
+                #{vio.cjjg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cjjgmc != null" >
+                #{vio.cjjgmc,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fdjh != null" >
+                #{vio.fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clsbdh != null" >
+                #{vio.clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.csys != null" >
+                #{vio.csys,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clpp != null" >
+                #{vio.clpp,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.tzsh != null" >
+                #{vio.tzsh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.tzbj != null" >
+                #{vio.tzbj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.tzrq != null" >
+                #{vio.tzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.cjfs != null" >
+                #{vio.cjfs,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfbh != null" >
+                #{vio.wfbh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jdslb != null" >
+                #{vio.jdslb,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jdsbh != null" >
+                #{vio.jdsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wsjyw != null" >
+                #{vio.wsjyw,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.ryfl != null" >
+                #{vio.ryfl,jdbcType=CHAR},
+            </if>
+            <if test="vio.jszh != null" >
+                #{vio.jszh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.dabh != null" >
+                #{vio.dabh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fzjg != null" >
+                #{vio.fzjg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zjcx != null" >
+                #{vio.zjcx,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.dsr != null" >
+                #{vio.dsr,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zsxzqh != null" >
+                #{vio.zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zsxxdz != null" >
+                #{vio.zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.dh != null" >
+                #{vio.dh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.lxfs != null" >
+                #{vio.lxfs,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clfl != null" >
+                #{vio.clfl,jdbcType=CHAR},
+            </if>
+            <if test="vio.hpzl != null" >
+                #{vio.hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.hphm != null" >
+                #{vio.hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jdcsyr != null" >
+                #{vio.jdcsyr,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.syxz != null" >
+                #{vio.syxz,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jtfs != null" >
+                #{vio.jtfs,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfsj != null" >
+                #{vio.wfsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.wfdd != null" >
+                #{vio.wfdd,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfdz != null" >
+                #{vio.wfdz,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfxw != null" >
+                #{vio.wfxw,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfjfs != null" >
+                #{vio.wfjfs,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.fkje != null" >
+                #{vio.fkje,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.scz != null" >
+                #{vio.scz,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.bzz != null" >
+                #{vio.bzz,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.znj != null" >
+                #{vio.znj,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.zqmj != null" >
+                #{vio.zqmj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jkfs != null" >
+                #{vio.jkfs,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fxjg != null" >
+                #{vio.fxjg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fxjgmc != null" >
+                #{vio.fxjgmc,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cljg != null" >
+                #{vio.cljg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cljgmc != null" >
+                #{vio.cljgmc,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cfzl != null" >
+                #{vio.cfzl,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clbj != null" >
+                #{vio.clbj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clsj != null" >
+                #{vio.clsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.jkbj != null" >
+                #{vio.jkbj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jkrq != null" >
+                #{vio.jkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.pzbh != null" >
+                #{vio.pzbh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jsjqbj != null" >
+                #{vio.jsjqbj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jllx != null" >
+                #{vio.jllx,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.lrr != null" >
+                #{vio.lrr,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.lrsj != null" >
+                #{vio.lrsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.jbr != null">
+                #{vio.jbr,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jbr1 != null" >
+                #{vio.jbr1,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jbr2 != null" >
+                #{vio.jbr2,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.sgdj != null" >
+                #{vio.sgdj,jdbcType=CHAR},
+            </if>
+            <if test="vio.cldxbj != null" >
+                #{vio.cldxbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.xxly != null" >
+                #{vio.xxly,jdbcType=CHAR},
+            </if>
+            <if test="vio.xrms != null" >
+                #{vio.xrms,jdbcType=CHAR},
+            </if>
+            <if test="vio.jsjg != null" >
+                #{vio.jsjg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fsjg != null" >
+                #{vio.fsjg,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.gxsj != null" >
+                #{vio.gxsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.bz != null" >
+                #{vio.bz,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.ysznj != null" >
+                #{vio.ysznj,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cjsj != null" >
+                #{vio.cjsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.cxly != null" >
+                #{vio.cxly,jdbcType=CHAR},
+            </if>
+            <if test="vio.dldm != null" >
+                #{vio.dldm,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.sgly != null" >
+                #{vio.sgly,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.clyt != null" >
+                #{vio.clyt,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zkys != null" >
+                #{vio.zkys,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jlts != null" >
+                #{vio.jlts,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cflb != null" >
+                #{vio.cflb,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.cfbh != null" >
+                #{vio.cfbh,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+    <!--将综合平台违法代码信息批量插入到数据库-->
+    <insert id="insertVioCodeList" parameterType="java.util.List" >
+        INSERT ALL
+        <foreach collection="listvio" item="vio" index="name">
+         INTO BIZ_CODEWFDM
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="vio.wfxw != null" >
+                WFXW,
+            </if>
+            <if test="vio.dmzl != null" >
+                DMZL,
+            </if>
+            <if test="vio.dmfl != null" >
+                DMFL,
+            </if>
+            <if test="vio.wfms != null" >
+                WFMS,
+            </if>
+            <if test="vio.wfnr != null" >
+                WFNR,
+            </if>
+            <if test="vio.wfgd != null" >
+                WFGD,
+            </if>
+            <if test="vio.fltw != null" >
+                FLTW,
+            </if>
+            <if test="vio.wfjfs != null" >
+                WFJFS,
+            </if>
+            <if test="vio.fkjeMin != null" >
+                FKJE_MIN,
+            </if>
+            <if test="vio.fkjeMax != null" >
+                FKJE_MAX,
+            </if>
+            <if test="vio.fkjeDut != null" >
+                FKJE_DUT,
+            </if>
+            <if test="vio.zkysMin != null" >
+                ZKYS_MIN,
+            </if>
+            <if test="vio.zkysMax != null" >
+                ZKYS_MAX,
+            </if>
+            <if test="vio.zkysDut != null" >
+                ZKYS_DUT,
+            </if>
+            <if test="vio.jlsjMin != null" >
+                JLSJ_MIN,
+            </if>
+            <if test="vio.jlsjMax != null" >
+                JLSJ_MAX,
+            </if>
+            <if test="vio.jlsjDut != null" >
+                JLSJ_DUT,
+            </if>
+            <if test="vio.qzcslx != null" >
+                QZCSLX,
+            </if>
+            <if test="vio.jgbj != null" >
+                JGBJ,
+            </if>
+            <if test="vio.fkbj != null" >
+                FKBJ,
+            </if>
+            <if test="vio.zkbj != null" >
+                ZKBJ,
+            </if>
+            <if test="vio.dxbj != null" >
+                DXBJ,
+            </if>
+            <if test="vio.jlbj != null" >
+                JLBJ,
+            </if>
+            <if test="vio.cxvbj != null" >
+                CXVBJ,
+            </if>
+            <if test="vio.cxdbj != null" >
+                CXDBJ,
+            </if>
+            <if test="vio.gb != null" >
+                GB,
+            </if>
+            <if test="vio.yxqs != null" >
+                YXQS,
+            </if>
+            <if test="vio.yxqz != null" >
+                YXQZ,
+            </if>
+            <if test="vio.glbm != null" >
+                GLBM,
+            </if>
+            <if test="vio.csbj != null" >
+                CSBJ,
+            </if>
+            <if test="vio.xh != null" >
+                XH,
+            </if>
+            <if test="vio.bjcsbj != null" >
+                BJCSBJ,
+            </if>
+            <if test="vio.xrsj != null" >
+                XRSJ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="vio.wfxw != null" >
+                #{vio.wfxw,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.dmzl != null" >
+                #{vio.dmzl,jdbcType=CHAR},
+            </if>
+            <if test="vio.dmfl != null" >
+                #{vio.dmfl,jdbcType=CHAR},
+            </if>
+            <if test="vio.wfms != null" >
+                #{vio.wfms,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfnr != null" >
+                #{vio.wfnr,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfgd != null" >
+                #{vio.wfgd,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.fltw != null" >
+                #{vio.fltw,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.wfjfs != null" >
+                #{vio.wfjfs,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.fkjeMin != null" >
+                #{vio.fkjeMin,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.fkjeMax != null" >
+                #{vio.fkjeMax,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.fkjeDut != null" >
+                #{vio.fkjeDut,jdbcType=DECIMAL},
+            </if>
+            <if test="vio.zkysMin != null" >
+                #{vio.zkysMin,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zkysMax != null" >
+                #{vio.zkysMax,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.zkysDut != null" >
+                #{vio.zkysDut,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jlsjMin != null" >
+                #{vio.jlsjMin,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jlsjMax != null" >
+                #{vio.jlsjMax,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jlsjDut != null" >
+                #{vio.jlsjDut,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.qzcslx != null" >
+                #{vio.qzcslx,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.jgbj != null" >
+                #{vio.jgbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.fkbj != null" >
+                #{vio.fkbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.zkbj != null" >
+                #{vio.zkbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.dxbj != null" >
+                #{vio.dxbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.jlbj != null" >
+                #{vio.jlbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.cxvbj != null" >
+                #{vio.cxvbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.cxdbj != null" >
+                #{vio.cxdbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.gb != null" >
+                #{vio.gb,jdbcType=CHAR},
+            </if>
+            <if test="vio.yxqs != null" >
+                #{vio.yxqs,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.yxqz != null" >
+                #{vio.yxqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vio.glbm != null" >
+                #{vio.glbm,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.csbj != null" >
+                #{vio.csbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.xh != null" >
+                #{vio.xh,jdbcType=VARCHAR},
+            </if>
+            <if test="vio.bjcsbj != null" >
+                #{vio.bjcsbj,jdbcType=CHAR},
+            </if>
+            <if test="vio.xrsj != null" >
+                #{vio.xrsj,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+   <!--将机动车违法照片信息批量写入本地库-->
+    <insert id="insertVioZps" parameterType="java.util.List">
+      INSERT ALL
+      <foreach collection="zps" item="zp" index="index">
+          INTO biz_photo_info (id,glid,zpzl,psry,pssj,zp,sx1)
+          VALUES (#{zp.id},#{zp.glid},#{zp.zpzl},#{zp.psry},#{zp.pssj},#{zp.zp},#{zp.sx1})
+      </foreach>
+      SELECT 1 FROM DUAL
+    </insert>
+
+    <!--查询机动车违法照片-->
+    <select id="selectZpUrl" parameterType="String" resultType="String">
+        SELECT sx1 FROM biz_photo_info WHERE glid = #{0}
+    </select>
+    <delete id="deleteVioInfoByCar">
+        DELETE  FROM  BIZ_VIO_INFO WHERE CJSJ &lt;= #{date} AND HPHM=#{hphm} AND HPZL=#{hpzl} AND CXLY='1'
+    </delete>
+    <delete id="deleteVioInfoByJSZH">
+        DELETE  FROM  BIZ_VIO_INFO WHERE CJSJ &lt;= #{date} AND JSZH=#{jszh} AND CXLY='0'
+    </delete>
+</mapper>

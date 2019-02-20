@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.scxd.lawqinghai"
+        minSdkVersion 17
+        targetSdkVersion 23
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        packagingOptions {
+            exclude 'META-INF/rxjava.properties'
+        }
+    }
+    dexOptions {
+//        incremental true
+        javaMaxHeapSize "4g"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    compile 'com.android.support:support-v4:24.2.1'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    //noinspection GradleCompatible
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile project(':okhttputils')
+    compile project(':statusbarlibrary')
+    compile project(':mainframeuilib')
+    compile project(':keyboard')
+    compile project(':idcardlibs')
+    compile project(':videolib')
+    compile files('libs/sun.misc.BASE64Decoder.jar')
+    compile files('libs/xstream-1.4.7.jar')
+    annotationProcessor 'com.zhy:mpermission-compiler:1.0.0'
+    compile 'com.zhy:mpermission-api:1.0.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    //    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.alibaba:fastjson:1.2.36'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    implementation project(':videolib')
+    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile('com.github.LuckSiege.PictureSelector:picture_library:v2.1.6') {
+//                exclude group: 'com.github.bumptech.glide'
+
+        exclude group: 'com.android.support:support-annotations:25.3.1'
+
+    }
+    compile 'com.android.support:multidex:1.+'
+    implementation files('libs/usc.jar')
+
+}

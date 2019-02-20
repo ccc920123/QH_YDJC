@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/circle_qing" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="@string/jcxx"
+            android:textColor="#5aaae7"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5.0sp"
+        android:layout_marginRight="5.0sp"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:text="@string/jccllx" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginTop="1.0dip"
+                android:layout_weight="3.0">
+
+                <Spinner
+                    android:id="@+id/jccllx_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+        </TableRow>
+        <!--检验子类别-->
+        <TableRow
+            android:id="@+id/jclxzlbtab"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:text="@string/jcclzlx" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginTop="1.0dip"
+                android:layout_weight="3.0">
+
+                <Spinner
+                    android:id="@+id/jcclzlx_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:text="@string/sfd" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/sfd"
+                    style="@style/table_text02"
+                    android:layout_margin="5.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/login_edit_style"
+                    android:maxLength="20" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:text="@string/mdd" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginTop="1.0dip"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/mdd"
+                    style="@style/table_text02"
+                    android:layout_margin="5.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/login_edit_style"
+                    android:maxLength="20" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/sfcf" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/sfcf"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="1.0" />
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:text="@string/sfzjbf" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/sfzjbf"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1.0" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/sfzdaq" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_weight="3.0">
+
+                <Spinner
+                    android:id="@+id/jcjg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/zerofoursfpljs" />
+
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/pljs"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="1.0" />
+
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:text="@string/zerofouraqsbsfhg" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/aqsb"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="1.0" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/zerofourcllthwsfhg" />
+
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/cllthw"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="1.0" />
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:text="@string/zerfoursfaqd" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/jaqd"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="1.0" />
+        </TableRow>
+        <!--当检查类型为04-->
+        <TableLayout
+            android:id="@+id/fourleLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/zerofoursfagdztfgbs" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <com.scxd.lawqinghai.widget.CheckText
+                        android:id="@+id/ztfgbs"
+                        style="@style/table_text02"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1.0dip"
+                        android:layout_weight="1.0" />
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/zerfoursfazchfhzz" />
+
+
+                <com.scxd.lawqinghai.widget.CheckText
+                    android:id="@+id/azfhzz"
+                    style="@style/table_text02"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    android:layout_weight="1.0" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/zerofoursfffgz" />
+
+
+                <com.scxd.lawqinghai.widget.CheckText
+                    android:id="@+id/ffgz"
+                    style="@style/table_text02"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    android:layout_weight="1.0" />
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/zerfoursjzzl" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <EditText
+                        android:id="@+id/sjzzl"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/login_edit_style"
+                        android:digits="1234567890."
+                        android:inputType="number|numberDecimal"
+                        android:maxLength="12" />
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+        <!--当检查类型为01,03-->
+        <TableLayout
+            android:id="@+id/oneorthreeleLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/sfwfjy" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <com.scxd.lawqinghai.widget.CheckText
+                        android:id="@+id/wfyy"
+                        style="@style/table_text02"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1.0dip"
+                        android:layout_weight="1.0" />
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/zerofoursjzks" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <EditText
+                        android:id="@+id/zks"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/login_edit_style"
+                        android:digits="1234567890"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </TableRow>
+
+
+        </TableLayout>
+
+        <!--当检查类型为02-->
+        <TableLayout
+            android:id="@+id/twoLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/sfxghptjsbs" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <com.scxd.lawqinghai.widget.CheckText
+                        android:id="@+id/xgjsbz"
+                        style="@style/table_text02"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1.0dip"
+                        android:layout_weight="1.0" />
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/sfajdsjxs" />
+
+
+                <com.scxd.lawqinghai.widget.CheckText
+                    android:id="@+id/azdsj"
+                    style="@style/table_text02"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    android:layout_weight="1.0" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/sfazdlxxs" />
+
+
+                <com.scxd.lawqinghai.widget.CheckText
+                    android:id="@+id/azdlx"
+                    style="@style/table_text02"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    android:layout_weight="1.0" />
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/sfqddlystxz" />
+
+                <com.scxd.lawqinghai.widget.CheckText
+                    android:id="@+id/qdystxz"
+                    style="@style/table_text02"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    android:layout_weight="1.0" />
+
+            </TableRow>
+
+        </TableLayout>
+        <!--当检查子类型共有-->
+        <TableLayout
+            android:id="@+id/childmainLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/sftbjqx" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <com.scxd.lawqinghai.widget.CheckText
+                        android:id="@+id/sftbjqx"
+                        style="@style/table_text02"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1.0dip"
+                        android:layout_weight="3.0" />
+                </LinearLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/srzk" />
+
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <EditText
+                        android:id="@+id/srzk"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/sczk" />
+
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="1.0">
+
+                    <EditText
+                        android:id="@+id/sczk"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+
+            </TableRow>
+
+
+        </TableLayout>
+        <!--当检查类型为02s-->
+        <TableLayout
+            android:id="@+id/twosLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0"
+                    android:text="@string/yyydh" />
+
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <EditText
+                        android:id="@+id/yydh"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="3.0"
+                        android:inputType="phone"
+                        android:digits="0123456789"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="11" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0"
+                    android:text="@string/yyzjh" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <EditText
+                        android:id="@+id/yysfz"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="3.0"
+                        android:digits="1234567890X"
+                        android:inputType="numberDecimal"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0"
+                    android:text="@string/whpzl" />
+
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <Spinner
+                        android:id="@+id/whpzl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp" />
+                </LinearLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_weight="1.0"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/whpmc" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_weight="3.0">
+
+                    <EditText
+                        android:id="@+id/whpmc"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="3.0"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/yyyxm" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <EditText
+                        android:id="@+id/yyxm"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="3.0"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+        <!--当检查子类型0101-->
+        <TableLayout
+            android:id="@+id/childotherLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_weight="1.0"
+                    android:text="@string/sfjbc" />
+
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <com.scxd.lawqinghai.widget.CheckText
+                        android:id="@+id/sfjbc"
+                        style="@style/table_text02"
+
+                        android:layout_weight="3.0" />
+                </LinearLayout>
+
+
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:text="@string/bxpc"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dp"
+                    android:layout_weight="1.0"/>
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_weight="3.0">
+
+                    <Spinner
+                        android:id="@+id/bxpc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000">
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/yqy" />
+
+                <LinearLayout
+                    style="@style/table_linear_edit"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    android:layout_weight="3.0">
+
+                    <EditText
+                        android:id="@+id/yxqy"
+                        style="@style/table_text02"
+                        android:layout_margin="5.0dip"
+                        android:layout_weight="3.0"
+                        android:background="@drawable/login_edit_style"
+                        android:maxLength="20" />
+                </LinearLayout>
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/clzt" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_weight="3.0">
+
+                <Spinner
+                    android:id="@+id/clzt_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+        </TableRow>
+        <!--暂时不填写-->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/gpszb" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_weight="1.0">
+
+                <Spinner
+                    android:id="@+id/gpszb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:text="@string/ywfjsy" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/ywfjsy"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1.0dip"
+                android:layout_weight="1.0" />
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tabrowfjsysfz"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/fjsysfz" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_weight="3.0">
+
+                <EditText
+                    android:id="@+id/fjsysfz"
+                    style="@style/table_text02"
+                    android:layout_margin="5.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/login_edit_style"
+                    android:digits="0123456789X"
+                    android:maxLength="18" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:text="@string/sfxyc" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/sfxycl"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1.0" />
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/sfwjsz" />
+
+            <com.scxd.lawqinghai.widget.CheckText
+                android:id="@+id/sfwzjs"
+                style="@style/table_text02"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1.0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/jcycnr" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_weight="3.0">
+
+                <EditText
+                    android:id="@+id/czqkms"
+                    style="@style/table_text02"
+                    android:layout_margin="5.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/login_edit_style"
+                    android:maxLength="200" />
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            >
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/jcqkms" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_weight="3.0">
+
+                <EditText
+                    android:id="@+id/jcqkms"
+                    style="@style/table_text02"
+                    android:layout_margin="5.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/login_edit_style"
+                    android:maxLength="200" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/table_text01"
+                android:layout_marginBottom="1.0dip"
+                android:layout_marginLeft="1.0dip"
+                android:text="@string/czjg" />
+
+            <LinearLayout
+                style="@style/table_linear_edit"
+                android:layout_marginBottom="1.0dip"
+                android:layout_weight="3.0">
+
+                <TextView
+                    android:id="@+id/czjg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

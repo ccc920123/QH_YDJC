@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/modelsummary"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="@dimen/dp_5"
+              android:layout_marginRight="@dimen/dp_5"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titlemodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/title2modesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/nomodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/bcfrmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/dabhmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/sfzhmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/lxfsmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_gravity="left"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/clhpmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/cllxmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/fzjgmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/zjcxmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/wfxwflyjmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/cfddmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/jtjcmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bclrqmmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bzmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/sjmodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bottommodesummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <LinearLayout
+        android:id="@+id/imgewm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/dp_15"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/bottommodesummaryimg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@color/white"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/bottommodesummarytips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="使用12123平台APP可以在线扫码缴款"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone"/>
+
+</LinearLayout>

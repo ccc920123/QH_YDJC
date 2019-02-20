@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>预警详情</title>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+
+    <!--<script src="./alarmDetail.js"/>-->
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script src="./violation.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+
+<table class="addNewTable">
+    <tr>
+        <td class="s_head">当事人姓名</td>
+        <td><input type="text" id="dsr" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">文书编号</td>
+        <td><input type="text" id="jdsbh" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">驾驶证号</td>
+        <td><input type="text" id="jszh" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">发证机关</td>
+        <td><input type="text" id="fzjg" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">准驾车型</td>
+        <td><input type="text" id="zjcx" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">住所行政区划</td>
+        <td><input type="text" id="zsxzqh" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+    <tr>
+        <td class="s_head">违法代码</td>
+        <td><input type="text" id="wfxw" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">违法时间</td>
+        <td><input type="text" id="wfsj" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">违法内容</td>
+        <td colspan='2'><input type="text" id="wfxq" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">违法地址</td>
+        <td colspan='2'><input type="text" id="wfdz" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">号牌种类</td>
+        <td><input type="text" id="hpzlname" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">号牌号码</td>
+        <td><input type="text" id="hphm" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+    <tr>
+        <td class="s_head">处罚结果</td>
+        <td><input type="text" id="cfzlname" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">交款方式</td>
+        <td><input type="text" id="jkfsname" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">使用性质</td>
+        <td><input type="text" id="syxzname" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">车辆类型</td>
+        <td> <input type="text" id="clflname" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">罚款金额</td>
+        <td><input type="text" id="fkje" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">交款标记</td>
+        <td><input type="text" id="jkbjname" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+    <tr>
+        <td class="s_head">违法记分</td>
+        <td><input type="text" id="wfjf" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">拒收拒签</td>
+        <td><input type="text" id="jsjqbjname" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+    <tr>
+        <td class="s_head">违法人电话</td>
+        <td><input type="text" id="dh" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">联系方式</td>
+        <td><input type="text" id="lxfs" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">路段号码</td>
+        <td><input type="text" id="lddm" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">行政区划</td>
+        <td><input type="text" id="xzqh" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">公里数</td>
+        <td><input type="text" id="gls" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">米数</td>
+        <td><input type="text" id="ddms" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">标准值</td>
+        <td><input type="text" id="bzz" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">实测值</td>
+        <td><input type="text" id="scz" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">联系地址</td>
+        <td colspan='2'><input type="text" id="zsxxdz" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">录入人</td>
+        <td><input type="text" id="lrrname" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">执勤民警</td>
+        <td><input type="text" id="zqmj" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">行政诉讼机关</td>
+        <td colspan='2'><input type="text" id="xzssjg" class="inputtext" readonly="readonly"></td>
+    </tr>
+    </table>
+<div class="filterBtnDiv">
+    <button id="close" class="filterBtn"  style="width: 60px">关闭</button>
+
+    </br>
+    <!--<label style="color: red">*</label>-->
+</div>
+</body>
+</html>

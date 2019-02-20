@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.DriverDao">
+
+    <!--插入驾驶人信息-->
+    <insert id="insertDriver" parameterType="java.util.Map">
+        INSERT INTO biz_drv_info
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            ${key}
+        </foreach>
+        VALUES
+        <foreach collection="map" item="att" index="key" separator="," open="(" close=")">
+            #{map[${key}]}
+        </foreach>
+    </insert>
+
+    <!--查询驾驶人信息通过驾驶证号-->
+    <select id="selectDriverByjszh" parameterType="String" resultType="com.scxd.beans.biz.Q10Return">
+       SELECT xm,
+       sjhm     lxdh,
+       zt       AS jszzt,
+       cclzrq,
+       sfcf,
+       yqwsy,
+       yqwhz,
+       fzjg,
+       zjcx,
+       lxzsxxdz,
+       sfzmmc   AS sfzmc,
+       csrq,
+       dabh,
+       sfzmhm,
+       xzqh,
+       lxzsxzqh AS zsxzqy,
+       jzqx,
+       zhqfrq,
+       ljjf,
+       mfqfrq   AS zhmfqfrq,
+       xyqfrq,
+       syrq     AS xytjrq,
+       djzsxxdz,
+       zxbh,
+       b.sx1    zpid,
+       yxqs,
+       yxqz
+  FROM biz_drv_info a
+  left join biz_photo_info b
+    on a.id = b.glid
+   and b.zpzl = '7004'
+ WHERE sfzmhm = #{0}
+    OR zxbh = #{0}
+   and rownum = 1
+
+    </select>
+
+    <!--通过驾驶证号查询有无驾驶人信息-->
+    <select id="selectDriverByzxbh" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM biz_drv_info WHERE sfzmhm = #{0}
+    </select>
+
+    <!--查询最近一小时内有无驾驶人信息  xrsj &gt;= #{0} AND-->
+    <select id="selectDriverByxrsjAndjszh"  resultType="com.scxd.beans.biz.Q10Return">
+        SELECT a.*,b.sx1 zpid FROM biz_drv_info a left join biz_photo_info b on a.id=b.glid and b.zpzl='7004'WHERE  sfzmhm = #{0}
+    </select>
+
+    <!--删除驾驶人信息-->
+    <delete id="deleteDriverByzxbh" parameterType="String">
+        DELETE FROM biz_drv_info WHERE sfzmhm = #{0}
+    </delete>
+
+    <insert id="insertDriverByOBJ" parameterType="com.scxd.beans.biz.BizDrvInfo">
+        insert into BIZ_DRV_INFO
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="sfzmmc != null" >
+                SFZMMC,
+            </if>
+            <if test="sfzmhm != null" >
+                SFZMHM,
+            </if>
+            <if test="hmcd != null" >
+                HMCD,
+            </if>
+            <if test="xm != null" >
+                XM,
+            </if>
+            <if test="xb != null" >
+                XB,
+            </if>
+            <if test="csrq != null" >
+                CSRQ,
+            </if>
+            <if test="gj != null" >
+                GJ,
+            </if>
+            <if test="djzsxzqh != null" >
+                DJZSXZQH,
+            </if>
+            <if test="djzsxxdz != null" >
+                DJZSXXDZ,
+            </if>
+            <if test="lxzsxzqh != null" >
+                LXZSXZQH,
+            </if>
+            <if test="lxzsxxdz != null" >
+                LXZSXXDZ,
+            </if>
+            <if test="lxzsyzbm != null" >
+                LXZSYZBM,
+            </if>
+            <if test="lxdh != null" >
+                LXDH,
+            </if>
+            <if test="sjhm != null" >
+                SJHM,
+            </if>
+            <if test="dzyx != null" >
+                DZYX,
+            </if>
+            <if test="dabh != null" >
+                DABH,
+            </if>
+            <if test="zjcx != null" >
+                ZJCX,
+            </if>
+            <if test="ljjf != null" >
+                LJJF,
+            </if>
+            <if test="zt != null" >
+                ZT,
+            </if>
+            <if test="cclzrq != null" >
+                CCLZRQ,
+            </if>
+            <if test="jzqx != null" >
+                JZQX,
+            </if>
+            <if test="syrq != null" >
+                SYRQ,
+            </if>
+            <if test="yxqs != null" >
+                YXQS,
+            </if>
+            <if test="yxqz != null" >
+                YXQZ,
+            </if>
+            <if test="xzqh != null" >
+                XZQH,
+            </if>
+            <if test="zzzm != null" >
+                ZZZM,
+            </if>
+            <if test="gxsj != null" >
+                GXSJ,
+            </if>
+            <if test="zxbh != null" >
+                ZXBH,
+            </if>
+            <if test="fzjg != null" >
+                FZJG,
+            </if>
+            <if test="zhqfrq != null" >
+                ZHQFRQ,
+            </if>
+            <if test="mfqfrq != null" >
+                MFQFRQ,
+            </if>
+            <if test="xyqfrq != null" >
+                XYQFRQ,
+            </if>
+            <if test="sfcf != null" >
+                SFCF,
+            </if>
+            <if test="yqwsy != null" >
+                YQWSY,
+            </if>
+            <if test="yqwhz != null" >
+                YQWHZ,
+            </if>
+            <if test="xrsj != null" >
+                XRSJ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzmmc != null" >
+                #{sfzmmc,jdbcType=CHAR},
+            </if>
+            <if test="sfzmhm != null" >
+                #{sfzmhm,jdbcType=VARCHAR},
+            </if>
+            <if test="hmcd != null" >
+                #{hmcd,jdbcType=CHAR},
+            </if>
+            <if test="xm != null" >
+                #{xm,jdbcType=VARCHAR},
+            </if>
+            <if test="xb != null" >
+                #{xb,jdbcType=CHAR},
+            </if>
+            <if test="csrq != null" >
+                #{csrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gj != null" >
+                #{gj,jdbcType=CHAR},
+            </if>
+            <if test="djzsxzqh != null" >
+                #{djzsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="djzsxxdz != null" >
+                #{djzsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="lxzsxzqh != null" >
+                #{lxzsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="lxzsxxdz != null" >
+                #{lxzsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="lxzsyzbm != null" >
+                #{lxzsyzbm,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null" >
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="sjhm != null" >
+                #{sjhm,jdbcType=VARCHAR},
+            </if>
+            <if test="dzyx != null" >
+                #{dzyx,jdbcType=VARCHAR},
+            </if>
+            <if test="dabh != null" >
+                #{dabh,jdbcType=CHAR},
+            </if>
+            <if test="zjcx != null" >
+                #{zjcx,jdbcType=VARCHAR},
+            </if>
+            <if test="ljjf != null" >
+                #{ljjf,jdbcType=DECIMAL},
+            </if>
+            <if test="zt != null" >
+                #{zt,jdbcType=VARCHAR},
+            </if>
+            <if test="cclzrq != null" >
+                #{cclzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jzqx != null" >
+                #{jzqx,jdbcType=TIMESTAMP},
+            </if>
+            <if test="syrq != null" >
+                #{syrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="yxqs != null" >
+                #{yxqs,jdbcType=TIMESTAMP},
+            </if>
+            <if test="yxqz != null" >
+                #{yxqz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="xzqh != null" >
+                #{xzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="zzzm != null" >
+                #{zzzm,jdbcType=VARCHAR},
+            </if>
+            <if test="gxsj != null" >
+                #{gxsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zxbh != null" >
+                #{zxbh,jdbcType=VARCHAR},
+            </if>
+            <if test="fzjg != null" >
+                #{fzjg,jdbcType=VARCHAR},
+            </if>
+            <if test="zhqfrq != null" >
+                #{zhqfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mfqfrq != null" >
+                #{mfqfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="xyqfrq != null" >
+                #{xyqfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sfcf != null" >
+                #{sfcf,jdbcType=CHAR},
+            </if>
+            <if test="yqwsy != null" >
+                #{yqwsy,jdbcType=CHAR},
+            </if>
+            <if test="yqwhz != null" >
+                #{yqwhz,jdbcType=CHAR},
+            </if>
+            <if test="xrsj != null" >
+                #{xrsj,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+
+    </insert>
+
+</mapper>

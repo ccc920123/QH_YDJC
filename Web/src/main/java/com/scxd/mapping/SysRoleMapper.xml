@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysRoleMapper">
+<insert id="insertSelective" parameterType="com.scxd.beans.pojo.SysRole">
+
+  insert into sys_role
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+      ROLE_ID,
+    <if test="name != null">
+      NAME,
+    </if>
+    <if test="levelnum != null">
+      LEVELNUM,
+    </if>
+    <if test="type != null">
+      TYPE,
+    </if>
+    <if test="state != null">
+      STATE,
+    </if>
+    <if test="czryzh != null">
+      CZRYZH,
+    </if>
+    <if test="czsj != null">
+      CZSJ,
+    </if>
+    <if test="cjbmbh != null">
+      CJBMBH,
+    </if>
+
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides=",">
+    SEQ_SYS_ROLE.NEXTVAL,
+    <if test="name != null">
+      #{name,jdbcType=VARCHAR},
+    </if>
+    <if test="levelnum != null">
+      #{levelnum,jdbcType=INTEGER},
+    </if>
+    <if test="type != null">
+      #{type,jdbcType=INTEGER},
+    </if>
+    <if test="state != null">
+      #{state,jdbcType=INTEGER},
+    </if>
+    <if test="czryzh != null">
+      #{czryzh,jdbcType=VARCHAR},
+    </if>
+    <if test="czsj != null">
+      #{czsj},
+    </if>
+    <if test="cjbmbh != null">
+      #{cjbmbh,jdbcType=VARCHAR},
+    </if>
+  </trim>
+
+</insert>
+<update id="updateByBean" parameterType="com.scxd.beans.pojo.SysRole">
+
+  UPDATE sys_role
+  <set>
+
+    <if test="name != null">
+      #{name,jdbcType=VARCHAR},
+    </if>
+    <if test="levelnum != null">
+      #{levelnum,jdbcType=INTEGER},
+    </if>
+    <if test="type != null">
+      #{type,jdbcType=INTEGER},
+    </if>
+    <if test="state != null">
+      #{state,jdbcType=INTEGER},
+    </if>
+    <if test="czryzh != null">
+      #{czryzh,jdbcType=VARCHAR},
+    </if>
+    <if test="czsj != null">
+      #{czsj},
+    </if>
+    <if test="cjbmbh != null">
+      #{cjbmbh,jdbcType=VARCHAR},
+    </if>
+  </set>
+  where ID = #{id,jdbcType=INTEGER}
+</update>
+
+  <delete id="deleteByPrimaryKey">
+    DELETE  FROM SYS_ROLE WHERE ROLE_ID=#{rId}
+  </delete>
+  <select id="getSysRole" resultType="com.scxd.beans.pojo.SysRole">
+    SELECT *  from SYS_ROLE WHERE  NAME=#{roleName}
+  </select>
+  <select id="selectByUserName" resultType="com.scxd.beans.pojo.SysRole">
+    SELECT A.ROLE_ID, A.NAME, A.LEVELNUM, A.TYPE, A.STATE, A.CJBMBH
+              FROM SYS_ROLE A, SYS_USER B, SYS_USER_ROLE C, SYS_USER D
+             WHERE A.ROLE_ID = C.ROLE_ID
+               AND B.USER_ID = C.USER_ID
+               AND D.USER_ID = C.USER_ID
+               AND A.STATE = 1
+               AND D.ZT = 1
+               AND D.LOGINNAME = #{0}
+  </select>
+  <select id="menuRoleList" resultType="java.util.Map">
+    SELECT A.MENU_ID id,
+       A.PARENTID pid,
+       A.NAME name,
+       CASE
+         WHEN b.menu_id IS NULL THEN
+          0
+         ELSE
+          1
+       END AS flag
+  FROM SYS_MENU A
+  left join sys_menu_role b
+    on a.menu_id = b.menu_id and b.role_id=#{roleId}
+ where a.type = #{type}
+
+ ORDER BY A.SORTCODE ASC
+  </select>
+</mapper>

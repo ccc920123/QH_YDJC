@@ -1,0 +1,41 @@
+MinaFrameUILib说明
+该lib是一个主界面框架，使用时请采用ViewPager+RadioGroup来实现功能界面。该框架继承了FragmentActivity
+类，实现了自定义的IBase接口。该lib提供了一下方法:
+
+processLogic(ViewPager viewPager, List<Fragment> mFragments);     //逻辑处理方法，也是主方法， 处理viewpager，设置viewpager的适配器，该方法需要
+传递2个参数，参数一:ViewPager;参数二：mFragments list组。
+
+setViewPagerOnPageChangeListener(List<RadioButton> radioButton);//给ViewPager添加OnPageChangeListener事件,该方法需要传递一个参数。
+参数一：radioButton list组。
+
+setRadioGroupOnCheckedChangeListener(RadioGroup radioGroup);//给RadioGroup添加OnCheckedChangeListener事件,该方法需要传递一个参数，
+参数一：RadioGroup
+
+setUiFrameTitle(TextView view);  //设置标题。保证你标题实在主界面设置，而不是在子fragment中设置，次方发只保证能在主界面设置
+ 标题，如果你在子fragment中写标题就可以不用调用该方法。该方法需传递一个参数。
+ 参数一：TextView
+
+setCurrentItem(int item);  //设置ViewPager选中的item.该方法应该在设置Adapter，setViewPagerOnPageChangeListener（），
+setRadioGroupOnCheckedChangeListener（）之后调用，这样才能确保不会报错,该方法需要一个参数 。
+参数一： int 类型。
+
+
+使用方法：
+1.新建的Activity 继承UIMianFrame 同时要重写bindView(Bundle savedInstanceState)与getContentLayout()方法
+
+bindView(Bundle savedInstanceState);
+在bindView(Bundle savedInstanceState)方法中处理逻辑
+
+getContentLayout()；
+在getContentLayout()中添加加载的layout布局文件，布局文件请采用ViewPager+RadioGroup来实现
+
+2.在bindView(Bundle savedInstanceState)中 调用UIMianFrame的processLogic(vpager, mf);构建相应的参数值，
+
+
+3. 在bindView(Bundle savedInstanceState)中调用UIMianFrame的setViewPagerOnPageChangeListener(List);构建相应的参数。
+
+4.在bindView(Bundle savedInstanceState)中调用UIMianFrame的setRadioGroupOnCheckedChangeListener(RadioGroup);出入RadioGroup
+
+5.在bindView(Bundle savedInstanceState)中调用UIMianFrame的setUiFrameTitle(mTitle);设置标题，传入相应的参数
+
+6.在bindView(Bundle savedInstanceState)中调用UIMianFrame的setCurrentItem(0);传入相应的参数

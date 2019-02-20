@@ -1,0 +1,17 @@
+<resources>
+
+
+    <!-- 相机返回样式 -->
+    <style name="vidoe_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/video_item_text</item>
+        <item name="android:textSize">16sp</item>
+        <!-- <item name="android:background">@drawable/tab_menu_bg</item> -->
+    </style>
+    <style name="Universal.Widget.ProgressBar" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/uvv_progress_rotate</item>
+        <item name="android:indeterminateDuration">1000</item>
+    </style>
+</resources>

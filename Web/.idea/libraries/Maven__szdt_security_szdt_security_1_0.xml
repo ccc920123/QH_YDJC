@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: szdt_security:szdt_security:1.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/szdt_security/szdt_security/1.0/szdt_security-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/szdt_security/szdt_security/1.0/szdt_security-1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/szdt_security/szdt_security/1.0/szdt_security-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

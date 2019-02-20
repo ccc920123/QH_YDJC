@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SYS_BLACK_LISTMapper">
+  <resultMap id="BaseResultMap" type="com.scxd.beans.pojo.SYS_BLACK_LIST">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="XRSJ" jdbcType="TIMESTAMP" property="xrsj" />
+  </resultMap>
+  <insert id="insert" parameterType="com.scxd.beans.pojo.SYS_BLACK_LIST">
+    insert into SYS_BLACK_LIST (ID, VALUE, TYPE, 
+      XRSJ)
+    values (#{id,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, 
+      #{xrsj,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SYS_BLACK_LIST">
+    insert into SYS_BLACK_LIST
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="ms != null">
+        MS,
+      </if>
+      <if test="xrsj != null">
+        XRSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="ms != null">
+        #{ms,jdbcType=VARCHAR},
+      </if>
+      <if test="xrsj != null">
+        #{xrsj,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="getBlackListByValue" resultType="com.scxd.beans.pojo.SYS_BLACK_LIST">
+    SELECT * from SYS_BLACK_LIST where value=#{0}
+  </select>
+  <select id="getBlackListCount" resultType="java.lang.Integer">
+select count(*) from sys_black_list
+<where>
+  <if test="type!=null and type!=''">
+    AND type=#{type}
+  </if>
+  <if test="name!=null and name!=''">
+    and value  LIKE '%' || #{name} || '%'
+  </if>
+</where>
+  </select>
+  <select id="getBlackListTable" resultType="com.scxd.beans.pojo.SYS_BLACK_LIST">
+   select *  from (
+    select b.*,rownum rn from sys_black_list b
+    <where>
+      1=1
+      <if test="type!=null and type!=''">
+        AND b.type=#{type}
+      </if>
+      <if test="name!=null and name!=''">
+        and b.value LIKE '%' || #{name} || '%'
+      </if>
+    </where>
+    )A
+    where A.rn BETWEEN (#{page}-1)*#{pageSize} +1 and #{page}*#{pageSize}
+  </select>
+  <delete id="deleteByID">
+    DELETE FROM SYS_BLACK_LIST where ID=#{blackId}
+  </delete>
+  <select id="selectBeanByID" resultType="com.scxd.beans.pojo.SYS_BLACK_LIST">
+    select *  from SYS_BLACK_LIST where ID=#{blackId}
+  </select>
+</mapper>

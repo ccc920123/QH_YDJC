@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.SysOperateLogMapper">
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SysOperateLog">
+        insert into SYS_OPERATE_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="opuser != null">
+                OPUSER,
+            </if>
+            <if test="optype != null">
+                OPTYPE,
+            </if>
+            <if test="optime != null">
+                OPTIME,
+            </if>
+            <if test="opvalues != null">
+                OPVALUES,
+            </if>
+            <if test="opdevice != null">
+                OPDEVICE,
+            </if>
+            <if test="opsource != null">
+                OPSOURCE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="opuser != null">
+                #{opuser,jdbcType=VARCHAR},
+            </if>
+            <if test="optype != null">
+                #{optype,jdbcType=DECIMAL},
+            </if>
+            <if test="optime != null">
+                #{optime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="opvalues != null">
+                #{opvalues,jdbcType=VARCHAR},
+            </if>
+            <if test="opdevice != null">
+                #{opdevice,jdbcType=VARCHAR},
+            </if>
+            <if test="opsource != null">
+                #{opsource,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <select id="queryOperationType" resultType="com.scxd.beans.common.KeyValueBean">
+    select dmz key,dmmc value  from biz_code_info  where dmlb=1035
+  </select>
+
+    <select id="queryOperationList" resultType="com.scxd.beans.management.OperationLogBean">
+select rownum rn ,t.* from (
+        select rownum xh,a.id, b.realname czr ,d.dmmc czlx ,c.name bmmc, optime czsj from sys_operate_log a
+        left join sys_user b on a.opuser=b.loginname
+        left join sys_department c on b.ssbmbh=c.bmbh
+        left join( select dmz,dmmc from biz_code_info where dmlb=1035) d on a.optype=d.dmz
+        <where>
+            <if test="bmbh!=null and bmbh!=''">
+             AND  c.bmbh in (select bmbh from sys_department
+            START WITH bmbh=#{bmbh}
+            CONNECT BY PRIOR bmbh=sjzdbmbh)
+            </if>
+            <if test="czr!=null and czr!=''">
+                AND  a.opuser=#{czr}or b.realname like concat(concat('%',#{czr}),'%')
+            </if>
+            <if test="czlx!=null and czlx!=''">
+                AND  a.optype=#{czlx}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND optime BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND optime <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND optime <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+        order by optime DESC) T
+        where t.xh BETWEEN  (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+    </select>
+    <select id="queryOperationListTotal" resultType="java.lang.Integer">
+
+        select count(*) from sys_operate_log a
+        left join sys_user b on a.opuser=b.loginname
+        left join sys_department c on b.ssbmbh=c.bmbh
+        left join( select dmz,dmmc from biz_code_info where dmlb=1035) d on a.optype=d.dmz
+        <where>
+            <if test="bmbh!=null and bmbh!=''">
+                AND  c.bmbh in (select bmbh from sys_department
+                START WITH bmbh=#{bmbh}
+                CONNECT BY PRIOR bmbh=sjzdbmbh)
+            </if>
+            <if test="czr!=null and czr!=''">
+                AND  a.opuser=#{czr}or b.realname like concat(concat('%',#{czr}),'%')
+            </if>
+            <if test="czlx!=null and czlx!=''">
+                AND  a.optype=#{czlx}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND optime BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND optime <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND optime <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+    </select>
+    <select id="queryOperationDetail" resultType="com.scxd.beans.management.OperationLogBean">
+
+select a.id, b.realname czr ,d.dmmc czlx ,c.name bmmc, optime czsj,a.opdevice zdbs,e.mc zdmc,a.opvalues gjxx  from sys_operate_log  a
+left join sys_user b on a.opuser=b.loginname
+left join sys_department c on b.ssbmbh=c.bmbh
+left join sys_pda_info e on a.opdevice=e.wym
+left join( select dmz,dmmc  from biz_code_info  where dmlb=1035) d on a.optype=d.dmz
+where a.id=#{id}
+    </select>
+
+    <delete id="deleteOperateLogByUsernameAndIp">
+       delete  from sys_operate_log t  where t.opdevice=#{ip} and t.opuser=#{username} and t.optype= 101 and t.opsource=2
+    </delete>
+    <select id="getDeviceDefaltLog" resultType="com.scxd.beans.pojo.SysOperateLog">
+        SELECT *  from sys_operate_log t where t.opdevice=#{ip} and t.optype= 101 and t.opsource=2
+        <if test="lasttime!=null">
+            AND t.OPTIME>#{lasttime}
+        </if>
+    </select>
+
+    <select id="selectSysOperateLog" resultType="com.scxd.beans.pojo.SysOperateLog">
+        SELECT *  from sys_operate_log t where t.opuser=#{loginname} and t.optype= #{optype} and t.opsource=#{opsource}
+        <if test="lasttime!=null">
+            AND t.OPTIME>#{lasttime}
+        </if>
+    </select>
+</mapper>

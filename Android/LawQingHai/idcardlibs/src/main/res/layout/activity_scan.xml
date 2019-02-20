@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/camera_back"/>
+
+    <LinearLayout
+        android:id="@+id/linearlaout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/mune"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/light"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/flash_on"
+            android:textColor="#ffffffff"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mune"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:background="#90000000">
+
+        <TextView
+            android:id="@+id/sfz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证号"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:padding="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#a6a6a6"/>
+
+
+        <TextView
+            android:id="@+id/zxbh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="证芯编号"
+            android:textColor="@color/text"
+            android:textSize="17sp"
+            android:padding="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#a6a6a6"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

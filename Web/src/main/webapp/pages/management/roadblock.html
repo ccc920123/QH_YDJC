@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>卡口备案</title>
+
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/roadblock.js"></script>
+    <script type="text/javascript" src="../../js/common/pression.js"></script>
+
+    <style type="text/css">
+        .imgck{
+            width:15px;
+            height:15px;
+            max-width:100%;
+            max-height:100%;
+        }
+    </style>
+</head>
+<body>
+<table class="dept">
+    <tr>
+        <!-- 左边树 -->
+        <td class="deptLeft" style="width:30px;height:100%;">
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+        </td>
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%" style="text-align: center;">
+                    <tr>
+                        <td class="s_head">卡口名称</td>
+                        <td>
+                            <input class="inputtext" type="text" id="kkmc" style="width: 90%;">
+                        </td>
+                        <td class="s_head">所属执法站</td>
+                        <td >
+                            <select id="zfzmc" class="inputtext">
+                            </select>
+                        </td>
+                        <td class="">
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>&nbsp;查询信息条数&nbsp;:&nbsp;<span id="total"></span></div>
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>卡口编号</td>
+                        <td>卡口名称</td>
+                        <td>上行方向</td>
+                        <td>下行方向</td>
+                        <td>所属执法站</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

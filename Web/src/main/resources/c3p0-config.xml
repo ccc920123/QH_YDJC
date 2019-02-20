@@ -1,0 +1,43 @@
+<c3p0-config>
+    <!--数据分析库-->
+    <named-config name="trffIcsCp30">
+        <property name="user">ics_test_admin</property>
+        <property name="password">fd0f8a12f9f86129</property>
+        <property name="driverClass">oracle.jdbc.driver.OracleDriver</property>
+        <property name="jdbcUrl">jdbc:oracle:thin:@11.101.2.36/orcl</property>
+        <!--<property name="jdbcUrl">jdbc:oracle:thin:@10.192.12.38/orcl</property>-->
+
+        <!-- 若数据库中连接数不足时，一次向数据库服务器申请多少个链接 -->
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement">5</property>
+
+        <!--初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="initialPoolSize">10</property>
+
+        <!--连接池中保留的最小连接数。-->
+        <property name="minPoolSize">5</property>
+
+        <!--连接池中保留的最大连接数。Default: 15 -->
+        <property name="maxPoolSize">30</property> <!-- intergalactoApp adopts a different approach to configuring statement caching -->
+
+        <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+            属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+            如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->
+        <property name="maxStatements">30</property>
+
+        <!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+        <property name="maxIdleTime">60</property>
+
+        <!--每60秒检查所有连接池中的空闲连接。默认值: 0，不检查 -->
+        <property name="idleConnectionTestPeriod">60</property>
+
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次-->
+        <property name="acquireRetryAttempts">30</property>
+
+        <!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+        <!-- 每个链接可以使用的Statements 对象的个数 -->
+        <property name="maxStatementsPerConnection">5</property> <!-- he's important, but there's only one of him -->
+
+    </named-config>
+
+</c3p0-config>

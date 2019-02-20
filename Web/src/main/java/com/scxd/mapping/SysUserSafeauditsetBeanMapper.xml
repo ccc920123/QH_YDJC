@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysUserSafeauditsetBeanMapper">
+    <update id="updateByPrimaryKeySelective" parameterType="com.scxd.beans.pojo.SysUserSafeauditsetBean">
+        update SYS_USER_SAFEAUDITSET
+        <set>
+            <if test="safetype != null">
+                SAFETYPE = #{safetype,jdbcType=OTHER},
+            </if>
+            <if test="safechildtype != null">
+                SAFECHILDTYPE = #{safechildtype,jdbcType=OTHER},
+            </if>
+            <if test="safechildunite != null">
+                SAFECHILDUNITE = #{safechildunite,jdbcType=OTHER},
+            </if>
+            <if test="safechildvalue != null">
+                SAFECHILDVALUE = #{safechildvalue,jdbcType=OTHER},
+            </if>
+            <if test="safevalue != null">
+                SAFEVALUE = #{safevalue,jdbcType=OTHER},
+            </if>
+            <if test="remarks != null">
+                REMARKS = #{remarks,jdbcType=OTHER},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=CHAR},
+            </if>
+            <if test="userid != null">
+                USERID = #{userid,jdbcType=OTHER},
+            </if>
+            <if test="ctime != null">
+                CTIME = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=DECIMAL}
+    </update>
+
+    <select id="getsalfAuditTotal" resultType="java.lang.Integer">
+        select count(*) from sys_user_safeauditset
+        <if test="salfType!=null and salfType!=''">
+            <where>
+                SAFETYPE=#{salfType}
+            </where>
+        </if>
+    </select>
+    <select id="getsalfAuditList" resultType="java.util.Map">
+        SELECT * from (select a.*,rownum rn from sys_user_safeauditset a
+        WHERE 1=1
+        <if test="salfType!=null and salfType!=''">
+            AND a.SAFETYPE= #{salfType}
+        </if>
+        )H
+        where rn BETWEEN (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+    </select>
+    <select id="getSalfAuditDetail" resultType="com.scxd.beans.pojo.SysUserSafeauditsetBean">
+        select * from SYS_USER_SAFEAUDITSET where id=#{id}
+    </select>
+</mapper>

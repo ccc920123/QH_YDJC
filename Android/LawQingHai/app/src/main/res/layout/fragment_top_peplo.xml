@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center|center_horizontal"
+    tools:context="com.scxd.lawqinghai.fragment.TopPeploFragment"
+    android:padding="20dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_5"
+        android:background="@drawable/login_edit_style">
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/ic_login_touxiang"
+            android:layout_marginLeft="@dimen/dp_10"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray01"
+            android:layout_marginLeft="@dimen/dp_7"/>
+
+        <EditText
+            android:id="@+id/query_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:padding="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:background="@null"
+            android:hint="身份证明号码"
+            android:textColor="@color/black_text01"
+            android:textSize="@dimen/sp_17"/>
+
+
+        <ImageView
+            android:id="@+id/scan_img"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/scan_qr"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="5dp"/>
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_query"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:background="@drawable/ic_button_blue"
+        android:layout_marginTop="70dp"
+        android:text="@string/text_query"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_17"/>
+    
+</LinearLayout>

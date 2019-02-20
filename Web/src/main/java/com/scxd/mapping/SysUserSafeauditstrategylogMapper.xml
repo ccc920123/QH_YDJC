@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SysUserSafeauditstrategylogMapper">
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SysUserSafeauditstrategylog">
+        insert into SYS_USER_SAFEAUDITSTRATEGYLOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="safetype != null">
+                SAFETYPE,
+            </if>
+            <if test="safechildtype != null">
+                SAFECHILDTYPE,
+            </if>
+            <if test="userid != null">
+                USERID,
+            </if>
+            <if test="ctime != null">
+                CTIME,
+            </if>
+            <if test="cip != null">
+                CIP,
+            </if>
+            <if test="safecontent != null">
+                SAFECONTENT,
+            </if>
+            <if test="checkdigit != null">
+                CHECKDIGIT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="safetype != null">
+                #{safetype,jdbcType=VARCHAR},
+            </if>
+            <if test="safechildtype != null">
+                #{safechildtype,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null">
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cip != null">
+                #{cip,jdbcType=VARCHAR},
+            </if>
+            <if test="safecontent != null">
+                #{safecontent,jdbcType=VARCHAR},
+            </if>
+            <if test="checkdigit != null">
+                #{checkdigit,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="salfAuditLogListTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) from SYS_USER_SAFEAUDITSTRATEGYLOG
+        WHERE 1=1
+        <if test="safetype!=null and safetype!=''">
+                AND SAFETYPE=#{safetype}
+        </if>
+    </select>
+    <select id="salfAuditLogList" resultType="com.scxd.beans.management.SafeSJBean">
+        SELECT * from (select a.*,rownum rn from SYS_USER_SAFEAUDITSTRATEGYLOG a
+        WHERE 1=1
+            <if test="safetype!=null and safetype!=''">
+                AND a.SAFETYPE= #{safetype}
+            </if>
+        )H
+        where rn BETWEEN (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+    </select>
+    <select id="queryAuditStatisticsList" resultType="java.util.Map">
+        with t as
+        (select s.SAFETYPE, count(*) times
+        from SYS_USER_SAFEAUDITSTRATEGYLOG s
+        WHERE 1=1
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND S.CTIME BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND S.CTIME <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND S.CTIME  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        group by SAFETYPE)
+        select rownum rn,CASE WHEN t.SAFETYPE=1 THEN '高频访问' WHEN t.SAFETYPE=2 THEN '规定时间外访问' ELSE '账户长期未使用' END
+        SAFETYPE, NVL(t.times, 0) times from t
+
+    </select>
+</mapper>

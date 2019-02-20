@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/circle_qing"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ryclxx"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#5aaae7"/>
+
+    </LinearLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0sp"
+            android:layout_marginRight="5.0sp"
+            android:stretchColumns="1" >
+
+            <TableRow
+                android:id="@+id/sfzhtablerow"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="#ff000000" >
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    android:text="@string/sfzh"/>
+
+                <TextView
+                    android:id="@+id/sfzh"
+                    style="@style/table_text02"
+                    android:layout_weight="3.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginTop="1.0dip" 
+                    android:layout_marginRight="1.0dip"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    style="@style/table_text01"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    android:text="@string/fzjg"/>
+
+                <TextView
+                    android:id="@+id/fzjg"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    style="@style/table_text02"/>
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginTop="1.0dip"
+                    android:text="@string/dsr01"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/dsr"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dp"
+                    android:layout_marginTop="1.0dip"
+                    style="@style/table_text02" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/clfl"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/clfl"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    style="@style/table_text02"
+                    android:layout_weight="1.0"/>
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/zzxq"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/zzxq"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/dabhandzjcxtable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/dabh"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/dabh"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:text="@string/zjcx"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/zjcx"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/syxz"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/syxz"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    style="@style/table_text02"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/hpzl"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/hpzl"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/hphm"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/hphm"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    style="@style/table_text02"
+                    android:layout_weight="1.0"/>
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/syr"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/syr"
+                    android:layout_weight="1.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/clytrow"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/clyt"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/clyt"
+                    android:layout_weight="3.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dip"
+                    style="@style/table_text02" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lxdhtablerow"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/lxdh"
+                    style="@style/table_text01"/>
+
+                <TextView
+                    android:id="@+id/lxdh"
+                    android:layout_weight="3.0"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1.0dp"
+                    style="@style/table_text02" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/lxfstablerow"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/lxfs"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/lxfs"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1dp"
+                    style="@style/table_text02"
+                    android:layout_weight="3.0"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff000000" >
+
+                <TextView
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:text="@string/zsdz"
+                    style="@style/table_text01" />
+
+                <TextView
+                    android:id="@+id/zsdz"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_marginLeft="1.0dip"
+                    android:layout_marginRight="1dp"
+                    style="@style/table_text02"
+                    android:layout_weight="3.0"/>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+</LinearLayout>

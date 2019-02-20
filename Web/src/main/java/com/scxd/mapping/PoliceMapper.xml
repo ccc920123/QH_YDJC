@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.PoliceDao">
+
+    <!--查询服务站名称和编号-->
+    <select id="selectFwz" resultType="com.scxd.beans.management.FwzbhAndFwzmc">
+        SELECT q.fwzmc,q.fwzbh FROM biz_qstation q
+        WHERE q.glbm IN(
+        SELECT d.bmbh FROM sys_department d
+        START WITH d.bmbh = #{glbm} CONNECT BY PRIOR d.bmbh = d.sjzdbmbh
+        )
+    </select>
+
+    <!--平台查询警员信息总数-->
+    <select id="selectPoliceTotal" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM biz_police_info p
+        <where>
+            p.bmdm IN(SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+            CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+            <if test="xm != null and xm != ''">AND p.xm LIKE '%' || #{xm}  || '%'</if>
+            <if test="rybh != null and rybh != ''">AND p.rybh LIKE '%' || #{rybh}  || '%'</if>
+            <if test="fwzbh != null and fwzbh != ''">AND p.fwzbh = #{fwzbh}</if>
+        </where>
+    </select>
+
+    <!--平台分页查询警员信息-->
+    <select id="selectPoliceList" parameterType="java.util.Map" resultType="com.scxd.beans.common.PoliceBean">
+    SELECT * FROM (
+    SELECT A.* ,ROWNUM RN FROM (
+    SELECT B.*,q.fwzmc FROM (
+    SELECT p.*,d.name AS bmmc FROM biz_police_info p,sys_department d
+    <where>
+        p.bmdm IN(SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+        CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+        AND p.bmdm = d.bmbh
+        <if test="xm != null and xm != ''">AND p.xm LIKE '%' || #{xm} || '%'</if>
+        <if test="rybh != null and rybh != ''">AND p.rybh LIKE '%' || #{rybh} || '%'</if>
+        <if test="fwzbh != null and fwzbh != ''">AND p.fwzbh = #{fwzbh}</if>
+    </where>
+    ) B LEFT JOIN biz_qstation q ON q.fwzbh = B.fwzbh AND q.ly IS NULL
+    )A WHERE ROWNUM &lt;= #{end}
+    )WHERE RN &gt;= #{start}
+</select>
+
+
+</mapper>

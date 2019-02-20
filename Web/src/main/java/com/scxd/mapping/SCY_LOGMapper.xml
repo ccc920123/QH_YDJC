@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.SCY_LOGMapper">
+    <resultMap id="BaseResultMap" type="com.scxd.beans.pojo.SCY_LOG">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="VALUE" jdbcType="VARCHAR" property="value"/>
+        <result column="EVENT" jdbcType="DECIMAL" property="event"/>
+        <result column="LY" jdbcType="DECIMAL" property="ly"/>
+        <result column="TYPE" jdbcType="DECIMAL" property="type"/>
+        <result column="MODULE" jdbcType="DECIMAL" property="module"/>
+        <result column="SFHXGN" jdbcType="DECIMAL" property="sfhxgn"/>
+        <result column="SFFCGYW" jdbcType="DECIMAL" property="sffcgyw"/>
+        <result column="JG" jdbcType="DECIMAL" property="jg"/>
+        <result column="MS" jdbcType="VARCHAR" property="ms"/>
+        <result column="XRSJ" jdbcType="TIMESTAMP" property="xrsj"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, VALUE, EVENT, LY, TYPE, MODULE, SFHXGN, SFFCGYW, JG, MS, XRSJ
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SCY_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SCY_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.scxd.beans.pojo.SCY_LOG">
+    insert into SCY_LOG (ID, VALUE ,
+      EVENT, LY, TYPE, MODULE,
+      SFHXGN, SFFCGYW, JG,
+      MS, XRSJ,JYW)
+    values (#{id,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+      #{event,jdbcType=DECIMAL}, #{ly,jdbcType=DECIMAL}, #{type,jdbcType=DECIMAL}, #{module,jdbcType=DECIMAL},
+      #{sfhxgn,jdbcType=DECIMAL}, #{sffcgyw,jdbcType=DECIMAL}, #{jg,jdbcType=DECIMAL},
+      #{ms,jdbcType=VARCHAR}, #{xrsj,jdbcType=TIMESTAMP},#{jyw,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.SCY_LOG">
+        insert into SCY_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="value != null">
+                VALUE,
+            </if>
+            <if test="event != null">
+                EVENT,
+            </if>
+            <if test="ly != null">
+                LY,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="module != null">
+                MODULE,
+            </if>
+            <if test="sfhxgn != null">
+                SFHXGN,
+            </if>
+            <if test="sffcgyw != null">
+                SFFCGYW,
+            </if>
+            <if test="jg != null">
+                JG,
+            </if>
+            <if test="ms != null">
+                MS,
+            </if>
+            <if test="xrsj != null">
+                XRSJ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="event != null">
+                #{event,jdbcType=DECIMAL},
+            </if>
+            <if test="ly != null">
+                #{ly,jdbcType=DECIMAL},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=DECIMAL},
+            </if>
+            <if test="module != null">
+                #{module,jdbcType=DECIMAL},
+            </if>
+            <if test="sfhxgn != null">
+                #{sfhxgn,jdbcType=DECIMAL},
+            </if>
+            <if test="sffcgyw != null">
+                #{sffcgyw,jdbcType=DECIMAL},
+            </if>
+            <if test="jg != null">
+                #{jg,jdbcType=DECIMAL},
+            </if>
+            <if test="ms != null">
+                #{ms,jdbcType=VARCHAR},
+            </if>
+            <if test="xrsj != null">
+                #{xrsj,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scxd.beans.pojo.SCY_LOG">
+        update SCY_LOG
+        <set>
+            <if test="value != null">
+                VALUE = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="event != null">
+                EVENT = #{event,jdbcType=DECIMAL},
+            </if>
+            <if test="ly != null">
+                LY = #{ly,jdbcType=DECIMAL},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=DECIMAL},
+            </if>
+            <if test="module != null">
+                MODULE = #{module,jdbcType=DECIMAL},
+            </if>
+            <if test="sfhxgn != null">
+                SFHXGN = #{sfhxgn,jdbcType=DECIMAL},
+            </if>
+            <if test="sffcgyw != null">
+                SFFCGYW = #{sffcgyw,jdbcType=DECIMAL},
+            </if>
+            <if test="jg != null">
+                JG = #{jg,jdbcType=DECIMAL},
+            </if>
+            <if test="ms != null">
+                MS = #{ms,jdbcType=VARCHAR},
+            </if>
+            <if test="xrsj != null">
+                XRSJ = #{xrsj,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectTotal" resultType="int">
+        select count(*) from
+        (select * from scy_log a
+        left join sys_user u on a.value=u.loginname
+        left join sys_department d on u.ssbmbh=d.bmbh
+        )t
+        <where>
+            <if test="bmbh!=null and bmbh!=''and bmbh!='630000000000'">
+            AND t.ssbmbh=#{bmbh}
+        </if>
+            <choose>
+                <when test="kssj!=null and kssj!='' and jssj!=null and jssj!=''">
+                    AND t.xrsj BETWEEN TO_DATE(#{kssj},'YYYY-MM-DD') AND TO_DATE(#{jssj}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="kssj!=null and kssj!='' and (jssj==null or jssj=='')">
+                    AND t.xrsj <![CDATA[>=]]> TO_DATE(#{kssj},'YYYY-MM-DD')
+                </when>
+                <when test="(kssj==null or kssj=='') and jssj!=null and jssj!=''">
+                    AND t.xrsj  <![CDATA[<=]]> TO_DATE(#{jssj}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+            <if test="czr!=null and czr!=''">
+                AND t.value=#{czr}
+            </if>
+            <if test="czlx !=null and czlx!=''">
+                AND t.event=#{czlx}
+            </if>
+        </where>
+    </select>
+    <select id="selectList" resultType="com.scxd.beans.pojo.SCY_LOG_C">
+        select rownum rn,id,value,event,ly,type,module,sfhxgn,sffcgyw,jg,ms,xrsj,t.LOGINNAME,t.name,t.ssbmbh from (
+        select rownum rn, b. *from(
+        select a.* from (select c.id,c.value,c.event,c.ly,c.type,c.module,c.sfhxgn,c.sffcgyw,c.jg,c.ms,c.xrsj,U.LOGINNAME,D.name,U.ssbmbh from SCY_LOG C
+        left JOIN sys_user U ON C.VALUE=U.LOGINNAME
+        left join sys_department D on U.ssbmbh=D.bmbh) a
+        <where>
+            <if test="bmbh!=null and bmbh!=''and bmbh!='630000000000'">
+                AND a.ssbmbh=#{bmbh}
+            </if>
+            <choose>
+                <when test="kssj!=null and kssj!='' and jssj!=null and jssj!=''">
+                    AND a.xrsj BETWEEN TO_DATE(#{kssj},'YYYY-MM-DD') AND TO_DATE(#{jssj}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="kssj!=null and kssj!='' and (jssj==null or jssj=='')">
+                    AND a.xrsj <![CDATA[>=]]> TO_DATE(#{kssj},'YYYY-MM-DD')
+                </when>
+                <when test="(kssj==null or kssj=='') and jssj!=null and jssj!=''">
+                    AND a.xrsj  <![CDATA[<=]]> TO_DATE(#{jssj}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+            <if test="czr!=null and czr!=''">
+                AND a.value=#{czr}
+            </if>
+            <if test="czlx !=null and czlx!=''">
+                AND a.event=#{czlx}
+            </if>
+        </where>
+        order by xrsj desc)b
+        ) t
+        where rn between (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+
+    </select>
+
+
+    <select id="selectListToId" resultType="com.scxd.beans.pojo.SCY_LOG_C">
+        select rownum rn,id,value,event,ly,type,module,sfhxgn,sffcgyw,jg,ms,xrsj,t.LOGINNAME,t.name,t.ssbmbh from (
+        select rownum rn, b. *from(
+        select a.* from (select c.id,c.value,c.event,c.ly,c.type,c.module,c.sfhxgn,c.sffcgyw,c.jg,c.ms,c.xrsj,U.LOGINNAME,D.name,U.ssbmbh from SCY_LOG C
+        left JOIN sys_user U ON C.VALUE=U.LOGINNAME
+        left join sys_department D on U.ssbmbh=D.bmbh) a
+        WHERE A.ID=#{id}
+        )b ) t
+
+    </select>
+</mapper>

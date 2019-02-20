@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.BizPoliceGpsMapper" >
+  <insert id="insertSelective" parameterType="com.scxd.beans.pojo.BizPoliceGps" >
+    insert into BIZ_POLICE_GPS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="gpsbh != null" >
+        GPSBH,
+      </if>
+      <if test="rylx != null" >
+        RYLX,
+      </if>
+      <if test="rybh != null" >
+        RYBH,
+      </if>
+      <if test="sbsj != null" >
+        SBSJ,
+      </if>
+      <if test="jd != null" >
+        JD,
+      </if>
+      <if test="wd != null" >
+        WD,
+      </if>
+      <if test="sd != null" >
+        SD,
+      </if>
+      <if test="fx != null" >
+        FX,
+      </if>
+      <if test="scbj != null" >
+        SCBJ,
+      </if>
+      <if test="sbyy != null" >
+        SBYY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsbh != null" >
+        #{gpsbh,jdbcType=VARCHAR},
+      </if>
+      <if test="rylx != null" >
+        #{rylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rybh != null" >
+        #{rybh,jdbcType=VARCHAR},
+      </if>
+      <if test="sbsj != null" >
+        #{sbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jd != null" >
+        #{jd,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null" >
+        #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null" >
+        #{sd,jdbcType=VARCHAR},
+      </if>
+      <if test="fx != null" >
+        #{fx,jdbcType=VARCHAR},
+      </if>
+      <if test="scbj != null" >
+        #{scbj,jdbcType=DECIMAL},
+      </if>
+      <if test="sbyy != null" >
+        #{sbyy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

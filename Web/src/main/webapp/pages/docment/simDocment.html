@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/layer.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var obj=eval("("+getQueryString('json')+")");
+            //  var obj = JSON.parse(); //由JSON字符串转换为JSON对象
+            $("#jdsbh").html(obj.jdsbh);
+            $("#wfnr").val(obj.wfnr);
+//            $("#input3").html(stringParam[1]);
+        })
+
+
+    </script>
+    <style type="text/css">
+    *{
+        margin:0;
+        padding:0;
+    }
+        #page{
+            width: 71mm; 
+            height: auto;
+            margin:10px auto;
+            border:1px solid #000;
+            font:normal 14px/1.5 '宋体';
+            padding:2mm;
+        }
+        #footer{
+            width: 71mm; 
+            font:normal 14px/1.5 '宋体';
+            margin:0 auto;
+            padding:0 2mm;
+
+        }
+        p{
+            text-align: left;
+        }
+        h3{
+            font-size: 15px;
+            text-align: center;
+        }
+        h2{
+            font-size: 16px;
+            text-align: center;
+        }
+        input{
+            border:none;
+            border-bottom: 1px solid #000;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            height: 0;
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .squr{
+            width: 4mm;
+            height: 4mm;
+            vertical-align: middle;
+            border:1px solid #000;
+            display: inline-table;
+            margin-right: 1mm;
+            line-height: 4mm;
+            text-align: center;
+            margin-bottom:1mm;
+        }
+        input[type="checkbox"].squr{
+            border:none;
+            float: left;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+       <h3 id="bmmc">青海省公安交通警察总队高速公路支队一大队</h3>
+       <h2>公安交通管理简易程序处罚决定书</h2>
+       <p style="text-align: right;">编号：<span style="font-size: 20px;" id="jdsbh">6335456552246858</span></p>
+       <p>被处罚人<input type="text" style="width: 40mm;"  id="dsr"/></p>
+        <p>机动车驾驶证档案编号：</p>
+       <p id="dabh"></p>
+       <p>机动车驾驶证/居民身份证号码：</p>
+       <p id="jszh">
+       </p>
+       准驾车型：<input type="text" style="width:10mm" value="" id="zjcx"/>
+        联系方式：<input type="text" style="width: 23.5mm" value="13518122455" id="dh"/>
+        车辆牌号：<input type="text" style="width: 16mm" id="hphm" value="川A12754">
+        车辆类型：<input type="text" style="width: 16.5mm" id="cllx" value="小型汽车">
+        发证机关：<input type="text" style="width: 16mm" id="fzjg" value="">
+       <p style="text-indent: 2em;">被处罚人于
+           <input type="text" style="width: 80mm" value="" id="wfsj"/>
+
+           <span>，在</span><input type="text" style="width: 58mm" value="" id="wfdd"/>
+           实施<input type="text" style="width: 58mm" value="" id="wfnr"/>
+           违法行为(代码<input type="text" style="width: 30mm" value="" id="wfdm" />)违反了</p>
+       <p><span id="flyj"></span>决定处以:</p>
+       <p class="clearfix">
+           持本决定书在15日内到xxxxx银行缴纳罚款。逾期不缴纳的，每日按罚款数额的3%加处罚款。</p>
+       <p style="text-indent: 2em;">如不服本决定，可在收到本决定书之日起60日内向<input type="text" value="青海省公安厅交警总队高速公路支队" id="bmmc1" />申请行政复议；或者在6个月内向<input type="text" style="width: 40mm" />提起行政诉讼。</p>
+       <p style="text-indent: 2em;">处罚地点：<span id="wfdz"></span></p>
+       <p style="text-indent: 2em;">交通警察：<span id="zqmj"></span></p>
+       <p style="text-align: right;" id="clsj"></p>
+       <p style="text-indent: 2em;">被处罚人签名: <input type="text"  style="width: 30mm" /> </p>
+       <p class="clearfix" style="text-align: right;"><span style="float: right;">&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;</span></p> 
+       <p style="text-indent: 2em;">备注:<input type="text"  style="width:47mm" /></p>
+    </div>
+    <div id="footer">
+        <p>根据&#171;机动车驾吮证申领和使用规定&#187;记<input type="text" style="width: 20mm" value="" id="wfjf"/>分</p>
+        <p>注:未作罚款处罚或者当场收缴罚款的,银行联不交被处罚人</p>
+        <p style="text-align: right; font-size: 15px;">青海省公安厅交通警察总队监制</p>
+    </div>
+</body>
+</html>

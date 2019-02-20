@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>预警详情</title>
+    <link rel="stylesheet" href="../../css/common.css"/>
+
+
+    <!--<script src="./alarmDetail.js"/>-->
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script src="./alarmDetail.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+
+</head>
+<body>
+<table  class="addNewTable"
+      >
+    <!-- style='margin:10px;width:850px;text-align: center;table-layout:fixed;word-break: break-all;word-wrap: break-word;'-->
+<!--class="s_head"-->
+    <!--<tr class="s_head" align="center" style='background-color: #d8ebf8'>
+        <td colspan='6' style='padding-left:20px;font-weight:bold;font-size:18px;color:black;text-align:left;'> 预警信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head">号牌种类</td>
+        <td ><input type="text" id="hpzl" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">号牌号码</td>
+        <td ><input type="text" id="hphm" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">预警类型</td>
+        <td ><input type="text" id="bklx" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">预警子类型</td>
+        <td ><input type="text" id="bkzlx" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">预警时间</td>
+        <td ><input type="text" id="yjsj" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">过车时间</td>
+        <td ><input type="text" id="gcsj" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+    <tr>
+        <td class="s_head">卡口名称</td>
+        <td ><input type="text" id="kkmc" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+
+    <!--<tr>
+        <td class="s_head" colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8;font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            车辆信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head">车辆品牌</td>
+        <td ><input type="text" id="clpp1" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">使用性质</td>
+        <td ><input type="text" id="syxz" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head">发证机关</td>
+        <td ><input type="text" id="fzjg" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">机动车所有人</td>
+        <td ><input type="text" id="syr" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head">排量/功率</td>
+        <td ><input type="text" id="plgl" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">发动机号</td>
+        <td ><input type="text" id="fdjh" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head">车辆识别代码</td>
+        <td ><input type="text" id="clsbdh" class="inputtext" readonly="readonly"></td>
+    </tr>
+
+ <!--   <tr>
+        <td class="s_head" colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            处置信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head">签收结果</td>
+        <td ><input type="text" id="qsjg" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">是否出警</td>
+        <td ><input type="text" id="sfcjlj" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head">拦截情况</td>
+        <td ><input type="text" id="ljclqk" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">是否嫌疑车辆</td>
+        <td ><input type="text" id="sfxycl" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+    <tr>
+        <td class="s_head">出警人员</td>
+        <td ><input type="text" id="czr" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">处置结果</td>
+        <td ><input type="text" id="czjg" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+    <tr>
+        <td class="s_head">拦截情况描述</td>
+        <td ><input type="text" id="ljqkms" class="inputtext" readonly="readonly"> </td>
+
+    </tr>
+    <tr>
+        <td class="s_head">文书类型</td>
+        <td ><input type="text" id="wslb" class="inputtext" readonly="readonly"></td>
+        <td class="s_head">文书编号</td>
+        <td><input type="text" id="wsbh" class="inputtext"style='cursor: pointer;color:blue;' onclick='lookWrit(this)'readonly="readonly">
+        </td>
+
+    </tr>
+   <!-- <tr>
+        <td class="s_head" colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8;; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            照片
+        </td>
+    </tr>-->
+    <tr>
+        <td  colspan="2" style="text-align: center">
+            <br>
+            <div class="imgCon">
+            <div id="layer-photos-yjzp" class="layer-photos-demo imgDiv">
+
+            </div>
+            </div>
+            <br>
+            <p>预警照片</p>
+        </td>
+        <td  colspan="4" style="text-align: center">
+            <br>
+            <div class="imgCon">
+            <div id="layer-photos-ljzp" class="layer-photos-demo imgDiv">
+
+
+            </div>
+            </div>
+            <br>
+            <p>拦截照片</p>
+
+        </td>
+    </tr>
+</table>
+
+<div class="filterBtnDiv">
+    <button id="close" class="filterBtn"  style="width: 60px">关闭</button>
+
+    </br>
+    <!--<label style="color: red">*</label>-->
+</div>
+</body>
+</html>

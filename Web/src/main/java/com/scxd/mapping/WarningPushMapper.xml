@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.WarningPushDao">
+	<!--    Select  yjxh,hphm,cllx,yjsj,bklx AS yjlx,BKZLX AS YJZLX ,zt AS status From
+(
+	Select A.*
+	From BIZ_ALARM_INFO A
+	Left Outer Join BIZ_ALARM_RECEIPT B On A.YJXH = B.YJXH AND B.HZR = #{0}
+	Where ZT = 0 And B.ID Is Null
+	And BKLX In (Select pzdm From biz_rm_config a
+				 Inner Join biz_rm_config_detail b On a.id = b.rmid
+				 Where a.TSZT = 1 And Type = 1 And a.cjr = #{0})
+	And KKBH In (Select pzdm From biz_rm_config a
+				 Inner Join biz_rm_config_detail b On a.id = b.rmid
+				 Where a.TSZT = 1 And Type = 0 And a.cjr = #{0})
+				 And A.Yjsj >= (Select cjsj From biz_rm_config Where cjr = #{0})
+	Order By YJSJ Desc
+)
+Where Rownum = 1
+-->
+    <select id="selectWarningPushByUser" parameterType="String" resultType="com.scxd.beans.biz.Q12Return">
+   Select  yjxh,hphm,cllx,yjsj,bklx AS yjlx,BKZLX AS YJZLX ,zt AS status From
+(
+  Select A.*
+  From BIZ_ALARM_INFO A
+  Left Outer Join BIZ_ALARM_RECEIPT B On A.YJXH = B.YJXH AND B.HZR = #{0}
+   INNER JOIN SYS_USER C ON A.QSBM = C.SSBMBH AND C.LOGINNAME=#{0}
+  Where A.ZT = 0 And B.ID Is Null
+  And BKLX In (Select pzdm From biz_rm_config a
+         Inner Join biz_rm_config_detail b On a.id = b.rmid
+         Where a.TSZT = 1 And Type = 1 And a.cjr =#{0})
+  And KKBH || FXLX In (Select pzdm || pzzdm From biz_rm_config a
+         Inner Join biz_rm_config_detail b On a.id = b.rmid
+         Where a.TSZT = 1 And Type = 0 And a.cjr = #{0})
+  And A.Yjsj >= (Select cjsj From biz_rm_config Where cjr = #{0})
+  Order By YJSJ Desc
+)
+Where Rownum = 1
+    </select>
+
+	<insert id="pushBack" parameterType="java.util.Map" >
+		insert into BIZ_ALARM_RECEIPT
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				ID,
+			</if>
+			<if test="yjxh != null" >
+				YJXH,
+			</if>
+			<if test="hzsj != null" >
+				HZSJ,
+			</if>
+			<if test="user != null" >
+				HZR
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="yjxh != null" >
+				#{yjxh,jdbcType=VARCHAR},
+			</if>
+			<if test="hzsj != null" >
+				#{hzsj,jdbcType=TIMESTAMP},
+			</if>
+			<if test="user != null" >
+				#{user,jdbcType=VARCHAR}
+			</if>
+
+		</trim>
+
+	</insert>
+</mapper>

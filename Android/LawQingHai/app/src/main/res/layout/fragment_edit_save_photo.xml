@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="horizontal">
+
+    <com.scxd.lawqinghai.widget.ZoomImageView
+        android:id="@+id/photo"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:scaleType="fitCenter" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/back"
+            style="@style/camera_item"
+            android:layout_width="60dip"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dip"
+            android:padding="10dp"
+            android:text="@string/cameraback" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="10dip">
+
+            <TextView
+                android:id="@+id/save_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dip"
+                android:background="@drawable/save_button_selector"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dip"
+                android:layout_marginTop="6dip"
+                android:background="@drawable/cancl_button_selector"
+                android:onClick="onCancel"
+                android:padding="10dp" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

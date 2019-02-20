@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    tools:context="com.scxd.lawqinghai.fragment.MyFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="我的" />
+    <Button
+        android:id="@+id/luxiang"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="录像" />
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="放录像" />
+    
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/image"/>
+    
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+
+</LinearLayout>

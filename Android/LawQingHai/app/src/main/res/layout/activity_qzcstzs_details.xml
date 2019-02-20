@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include
+        layout="@layout/ic_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"/>
+
+    <com.scxd.lawqinghai.widget.MyScrollerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0sp"
+                android:layout_marginRight="5.0sp"
+                android:layout_marginTop="7dp"
+                android:stretchColumns="1">
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginTop="1.0dip"
+                        android:layout_marginBottom="1.0dip"
+                        android:text="@string/clfl" />
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginTop="1.0dip"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <Spinner
+                            android:id="@+id/clfl"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="3dp" />
+                    </LinearLayout>
+
+                </TableRow>
+            </TableLayout>
+
+            <include
+                layout="@layout/ic_hphm_query"/>
+
+            <include
+                layout="@layout/ic_jycf_cl_query"/>
+
+            <include layout="@layout/ic_qzcsjds_bottom" />
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0sp"
+                android:layout_marginRight="5.0sp"
+                android:stretchColumns="1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/zqmj" />
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/zqmj"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="10" />
+                    </LinearLayout>
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dp"
+                        android:text="@string/jsjq" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <Spinner
+                            android:id="@+id/jsjq"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="3dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/qzcslx" />
+
+                    <com.scxd.lawqinghai.widget.MyListView
+                        android:id="@+id/qzcslx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="3"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+
+                    </com.scxd.lawqinghai.widget.MyListView>
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/klwpcfdrow"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/klwpcfd" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/klwpcfd"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="100" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sjxmrow"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/sjxm" />
+
+                    <com.scxd.lawqinghai.widget.MyListView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:layout_marginRight="1dp"
+                        android:orientation="vertical"
+                        android:id="@+id/sjxm"
+                        android:background="@color/white"
+                        android:layout_weight="3">
+
+
+                    </com.scxd.lawqinghai.widget.MyListView>
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sjwpcfdrow"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/sjwpcfd" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/sjwpcfd"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="100" />
+                    </LinearLayout>
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/dsryy" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/dsryy"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="100" />
+                    </LinearLayout>
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/bz" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/bz"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="100" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="@string/mjyj" />
+
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/mjyj"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="100" />
+                    </LinearLayout>
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="文书编号" />
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/wsbh"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:digits="0123456789"
+                            android:inputType="number"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="15" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ff000000">
+
+                    <TextView
+                        style="@style/table_text01"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_marginLeft="1.0dip"
+                        android:text="行政诉讼机关" />
+
+                    <LinearLayout
+                        style="@style/table_linear_edit"
+                        android:layout_marginBottom="1.0dip"
+                        android:layout_weight="3.0">
+
+                        <EditText
+                            android:id="@+id/xzssjg"
+                            style="@style/table_text02"
+                            android:layout_margin="5.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/login_edit_style"
+                            android:maxLength="15" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/tj_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_margin="10dp"
+                android:background="@drawable/ic_button_blue"
+                android:text="@string/tj"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_17" />
+
+        </LinearLayout>
+    </com.scxd.lawqinghai.widget.MyScrollerView>
+
+
+</LinearLayout>

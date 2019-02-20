@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#50000000"
+              android:gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/stroke_bg"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:layout_margin="40dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发现新版本："
+            android:textColor="@color/blue"
+            android:textSize="17sp"/>
+        <com.scxd.lawqinghai.widget.MyScrollerView2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:fillViewport="false"
+            android:overScrollMode="never"
+            android:layout_marginTop="10dp">
+            
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="15sp"/>
+
+        </com.scxd.lawqinghai.widget.MyScrollerView2>
+     
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+            
+            <Button
+                android:id="@+id/cancle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:background="#b6b6b5"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="17sp"/>
+
+            <Button
+                android:id="@+id/upbtn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:background="#daa63d"
+                android:text="升级"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"
+                android:textSize="17sp"/>
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>

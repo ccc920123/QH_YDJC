@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:text="@string/wfdm01" />
+
+        <LinearLayout
+            style="@style/table_linear_edit"
+            android:layout_marginBottom="1.0dip"
+            android:layout_weight="3.0">
+
+            <EditText
+                android:id="@+id/wfdm"
+                style="@style/table_text02"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0"
+                android:inputType="number"
+                android:digits="1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
+                android:background="@drawable/login_edit_style"
+                android:maxLength="5" />
+            <Button
+                android:id="@+id/query_wfdm"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/login_btn"
+                android:text="@string/mainui_cx"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:text="@string/wfnr01" />
+
+        <LinearLayout
+            style="@style/table_linear_edit"
+            android:layout_marginBottom="1.0dip"
+            android:layout_weight="3.0">
+
+            <EditText
+                android:id="@+id/wfnr"
+                style="@style/table_text02"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/login_edit_style"
+                android:enabled="false" />
+        </LinearLayout>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:text="@string/flyj" />
+
+        <TextView
+            android:id="@+id/flyj"
+            style="@style/table_text02"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:layout_weight="3.0" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:text="@string/wfxw01" />
+
+        <LinearLayout
+            style="@style/table_linear_edit"
+            android:layout_marginBottom="1.0dip"
+            android:layout_weight="3.0">
+
+            <EditText
+                android:id="@+id/wfxw"
+                style="@style/table_text02"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0"
+                android:enabled="false"
+                android:background="@drawable/login_edit_style" />
+        </LinearLayout>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dip"
+            android:text="@string/scz" />
+
+        <LinearLayout
+            style="@style/table_linear_edit"
+            android:layout_marginBottom="1.0dip"
+            android:layout_weight="1.0">
+
+            <EditText
+                android:id="@+id/scz"
+                style="@style/table_text02"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0"
+                android:inputType="number|numberDecimal"
+                android:background="@drawable/login_edit_style"
+                android:maxLength="6" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:text="@string/bzz" />
+
+        <LinearLayout
+            style="@style/table_linear_edit"
+            android:layout_marginBottom="1.0dip"
+            android:layout_weight="1.0">
+
+            <EditText
+                android:id="@+id/bzz"
+                style="@style/table_text02"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0"
+                android:inputType="number|numberDecimal"
+                android:background="@drawable/login_edit_style"
+                android:maxLength="6" />
+        </LinearLayout>
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000">
+
+        <TextView
+            android:id="@+id/deletewfxw"
+            style="@style/table_text01"
+            android:layout_marginBottom="1.0dip"
+            android:layout_marginLeft="1.0dp"
+            android:background="@drawable/add_selector"
+            android:text="删除该违法行为" />
+
+    </TableRow>
+</LinearLayout>

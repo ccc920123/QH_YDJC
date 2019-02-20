@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.BizQstation">
+
+    <!--删除来源 ly = 1 的信息-->
+    <delete id="deleteQstationByLy">
+ DELETE FROM biz_qstation WHERE glbm like concat(#{bmbh},'%') and  ly = 1
+    </delete>
+
+    <!--批量插入操作-->
+    <insert id="insertQstations" parameterType="java.util.List">
+
+        INSERT ALL
+        <foreach collection="qstationBeanList" item="bean" index="index">
+            INTO BIZ_QSTATION
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="bean.fwzbh != null">
+                    FWZBH,
+                </if>
+                <if test="bean.fwzmc != null">
+                    FWZMC,
+                </if>
+                <if test="bean.fwzjc != null">
+                    FWZJC,
+                </if>
+                <if test="bean.fwzlx != null">
+                    FWZLX,
+                </if>
+                <if test="bean.fwzlxmc != null">
+                    FWZLXMC,
+                </if>
+                <if test="bean.glbm != null">
+                    GLBM,
+                </if>
+                <if test="bean.xzqh != null">
+                    XZQH,
+                </if>
+                <if test="bean.sjxzqh != null">
+                    SJXZQH,
+                </if>
+                <if test="bean.dllx != null">
+                    DLLX,
+                </if>
+                <if test="bean.dllxmc != null">
+                    DLLXMC,
+                </if>
+                <if test="bean.glxzdj != null">
+                    GLXZDJ,
+                </if>
+                <if test="bean.glxzdjmc != null">
+                    GLXZDJMC,
+                </if>
+                <if test="bean.dldm != null">
+                    DLDM,
+                </if>
+                <if test="bean.lkh != null">
+                    LKH,
+                </if>
+                <if test="bean.dlms != null">
+                    DLMS,
+                </if>
+                <if test="bean.szdd != null">
+                    SZDD,
+                </if>
+                <if test="bean.jd != null">
+                    JD,
+                </if>
+                <if test="bean.wd != null">
+                    WD,
+                </if>
+                <if test="bean.ljgaw != null">
+                    LJGAW,
+                </if>
+                <if test="bean.blwfyw != null">
+                    BLWFYW,
+                </if>
+                <if test="bean.azwfcxsb != null">
+                    AZWFCXSB,
+                </if>
+                <if test="bean.led != null">
+                    LED,
+                </if>
+                <if test="bean.azspjk != null">
+                    AZSPJK,
+                </if>
+                <if test="bean.jydlyf != null">
+                    JYDLYF,
+                </if>
+                <if test="bean.yfmj != null">
+                    YFMJ,
+                </if>
+                <if test="bean.jcqymj != null">
+                    JCQYMJ,
+                </if>
+                <if test="bean.lxr != null">
+                    LXR,
+                </if>
+                <if test="bean.lxdh != null">
+                    LXDH,
+                </if>
+                <if test="bean.lxr2 != null">
+                    LXR2,
+                </if>
+                <if test="bean.lxdh2 != null">
+                    LXDH2,
+                </if>
+                <if test="bean.qwsj != null">
+                    QWSJ,
+                </if>
+                <if test="bean.qwsjmc != null">
+                    QWSJMC,
+                </if>
+                <if test="bean.jcfx != null">
+                    JCFX,
+                </if>
+                <if test="bean.jcfxmc != null">
+                    JCFXMC,
+                </if>
+                <if test="bean.sfcds != null">
+                    SFCDS,
+                </if>
+                <if test="bean.ly != null">
+                    LY,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="bean.fwzbh != null">
+                    #{bean.fwzbh,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.fwzmc != null">
+                    #{bean.fwzmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.fwzjc != null">
+                    #{bean.fwzjc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.fwzlx != null">
+                    #{bean.fwzlx,jdbcType=CHAR},
+                </if>
+                <if test="bean.fwzlxmc != null">
+                    #{bean.fwzlxmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.glbm != null">
+                    #{bean.glbm,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.xzqh != null">
+                    #{bean.xzqh,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.sjxzqh != null">
+                    #{bean.sjxzqh,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.dllx != null">
+                    #{bean.dllx,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.dllxmc != null">
+                    #{bean.dllxmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.glxzdj != null">
+                    #{bean.glxzdj,jdbcType=CHAR},
+                </if>
+                <if test="bean.glxzdjmc != null">
+                    #{bean.glxzdjmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.dldm != null">
+                    #{bean.dldm,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.lkh != null">
+                    #{bean.lkh,jdbcType=DECIMAL},
+                </if>
+                <if test="bean.dlms != null">
+                    #{bean.dlms,jdbcType=DECIMAL},
+                </if>
+                <if test="bean.szdd != null">
+                    #{bean.szdd,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.jd != null">
+                    #{bean.jd,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.wd != null">
+                    #{bean.wd,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.ljgaw != null">
+                    #{bean.ljgaw,jdbcType=CHAR},
+                </if>
+                <if test="bean.blwfyw != null">
+                    #{bean.blwfyw,jdbcType=CHAR},
+                </if>
+                <if test="bean.azwfcxsb != null">
+                    #{bean.azwfcxsb,jdbcType=CHAR},
+                </if>
+                <if test="bean.led != null">
+                    #{bean.led,jdbcType=CHAR},
+                </if>
+                <if test="bean.azspjk != null">
+                    #{bean.azspjk,jdbcType=CHAR},
+                </if>
+                <if test="bean.jydlyf != null">
+                    #{bean.jydlyf,jdbcType=CHAR},
+                </if>
+                <if test="bean.yfmj != null">
+                    #{bean.yfmj,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.jcqymj != null">
+                    #{bean.jcqymj,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.lxr != null">
+                    #{bean.lxr,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.lxdh != null">
+                    #{bean.lxdh,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.lxr2 != null">
+                    #{bean.lxr2,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.lxdh2 != null">
+                    #{bean.lxdh2,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.qwsj != null">
+                    #{bean.qwsj,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.qwsjmc != null">
+                    #{bean.qwsjmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.jcfx != null">
+                    #{bean.jcfx,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.jcfxmc != null">
+                    #{bean.jcfxmc,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.sfcds != null">
+                    #{bean.sfcds,jdbcType=VARCHAR},
+                </if>
+                <if test="bean.ly != null">
+                    #{bean.ly,jdbcType=DECIMAL},
+                </if>
+            </trim>
+
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+    <select id="getAllQsatianBhs" resultType="java.lang.String">
+
+        select fwzbh from BIZ_QSTATION where ly=1
+    </select>
+
+    <!--查询执法站信息总条数-->
+    <select id="selectTotal" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*) FROM biz_qstation q
+        <where>
+            <if test="fwzbh != null and fwzbh != ''">
+                q.fwzbh LIKE '%' || #{fwzbh} || '%'
+            </if>
+            <if test="fwzmc != null and fwzmc != ''">
+                AND q.fwzmc LIKE '%' || #{fwzmc} || '%'
+            </if>
+            AND q.glbm IN(
+            SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+            CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+        </where>
+    </select>
+
+    <!--分页查询执法站信息-->
+    <select id="selectQstation" parameterType="java.util.Map" resultType="com.scxd.beans.pojo.BizQstationExtend">
+        SELECT * FROM (
+        SELECT A.* ,ROWNUM RN FROM (
+        SELECT B.*,r.dlmc FROM(
+        SELECT q.* ,d.name AS glbmmc FROM biz_qstation q,sys_department d
+        <where>d.bmbh = q.glbm
+            <if test="fwzbh != null and fwzbh != ''">
+                AND q.fwzbh LIKE '%' || #{fwzbh} || '%'
+            </if>
+            <if test="fwzmc != null and fwzmc != ''">
+                AND q.fwzmc LIKE '%' || #{fwzmc} || '%'
+            </if>
+            AND q.glbm IN(
+            SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+            CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+        </where>
+        )B
+        LEFT JOIN biz_roaditem r ON B.dldm = r.dldm AND r.glbm = B.glbm
+        )A
+        WHERE ROWNUM &lt;= #{end}
+        )WHERE RN &gt;= #{start}
+    </select>
+    <select id="queryByBmbh" resultType="com.scxd.beans.common.KeyValueBean">
+        select distinct fwzbh  key,fwzjc  value from biz_qstation where glbm in (
+select bmbh from sys_department a
+START WITH a.bmbh=#{bmbh}
+CONNECT BY PRIOR a.bmbh=a.sjzdbmbh
+)
+    </select>
+</mapper>

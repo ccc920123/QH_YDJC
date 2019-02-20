@@ -1,0 +1,45 @@
+VideoLib 说明文档
+
+VideoLib实现了自定义录像，默认录制的视频格式MP4，录制视频存放本地内存卡。支持前后后摄像头切换，默认
+录制后摄像头采集的数据
+
+使用VideoLib标准库方法如下：
+1.新建activity界面时继承 VideoActivityLib  同时会实现重要方法bindView（），在该方法中处理逻辑，同时
+还会重写getVideoLeftBackButton（），getVideoRightBackText（），getFinshText（），getRetakeText（），
+getVideoData（）；五个方法。该五个方法是在点击录像按钮回调方法，
+分别表示：得到左返回按键，得到右返回按键，得到完成按键，得到重录按键，得到视频数据（返回内存卡路径）。
+
+具体方法说明：
+bindView()；实现逻辑方法，当继承VideoActivityLib后所有的逻辑从该方法开始执行。
+
+getVideoLeftBackButton（） 得到查看录像（播放录像界面的左上方）返回事件，该按钮是点击播放界面放大缩小
+按钮才出现，该返回是一个图片类似于“<”.
+
+getVideoRightBackText（）得到查看录像（播放录像界面的右上方）返回事件，该按钮默认是“返回”的字样
+
+getFinshText（） 得到录像完成的按钮，
+
+getRetakeText（） 得到重录按钮
+
+getVideoData（）得到录像数据，返回数据格式为内存卡路径String
+=====其他方法===
+
+setCountdown(long timer)  设置倒计时    参数：long   以毫秒计算
+
+setVideoPath(String videoPath, String videoName)  设置录像的存放地址，录像的名字
+参数：  String Path 地址,String Name名字   地址可以参考
+nvironment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/video/"
+名字： 需要带上文件后缀，“video.mp4”
+
+setIsVisibleVideoConvertButton(boolean isVisiable)  是否显示摄像头转换按钮  参数: boolean true：显示；false：隐藏
+
+setDefaulVideoCamera(int CameraID)  设置拍照摄像头的位置，默认为后摄像头  参数:int   0:后摄像头    1：前摄像头
+
+getCameraVideoBack()
+得到拍照界面的返回按钮，你可以拿到该按钮设置自己喜欢的颜色，字体等包括事件
+
+
+工具，该lib提供删除文件方法
+  DeleteVideoFile.deleteFile(mRecVedioPath);  //删除文件   参数  mRecVedioPath  为File 类型
+  请在使用时通过 File mRecVedioPath=new File (Stringpath),转换成File
+

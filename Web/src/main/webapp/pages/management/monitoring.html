@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运行情况监控</title>
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/monitoring.js"></script>
+
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+</head>
+<style>
+    .table_head{
+        background-color: #1E9FFF;
+        color: white;
+        height: 40px;
+        line-height: 40px;
+        width: 500px;
+    }
+    .table_text{
+
+    }
+</style>
+<body>
+
+            <!--正文内容-->
+            <div id="content">
+             <table class="table table-bordered showChartsTable menuTable" style="background:#f5f5f5;">
+                 <tr>
+                     <td class="table_head">• 移动集成指挥接入支队</td>
+                     <td class="table_head">• 警务通在线监控</td>
+                 </tr>
+                 <tr class="table_text">
+                     <td><icbody id="icbody"></icbody>
+                     <div id="page"></div></td>
+                     <td><psbody id="psbody"></psbody></td>
+                 </tr>
+                 <tr>
+                     <td class="table_head">• 数据库监控</td>
+                     <td class="table_head">• 接口监控</td>
+                 </tr>
+                 <tr class="table_text">
+                     <td>
+                         <table class="addNewTable">
+                             <tr>
+                                 <td>表空间占用量:</td>
+                                 <td id="表空间占用量"></td>
+                             </tr>
+                             <tr>
+                                 <td>剩余容量:</td>
+                                 <td><span id="剩余容量"></span>M</td>
+                             </tr>
+                         </table>
+                     </td>
+                     <td>
+                         <table class="addNewTable">
+                             <tr>
+                                 <td>综合平台接口:</td>
+                                 <td id="zhpt"></td>
+                             </tr>
+                             <tr>
+                                 <td>集成指挥平台接口:</td>
+                                 <td id="jczhpt"></td>
+                             </tr>
+                             <tr>
+                                 <td>PDA接口:</td>
+                                 <td id="pdajk"></td>
+                             </tr>
+                         </table>
+
+                     </td>
+                 </tr>
+             </table>
+
+            </div>
+
+</body>
+</html>

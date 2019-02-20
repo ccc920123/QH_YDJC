@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<!--这个是服务器上面的驱动地址-->
+   <!-- <classPathEntry  location="F:\Maven\com\oracle\ojdbc14\11.2.0.3.0\ojdbc14-11.2.0.3.0.jar"/>-->
+    <classPathEntry  location="D:\IDEA\repository\com\oracle\ojdbc14\11.2.0.3.0\ojdbc14-11.2.0.3.0.jar"/>
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.192.12.38/orcl" userId="ics_admin" password="scxdics">-->
+        <!--</jdbcConnection>-->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@11.101.2.36/orcl" userId="ics_test_admin" password="scxdics">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.scxd.beans.pojo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="com.scxd.mapping" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.scxd.dao.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="SYS_USER_SAFEAUDITSET" domainObjectName="SysUserSafeauditsetBean" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="SYS_USER_SAFEAUDITSTRATEGYLOG" domainObjectName="SysUserSafeauditstrategylog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>

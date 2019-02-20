@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/modelelectorn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/dp_5"
+    android:layout_marginRight="@dimen/dp_5"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titlemodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/title2modeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/nomodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+
+    <TextView
+        android:id="@+id/clhpmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/clysmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+
+
+    <TextView
+        android:id="@+id/cllxmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+
+
+    <TextView
+        android:id="@+id/wftcsjmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+    <TextView
+        android:id="@+id/wftcddmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/wfxwflyjmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+
+
+    <TextView
+        android:id="@+id/sjmodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/bottommodeelectorn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+</LinearLayout>

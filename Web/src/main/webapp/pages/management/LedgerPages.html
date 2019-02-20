@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>台账详情</title>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+
+    <!--<script src="./alarmDetail.js"/>-->
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script src="./LedgerPages.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+<table  class="addNewTable"
+       >
+
+   <!-- <tr class="s_head"  align="center" style='background-color: #d8ebf8'>
+        <td colspan='6' style='padding-left:20px;font-weight:bold;font-size:18px;color:black;text-align:left;'> 车辆信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head" >号牌号码</td>
+        <td ><input type="text" id="hphm" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >号牌种类</td>
+        <td ><input type="text" id="hpzl" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head" >使用性质</td>
+        <td ><input type="text" id="syxz" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >车辆类型</td>
+        <td ><input type="text" id="cllx" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head" >发证机关</td>
+        <td ><input type="text" id="fzjg" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >所有人</td>
+        <td ><input type="text" id="syr" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+
+
+ <!--   <tr>
+        <td class="s_head"  colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8;font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            驾驶员信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head" >身份证明号码</td>
+        <td ><input type="text" id="sfzmhm" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >姓名</td>
+        <td ><input type="text" id="xm" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head" >性别</td>
+        <td ><input type="text" id="xb" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >发证机关</td>
+        <td ><input type="text" id="drvfzjg" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >累计记分</td>
+        <td ><input type="text" id="ljjf" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >驾驶证状态</td>
+        <td ><input type="text" id="jsrzt" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+<!--
+    <tr>
+        <td class="s_head"  colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            检查信息
+        </td>
+    </tr>-->
+    <tr>
+        <td class="s_head" >检查车辆类型</td>
+        <td ><input type="text" id="jccllx" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >检查车辆子类型</td>
+        <td ><input type="text" id="jcclzlx" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >始发地</td>
+        <td ><input type="text" id="sfd" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >目的地</td>
+        <td ><input type="text" id="mdd" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >是否重大案情</td>
+        <td ><input type="text" id="sfzdaq" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >是否疲劳驾驶</td>
+        <td ><input type="text" id="sfpljs" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >是否系安全带</td>
+        <td ><input type="text" id="sfxaqd" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >安全设备是否合格</td>
+        <td ><input type="text" id="aqsbsfhg" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+    <tr>
+        <td class="s_head" >是否非法营运</td>
+        <td ><input type="text" id="sfffyy" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >车辆轮胎花纹是否合格</td>
+        <td ><input type="text" id="cllthwsfhg" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >实际载客数</td>
+        <td ><input type="text" id="sjzks" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >实际载质量</td>
+        <td ><input type="text" id="sjzzl" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >是否嫌疑车辆</td>
+        <td ><input type="text" id="sfxycl" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >是否投保交强险</td>
+        <td ><input type="text" id="sftbjqx" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >是否准驾不符</td>
+        <td ><input type="text" id="sfzjbf" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >是否无证驾驶</td>
+        <td ><input type="text" id="sfwzjs" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >是否取得道路运输通行证</td>
+        <td ><input type="text" id="sfqddlystxz" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >处置结果</td>
+        <td ><input type="text" id="czjg" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >执法站名称</td>
+        <td ><input type="text" id="zfzmc" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >车辆状态</td>
+        <td ><input type="text" id="clzt" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >检查时间</td>
+        <td ><input type="text" id="jcsj" class="inputtext" readonly="readonly"></td>
+        <td class="s_head" >检查民警</td>
+        <td ><input type="text" id="jcmj" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+   <!-- <tr>
+        <td class="s_head"  colspan='6'
+            style='padding-left:20px;background-color: #d8ebf8; font-weight:bold;font-size:18px;color:black;text-align:left;'>
+            照片
+        </td>
+    </tr>-->
+    <tr>
+        
+        <td  colspan="6" style="text-align: center">
+            <div id="layer-photos-tzzp" class="layer-photos-demo">
+                <!--<img id="tzzp1" style="width: 100px;height: 80px" src="" alt="台账照片">-->
+                <!--<img id="tzzp2" style="width: 100px;height: 80px" src="" alt="台账照片">-->
+                <!--<img id="tzzp3" style="width: 100px;height: 80px" src="" alt="台账照片">-->
+            </div>
+            <br>
+            <p>台账照片</p>
+
+        </td>
+    </tr>
+</table>
+
+<div class="filterBtnDiv">
+    <button id="close" class="filterBtn"  style="width: 60px">关闭</button>
+
+    </br>
+    <!--<label style="color: red">*</label>-->
+</div>
+</body>
+</html>

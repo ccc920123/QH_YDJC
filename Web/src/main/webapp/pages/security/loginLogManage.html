@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../css/user.css"/>-->
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>登录日志管理</title>
+
+    <!--<script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="loginLogManage.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+</head>
+<body>
+<table class="dept">
+    <tr>
+        <!-- 左边树 -->
+        <td class="deptLeft">
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+        </td>
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%">
+                    <td colspan="2" class="s_head" >操作时间：</td>
+                    <td colspan="3" style="padding-left: 5px;padding-right: 5px">
+                        <input type="text" id="ksrq" class="inputtext" readonly>
+                    </td>
+                    <td colspan="1" class="s_head">
+                        至
+                    </td>
+                    <td colspan="3" style="padding-left: 5px;padding-right: 5px">
+                        <input type="text" id="jsrq" class="inputtext" readonly>
+                    </td>
+
+                    </tr>
+                    <tr>
+                        <td  colspan="2" class="s_head">操作人：</td>
+                        <td colspan="3"style="padding-left: 5px;padding-right: 5px">
+                            <input class="inputtext" type="text" id="czr">
+                        </td >
+                        <td colspan="2" class="s_head">操作类型：</td>
+                        <td colspan="2" style="padding-left: 5px;padding-right: 5px">
+                            <select id="czlx" class="inputtext">
+                                <option value=""></option>
+                                <option value="1">登录</option>
+                                <option value="2">登出</option>
+                            </select>
+                        </td>
+
+                        <td >
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>操作类型</td>
+                        <td>操作人</td>
+                        <td>部门名称</td>
+                        <td>操作时间</td>
+                        <td>操作结果</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

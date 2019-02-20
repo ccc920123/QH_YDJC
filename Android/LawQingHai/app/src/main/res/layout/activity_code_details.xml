@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white">
+
+
+    <include
+        layout="@layout/ic_title"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="违法简称："
+                    android:textColor="@color/black_text01"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/wfms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_text01"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="违法代码："
+                    android:textColor="@color/black_text01"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/wfdm"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/black_text01"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray001"
+                android:layout_marginTop="10dp"/>
+
+    <com.scxd.lawqinghai.widget.MyScrollerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/wfnr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/wfjf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/wfnr01"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/fkje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/zkys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/jlsj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/jgbj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/fkbj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/zkbj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/dxbj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/jlbj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/wfgd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/flyj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wfnr01"
+                android:textSize="15sp"
+                android:textColor="@color/black_text01"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+
+    </com.scxd.lawqinghai.widget.MyScrollerView>
+
+
+</LinearLayout>

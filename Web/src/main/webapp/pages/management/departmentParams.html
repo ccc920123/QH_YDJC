@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>部门参数配置</title>
+
+    <!--<script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="departmentParams.js"></script>
+    <script type="text/javascript" src="../../js/common/pression.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+</head>
+<body>
+<table class="dept">
+    <tr>
+        <!-- 左边树 -->
+        <td class="deptLeft">
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+        </td>
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%">
+                    <tr>
+                        <td class="s_head">参数名称：</td>
+                        <td>
+                            <input class="inputtext" type="text" id="params">
+                        </td>
+                        <td>
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>关键字</td>
+                        <td>参数名称</td>
+                        <td style="width: 200px">参数值</td>
+                        <td>是否继承</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!--弹出层-->
+<div id="chooseDiv" class="hidden">
+</div>
+<!--新增-->
+<div id="addNewDiv" class="hidden" style="z-index:99999;">
+    <table class="addNewTable">
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>部门代码：</td>
+            <td><input type="text" id="bmdm" class="inputtext" readonly ></td>
+            <td class="s_head"><span class="color_red">*</span>部门名称：</td>
+            <td><input type="text" id="bmmc" class="inputtext"disabled="disabled" ></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>关键字：</td>
+            <td><input type="text" id="gjz" class="inputtext" disabled="disabled" ></td>
+            <td class="s_head"><span class="color_red">*</span>参数名：</td>
+            <td><input type="text" id="csm" class="inputtext" disabled="disabled" ></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>参数说明：</td>
+            <td colspan="3">
+                <textarea rows="4" cols="20" type="text" id="cssm" class="inputtext" disabled="disabled" ></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>是否继承：</td>
+            <td colspan="3">
+                <label> <input id="radio1" type="radio" name="status" title="是" value="1"  />是</label>
+                <label><input  id="radio2" type="radio" name="status" title="否" value="0" />否</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>参数值：</td>
+            <td colspan="3">
+                <textarea rows="4" cols="20" type="text" id="csz" class="inputtext" ></textarea>
+            </td>
+        </tr>
+
+    </table>
+
+    <div class="filterBtnDiv">
+        <button id="extends" class="filterBtn"  style="width: 60px">继承上级</button>
+        <button id="confirmSubmit" class="filterBtn">保存</button>
+        <button id="confirmCancel" class="filterBtn btnCancel">取消</button>
+        </br>
+        <!--<label style="color: red">*</label>-->
+    </div>
+    <input id="id" class="hidden">
+    <input id="ssbmbh" class="hidden">
+    <input id="sfjc" class="hidden">
+
+</div>
+</body>
+</html>

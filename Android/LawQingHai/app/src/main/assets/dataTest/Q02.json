@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "success": true,
+    "message": "ok"
+  },
+  "data": {
+    "bmbh": "632100000000",
+    "version": "1.0.2",
+    "url": "1111111111111111111",
+    "description": "apk",
+    "dictionary": "8.0.1"
+  }
+}

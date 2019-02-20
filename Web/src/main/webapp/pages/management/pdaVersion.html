@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>PDA版本管理</title>
+
+    <!--<script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/pdaVersion.js"></script>
+    <script type="text/javascript" src="../../js/common/pression.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+</head>
+<body>
+<table class="dept">
+    <tr>
+
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%">
+                    <tr>
+                        <td class="s_head">PDA版本号：</td>
+                        <td>
+                            <input class="inputtext" type="text" id="pdaversion">
+                        </td>
+                        <td class="s_head">PDA描述：</td>
+                        <td>
+                            <input class="inputtext" type="text" id="pdadesc">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                            <button type="button" id="addNew" class="filterBtn query">新增</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>PDA版本号</td>
+                        <td>字典版本号</td>
+                        <td>PDA版本描述</td>
+                        <td>安装包上传人</td>
+                        <td>安装包上传日期</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!--弹出层-->
+<div id="chooseDiv" class="hidden">
+</div>
+<!--新增-->
+<div id="addNewDiv" class="hidden" style="z-index:99999;">
+    <table class="addNewTable">
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>PDA版本号：</td>
+            <td><input type="text" id="addVersion" class="inputtext" ></td>
+            <td class="s_head"><span class="color_red">*</span>PDA版本描述：</td>
+            <td><input type="text" id="addDesc" class="inputtext"></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>字典版本号：</td>
+            <td><input type="text" id="dicVersion" class="inputtext"  ></td>
+        </tr>
+        <tr>
+            <td class="s_head"><span class="color_red">*</span>安装包：</td>
+            <td><form id="test" enctype="multipart/form-data">
+                选择文件:<input id="file" data-role="none" type="file" name="file" width="120px">
+
+            </form></td>
+        </tr>
+
+    </table>
+
+    <div class="filterBtnDiv">
+        <button id="confirmSubmit" class="filterBtn">保存</button>
+        <button id="confirmCancel" class="filterBtn btnCancel">取消</button>
+        </br>
+        <!--<label style="color: red">*</label>-->
+    </div>
+    <input id="pda_id" class="hidden">
+    <input id="ssbmbh" class="hidden">
+
+</div>
+</body>
+</html>

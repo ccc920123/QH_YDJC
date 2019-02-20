@@ -1,0 +1,11 @@
+.cb_span{
+    display: inline-block;
+    float: left;
+    width:120px;
+}
+.s_head{
+    width:136px;
+}
+.font_red{
+    color: red;
+}

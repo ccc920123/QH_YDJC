@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "success": true,
+    "message": "ok"
+  },
+  "data": {
+    "loginname": "admin",
+    "xm": "超级管理员",
+    "bmmc": "海东交警支队",
+    "yhqx": null
+  }
+}

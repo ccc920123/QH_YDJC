@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.BizLedgerInfoMapper">
+    <sql id="Base_Column_List">
+    ID, HPHM, JSZH, SFD, MDD, FWZBH, SFYFJSY, GPSWD, GPSJD, HDZKS, ZKS, SFJBC, BXPC, 
+    SFTBJQX, JCYCNR, JCQKMS, SFZJBF, CLZT, JCCLLX, SJZZL, WFYY, SFWZJS, QDYSTXZ, JCJG, 
+    JCMJ, JCSJ, ZJSZH, ZLXDH, SFXYCL, CLJG, JCCLZLX, GPS, AQSB, CLLTHW, JAQD, PLJS, FFGZ, 
+    ZTFGBS, AZFHZZ, XGJSBZ, AZDSJ, AZDLX, ZJSZJBF, FJSZH, FLXDH, FJSSFCF, FJSSFYQWSY, 
+    FJSSFYQWHZ, FJSZJBF, DGZC, ZDZC, ZXZC, SRZK, SCZK, YXQY, YYXM, YYDH, YYSFZ, WHPZL, 
+    WHPMC, WSBH, JYW, WSLB, CFXYLX, CFXYZLX, YJBM, LXR, LXDH, CZQKMS, ZJSSFYQWHZ, ZJSSFYQWSY, 
+    CHJG, SFWFWCL, SFYQWBF, SFYQWJY, ZJSSFCF, HPZL
+  </sql>
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.BizLedgerInfo">
+        insert into BIZ_LEDGER_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="hphm != null">
+                HPHM,
+            </if>
+            <if test="jszh != null">
+                JSZH,
+            </if>
+            <if test="sfd != null">
+                SFD,
+            </if>
+            <if test="mdd != null">
+                MDD,
+            </if>
+            <if test="fwzbh != null">
+                FWZBH,
+            </if>
+            <if test="sfyfjsy != null">
+                SFYFJSY,
+            </if>
+            <if test="gpswd != null">
+                GPSWD,
+            </if>
+            <if test="gpsjd != null">
+                GPSJD,
+            </if>
+            <if test="hdzks != null">
+                HDZKS,
+            </if>
+            <if test="zks != null">
+                ZKS,
+            </if>
+            <if test="sfjbc != null">
+                SFJBC,
+            </if>
+            <if test="bxpc != null">
+                BXPC,
+            </if>
+            <if test="sftbjqx != null">
+                SFTBJQX,
+            </if>
+            <if test="jcycnr != null">
+                JCYCNR,
+            </if>
+            <if test="jcqkms != null">
+                JCQKMS,
+            </if>
+            <if test="sfzjbf != null">
+                SFZJBF,
+            </if>
+            <if test="clzt != null">
+                CLZT,
+            </if>
+            <if test="jccllx != null">
+                JCCLLX,
+            </if>
+            <if test="sjzzl != null">
+                SJZZL,
+            </if>
+            <if test="wfyy != null">
+                WFYY,
+            </if>
+            <if test="sfwzjs != null">
+                SFWZJS,
+            </if>
+            <if test="qdystxz != null">
+                QDYSTXZ,
+            </if>
+            <if test="jcjg != null">
+                JCJG,
+            </if>
+            <if test="jcmj != null">
+                JCMJ,
+            </if>
+            <if test="jcsj != null">
+                JCSJ,
+            </if>
+            <if test="zjszh != null">
+                ZJSZH,
+            </if>
+            <if test="zlxdh != null">
+                ZLXDH,
+            </if>
+            <if test="sfxycl != null">
+                SFXYCL,
+            </if>
+            <if test="cljg != null">
+                CLJG,
+            </if>
+            <if test="jcclzlx != null">
+                JCCLZLX,
+            </if>
+            <if test="gps != null">
+                GPS,
+            </if>
+            <if test="aqsb != null">
+                AQSB,
+            </if>
+            <if test="cllthw != null">
+                CLLTHW,
+            </if>
+            <if test="jaqd != null">
+                JAQD,
+            </if>
+            <if test="pljs != null">
+                PLJS,
+            </if>
+            <if test="ffgz != null">
+                FFGZ,
+            </if>
+            <if test="ztfgbs != null">
+                ZTFGBS,
+            </if>
+            <if test="azfhzz != null">
+                AZFHZZ,
+            </if>
+            <if test="xgjsbz != null">
+                XGJSBZ,
+            </if>
+            <if test="azdsj != null">
+                AZDSJ,
+            </if>
+            <if test="azdlx != null">
+                AZDLX,
+            </if>
+            <if test="zjszjbf != null">
+                ZJSZJBF,
+            </if>
+            <if test="fjszh != null">
+                FJSZH,
+            </if>
+            <if test="flxdh != null">
+                FLXDH,
+            </if>
+            <if test="fjssfcf != null">
+                FJSSFCF,
+            </if>
+            <if test="fjssfyqwsy != null">
+                FJSSFYQWSY,
+            </if>
+            <if test="fjssfyqwhz != null">
+                FJSSFYQWHZ,
+            </if>
+            <if test="fjszjbf != null">
+                FJSZJBF,
+            </if>
+            <if test="dgzc != null">
+                DGZC,
+            </if>
+            <if test="zdzc != null">
+                ZDZC,
+            </if>
+            <if test="zxzc != null">
+                ZXZC,
+            </if>
+            <if test="srzk != null">
+                SRZK,
+            </if>
+            <if test="sczk != null">
+                SCZK,
+            </if>
+            <if test="yxqy != null">
+                YXQY,
+            </if>
+            <if test="yyxm != null">
+                YYXM,
+            </if>
+            <if test="yydh != null">
+                YYDH,
+            </if>
+            <if test="yysfz != null">
+                YYSFZ,
+            </if>
+            <if test="whpzl != null">
+                WHPZL,
+            </if>
+            <if test="whpmc != null">
+                WHPMC,
+            </if>
+            <if test="wsbh != null">
+                WSBH,
+            </if>
+            <if test="jyw != null">
+                JYW,
+            </if>
+            <if test="wslb != null">
+                WSLB,
+            </if>
+            <if test="cfxylx != null">
+                CFXYLX,
+            </if>
+            <if test="cfxyzlx != null">
+                CFXYZLX,
+            </if>
+            <if test="yjbm != null">
+                YJBM,
+            </if>
+            <if test="lxr != null">
+                LXR,
+            </if>
+            <if test="lxdh != null">
+                LXDH,
+            </if>
+            <if test="czqkms != null">
+                CZQKMS,
+            </if>
+            <if test="zjssfyqwhz != null">
+                ZJSSFYQWHZ,
+            </if>
+            <if test="zjssfyqwsy != null">
+                ZJSSFYQWSY,
+            </if>
+            <if test="chjg != null">
+                CHJG,
+            </if>
+            <if test="sfwfwcl != null">
+                SFWFWCL,
+            </if>
+            <if test="sfyqwbf != null">
+                SFYQWBF,
+            </if>
+            <if test="sfyqwjy != null">
+                SFYQWJY,
+            </if>
+            <if test="zjssfcf != null">
+                ZJSSFCF,
+            </if>
+            <if test="hpzl != null">
+                HPZL,
+            </if>
+            <if test="user != null">
+                LRR,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null">
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="jszh != null">
+                #{jszh,jdbcType=VARCHAR},
+            </if>
+            <if test="sfd != null">
+                #{sfd,jdbcType=VARCHAR},
+            </if>
+            <if test="mdd != null">
+                #{mdd,jdbcType=VARCHAR},
+            </if>
+            <if test="fwzbh != null">
+                #{fwzbh,jdbcType=VARCHAR},
+            </if>
+            <if test="sfyfjsy != null">
+                #{sfyfjsy,jdbcType=CHAR},
+            </if>
+            <if test="gpswd != null">
+                #{gpswd,jdbcType=DECIMAL},
+            </if>
+            <if test="gpsjd != null">
+                #{gpsjd,jdbcType=DECIMAL},
+            </if>
+            <if test="hdzks != null">
+                #{hdzks,jdbcType=DECIMAL},
+            </if>
+            <if test="zks != null">
+                #{zks,jdbcType=DECIMAL},
+            </if>
+            <if test="sfjbc != null">
+                #{sfjbc,jdbcType=CHAR},
+            </if>
+            <if test="bxpc != null">
+                #{bxpc,jdbcType=CHAR},
+            </if>
+            <if test="sftbjqx != null">
+                #{sftbjqx,jdbcType=CHAR},
+            </if>
+            <if test="jcycnr != null">
+                #{jcycnr,jdbcType=OTHER},
+            </if>
+            <if test="jcqkms != null">
+                #{jcqkms,jdbcType=OTHER},
+            </if>
+            <if test="sfzjbf != null">
+                #{sfzjbf,jdbcType=CHAR},
+            </if>
+            <if test="clzt != null">
+                #{clzt,jdbcType=DECIMAL},
+            </if>
+            <if test="jccllx != null">
+                #{jccllx,jdbcType=CHAR},
+            </if>
+            <if test="sjzzl != null">
+                #{sjzzl,jdbcType=VARCHAR},
+            </if>
+            <if test="wfyy != null">
+                #{wfyy,jdbcType=CHAR},
+            </if>
+            <if test="sfwzjs != null">
+                #{sfwzjs,jdbcType=CHAR},
+            </if>
+            <if test="qdystxz != null">
+                #{qdystxz,jdbcType=DECIMAL},
+            </if>
+            <if test="jcjg != null">
+                #{jcjg,jdbcType=VARCHAR},
+            </if>
+            <if test="jcmj != null">
+                #{jcmj,jdbcType=VARCHAR},
+            </if>
+            <if test="jcsj != null">
+                #{jcsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zjszh != null">
+                #{zjszh,jdbcType=VARCHAR},
+            </if>
+            <if test="zlxdh != null">
+                #{zlxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="sfxycl != null">
+                #{sfxycl,jdbcType=CHAR},
+            </if>
+            <if test="cljg != null">
+                #{cljg,jdbcType=VARCHAR},
+            </if>
+            <if test="jcclzlx != null">
+                #{jcclzlx,jdbcType=VARCHAR},
+            </if>
+            <if test="gps != null">
+                #{gps,jdbcType=DECIMAL},
+            </if>
+            <if test="aqsb != null">
+                #{aqsb,jdbcType=DECIMAL},
+            </if>
+            <if test="cllthw != null">
+                #{cllthw,jdbcType=DECIMAL},
+            </if>
+            <if test="jaqd != null">
+                #{jaqd,jdbcType=DECIMAL},
+            </if>
+            <if test="pljs != null">
+                #{pljs,jdbcType=DECIMAL},
+            </if>
+            <if test="ffgz != null">
+                #{ffgz,jdbcType=DECIMAL},
+            </if>
+            <if test="ztfgbs != null">
+                #{ztfgbs,jdbcType=DECIMAL},
+            </if>
+            <if test="azfhzz != null">
+                #{azfhzz,jdbcType=DECIMAL},
+            </if>
+            <if test="xgjsbz != null">
+                #{xgjsbz,jdbcType=DECIMAL},
+            </if>
+            <if test="azdsj != null">
+                #{azdsj,jdbcType=DECIMAL},
+            </if>
+            <if test="azdlx != null">
+                #{azdlx,jdbcType=DECIMAL},
+            </if>
+            <if test="zjszjbf != null">
+                #{zjszjbf,jdbcType=DECIMAL},
+            </if>
+            <if test="fjszh != null">
+                #{fjszh,jdbcType=VARCHAR},
+            </if>
+            <if test="flxdh != null">
+                #{flxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="fjssfcf != null">
+                #{fjssfcf,jdbcType=DECIMAL},
+            </if>
+            <if test="fjssfyqwsy != null">
+                #{fjssfyqwsy,jdbcType=DECIMAL},
+            </if>
+            <if test="fjssfyqwhz != null">
+                #{fjssfyqwhz,jdbcType=DECIMAL},
+            </if>
+            <if test="fjszjbf != null">
+                #{fjszjbf,jdbcType=DECIMAL},
+            </if>
+            <if test="dgzc != null">
+                #{dgzc,jdbcType=DECIMAL},
+            </if>
+            <if test="zdzc != null">
+                #{zdzc,jdbcType=DECIMAL},
+            </if>
+            <if test="zxzc != null">
+                #{zxzc,jdbcType=DECIMAL},
+            </if>
+            <if test="srzk != null">
+                #{srzk,jdbcType=VARCHAR},
+            </if>
+            <if test="sczk != null">
+                #{sczk,jdbcType=VARCHAR},
+            </if>
+            <if test="yxqy != null">
+                #{yxqy,jdbcType=VARCHAR},
+            </if>
+            <if test="yyxm != null">
+                #{yyxm,jdbcType=VARCHAR},
+            </if>
+            <if test="yydh != null">
+                #{yydh,jdbcType=VARCHAR},
+            </if>
+            <if test="yysfz != null">
+                #{yysfz,jdbcType=VARCHAR},
+            </if>
+            <if test="whpzl != null">
+                #{whpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="whpmc != null">
+                #{whpmc,jdbcType=VARCHAR},
+            </if>
+            <if test="wsbh != null">
+                #{wsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="jyw != null">
+                #{jyw,jdbcType=CHAR},
+            </if>
+            <if test="wslb != null">
+                #{wslb,jdbcType=DECIMAL},
+            </if>
+            <if test="cfxylx != null">
+                #{cfxylx,jdbcType=VARCHAR},
+            </if>
+            <if test="cfxyzlx != null">
+                #{cfxyzlx,jdbcType=VARCHAR},
+            </if>
+            <if test="yjbm != null">
+                #{yjbm,jdbcType=VARCHAR},
+            </if>
+            <if test="lxr != null">
+                #{lxr,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="czqkms != null">
+                #{czqkms,jdbcType=VARCHAR},
+            </if>
+            <if test="zjssfyqwhz != null">
+                #{zjssfyqwhz,jdbcType=DECIMAL},
+            </if>
+            <if test="zjssfyqwsy != null">
+                #{zjssfyqwsy,jdbcType=DECIMAL},
+            </if>
+            <if test="chjg != null">
+                #{chjg,jdbcType=DECIMAL},
+            </if>
+            <if test="sfwfwcl != null">
+                #{sfwfwcl,jdbcType=DECIMAL},
+            </if>
+            <if test="sfyqwbf != null">
+                #{sfyqwbf,jdbcType=DECIMAL},
+            </if>
+            <if test="sfyqwjy != null">
+                #{sfyqwjy,jdbcType=DECIMAL},
+            </if>
+            <if test="zjssfcf != null">
+                #{zjssfcf,jdbcType=DECIMAL},
+            </if>
+            <if test="hpzl != null">
+                #{hpzl,jdbcType=CHAR},
+            </if>
+            <if test="user != null">
+                #{user,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="getLedgerDocumentDetail" resultType="com.scxd.beans.pojo.BizLedgerInfo">
+SELECT *  FROM BIZ_LEDGER_INFO where id=#{0}
+
+  </select>
+
+    <select id="getLedgerDocument" resultType="com.scxd.beans.pdaBeans.response.Q30ReturnBean">
+        WITH T as (
+        select tzlsh ,HPZL,HPHM,fwzbh,JCSJ,clzt,jccllx,rownum rn from (select NVL(id, '') tzlsh,
+        NVL(HPZL, '') HPZL,
+        NVL(HPHM, '') HPHM,
+        NVL(fwzbh, '') fwzbh ,
+        NVL(clzt, '') clzt,
+        JCSJ,
+        NVL(jccllx, '') jccllx
+        from biz_ledger_info
+        WHERE lrr = #{user}
+        <choose>
+            <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                AND JCSJ BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                AND JCSJ <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+            </when>
+            <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                AND JCSJ <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <otherwise>
+
+            </otherwise>
+
+        </choose>
+        order by JCSJ desc
+        ))
+        SELECT tzlsh ,HPZL,HPHM,JCSJ,fwzbh,clzt,jccllx from T where rn between #{pagefirst} and #{pageend}
+    </select>
+    <select id="getLedgerDocTotal" resultType="java.lang.Integer">
+        select COUNT(*)
+        from biz_ledger_info
+        WHERE lrr = #{user}
+        <choose>
+            <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                AND JCSJ BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                AND JCSJ <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+            </when>
+            <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                AND JCSJ <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+            </when>
+            <otherwise>
+
+            </otherwise>
+
+        </choose>
+    </select>
+
+    <select id="getLedgerPhoto" resultType="java.lang.String">
+        select sx1 from biz_photo_info WHERE zpzl='7003' and glid=#{0}
+    </select>
+
+    <select id="queryLeadgerListTotal" resultType="java.lang.Integer">
+        select count(*) from biz_ledger_info
+        <where>
+            <choose>
+                <when test="zfzbh!=null and zfzbh!='' ">
+                    fwzbh =#{zfzbh}
+                </when>
+
+                <otherwise>
+                    fwzbh in (select distinct fwzbh from biz_qstation where glbm in (
+                    select bmbh from sys_department a
+                    START WITH a.bmbh=#{bmbh}
+                    CONNECT BY PRIOR a.bmbh=a.sjzdbmbh
+                    ) )
+                </otherwise>
+
+            </choose>
+            <if test="hphm!=null and hphm!=''">
+                AND hphm=#{hphm}
+            </if>
+            <if test="jszh!=null and jszh!='' and jszh!='无'">
+                AND jszh=#{jszh}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND LRSJ BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND LRSJ <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND LRSJ <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+
+        </where>
+
+    </select>
+
+    <select id="queryLeadgerList" resultType="com.scxd.beans.management.LedgerListBean">
+        select rownum rn,t.* from (
+        select rownum xh , a.id ,a.hphm,b.dmmc hpzl,a.sfd,a.mdd,NVL(a.jszh,'无') JSZH,c.dmmc jccllx ,lrsj jcsj from biz_ledger_info a
+        left join biz_code_info b on a. hpzl=b.dmz and b.dmlb=1005
+        left join biz_code_info c on a. jccllx=c.dmz and c.dmlb=1014
+        <where>
+            <choose>
+                <when test="zfzbh!=null and zfzbh!='' ">
+                    fwzbh =#{zfzbh}
+                </when>
+
+                <otherwise>
+                    fwzbh in (select distinct fwzbh from biz_qstation where glbm in (
+                    select bmbh from sys_department a
+                    START WITH a.bmbh=#{bmbh}
+                    CONNECT BY PRIOR a.bmbh=a.sjzdbmbh
+                    ) )
+                </otherwise>
+
+            </choose>
+            <if test="hphm!=null and hphm!=''">
+                AND hphm=#{hphm}
+            </if>
+            <if test="jszh!=null and jszh!=''">
+                AND jszh=#{jszh}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND LRSJ BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND LRSJ <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND LRSJ <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+
+        </where>
+        ORDER BY  LRSJ DESC
+        ) T
+        where T.xh BETWEEN (#{pageNo}-1)*#{pageSize} +1 and #{pageNo}*#{pageSize}
+    </select>
+    <select id="getLedgerPagesDetail" resultType="java.util.Map">
+        select a.hphm,e.dmmc hpzl ,h.dmmc SYXZ,i.dmmc CLLX,B.FZJG,B.SYR,C.SFZMHM,
+C.XM,case when C.XB=1 then '男' when c.xb=2 then '女'else'未知'end xb,C.FZJG DRVFZJG,C.LJJF,j.dmmc JSRZT,
+f.dmmc JCCLLX,g.dmmc JCCLZLX,A.SFD,A.MDD,
+case when A.JCJG='10' then '作案车辆' when A.JCJG='20' then 'A级逃犯'else'无'end SFZDAQ,
+case when A.PLJS=1 then '是' when A.PLJS=0 then '否'else''end SFPLJS,
+case when A.JAQD=1 then '是' when A.JAQD=0 then '否'else''end SFXAQD,
+case when A.AQSB=1 then '合格' when A.AQSB=0 then '不合格'else''end   AQSBSFHG ,
+case when A.WFYY=1 then '是' when A.WFYY=0 then '否'else''end    SFFFYY,
+case when A.CLLTHW=1 then '合格' when A.CLLTHW=0 then '不合格'else''end   CLLTHWSFHG,
+A.ZKS  SJZKS,A.SJZZL,
+case when A.SFXYCL=1 then '是' when A.SFXYCL=0 then '否'else''end SFXYCL,
+case when  A.SFTBJQX=1 then '是' when  A.SFTBJQX=0 then '否'else''end  SFTBJQX,
+case when  A.SFZJBF=1 then '是' when  A.SFZJBF=0 then '否'else''end  SFZJBF,
+case when  A.SFWZJS=1 then '是' when  A.SFWZJS=0 then '否'else''end  SFWZJS,
+A.QDYSTXZ SFQDDLYSTXZ,A.CLJG CZJG,D.FWZJC ZFZMC ,
+case when  A.CLZT=1 then '正常' when  A.CLZT=2 then '无牌'
+  when  A.CLZT=3 then '套牌' when  A.CLZT=4 then '假牌'else''end  CLZT ,
+A.LRSJ,A.JCMJ
+ from biz_ledger_info a
+left join (SELECT DISTINCT HPHM, HPZL,SYXZ, CLLX,FZJG,SYR FROM BIZ_VEH_INFO) B ON A.HPHM=B.HPHM AND A.HPZL=B.HPZL
+  LEFT JOIN BIZ_DRV_INFO C ON A.JSZH=C.SFZMHM
+  LEFT JOIN (select distinct fwzbh ,fwzjc FROM BIZ_QSTATION) D ON A.FWZBH=D.FWZBH
+  left join biz_code_info e on a. hpzl=e.dmz and e.dmlb=1005
+  left join biz_code_info f on a. jccllx=f.dmz and f.dmlb=1014
+  left join biz_code_info g on a. jcclzlx=g.dmz and g.dmlb=1017
+  left join biz_code_info h on b. syxz=h.dmz and h.dmlb=1012
+  left join biz_code_info i on b.cllx=i.dmz and i.dmlb=1002
+  left join biz_code_info j on c.zt=j.dmz and j.dmlb=1013
+  where a.id=#{id} and rownum=1
+    </select>
+</mapper>

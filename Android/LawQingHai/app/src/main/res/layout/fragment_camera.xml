@@ -1,0 +1,168 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:camera="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/black">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.scxd.lawqinghai.widget.PreviewFrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1">
+
+
+                <FrameLayout
+                    android:id="@+id/frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_view_finder">
+
+                    <com.scxd.lawqinghai.widget.SquareCameraPreview
+                        android:id="@+id/camera_preview_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/pictitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/holo_red_light" />
+                    <com.scxd.lawqinghai.widget.FocusImageView
+                        android:id="@+id/focusImageView"
+                        android:layout_width="75dip"
+                        android:layout_height="75dip"
+                        camera:focus_focusing_id="@drawable/focus_focusing"
+                        camera:focus_success_id="@drawable/focus_focused"
+                        camera:focus_fail_id="@drawable/focus_focus_failed" />
+                </FrameLayout>
+
+            </com.scxd.lawqinghai.widget.PreviewFrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.0"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/change_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/change_camera"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/flash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.0"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/flash_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/flash_light_check"
+                        android:button="@null"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.0"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/cameralight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_check"
+                        android:button="@null" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.0"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/camerafocue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/focus_selector"
+                        android:button="@null"
+                        android:checked="true" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/camera_tools_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+
+            >
+
+            <TextView
+                android:id="@+id/cameraback"
+                style="@style/camera_item"
+                android:layout_width="60dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="@string/cameraback" />
+
+            <ImageView
+                android:id="@+id/capture_image_button"
+                android:layout_width="60dip"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/capture_photo_button" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <SurfaceView
+        android:id="@+id/head"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/pictitle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="@android:color/holo_red_light" />-->
+</FrameLayout>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.WritDaoMapper">
+    <!--分页查询文书-->
+    <select id="selectWrit" parameterType="java.util.Map" resultType="com.scxd.beans.common.WritBean">
+        SELECT * FROM
+        (
+        SELECT A.*, ROWNUM RN
+        FROM (
+
+        <if test="wslb == null or wslb == ''">
+            (SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'违停告知单' wslb
+        FROM (
+            SELECT s.id,s.tzsh AS wsbh,s.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+            FROM biz_vio_surve s,sys_department d,sys_user u
+            <where>
+                u.loginname = s.zqmj
+                AND u.ssbmbh = d.bmbh
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND s.tzsh  LIKE '%' || #{wsbh}  || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND s.xrsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND s.xrsj &lt;= #{jsrq}
+                </if>
+            </where>
+            ) a )
+            UNION
+            (SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'强制措施处罚决定书' wslb
+            FROM (
+            SELECT f.id,f.pzbh AS wsbh,f.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+            FROM biz_vio_force f,sys_department d,sys_user u
+            <where>
+                u.loginname = f.zqmj
+                AND u.ssbmbh = d.bmbh
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND f.pzbh LIKE '%' || #{wsbh}  || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND f.xrsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND f.xrsj &lt;= #{jsrq}
+                </if>
+
+            </where>
+            ) a)
+            UNION
+            (SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'简易处罚决定书' wslb
+            FROM (
+            SELECT v.id,v.jdsbh AS wsbh,v.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+            FROM biz_vio_violation v,sys_department d,sys_user u
+            <where>
+                u.loginname = v.zqmj
+                AND u.ssbmbh = d.bmbh
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND v.jdsbh LIKE '%' || #{wsbh}  || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND v.xrsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND v.xrsj &lt;= #{jsrq}
+                </if>
+
+            </where>
+            ) a)
+        </if>
+
+        <if test="wslb != null and wslb != ''">
+          <if test="wslb == 'force'">
+              SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'强制措施处罚决定书' wslb
+              FROM (
+              SELECT f.id,f.pzbh AS wsbh,f.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+              FROM biz_vio_force f,sys_department d,sys_user u
+              <where>
+                  u.loginname = f.zqmj
+                  AND d.bmbh = #{bmbh}
+                  AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                  CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                  <if test="wsbh != null and wsbh != ''">
+                      AND f.pzbh LIKE '%' || #{wsbh}  || '%'
+                  </if>
+                  <if test="ksrq != null and ksrq != ''">
+                      AND f.xrsj &gt;= #{ksrq}
+                  </if>
+                  <if test="jsrq != null and jsri != ''">
+                      AND f.xrsj &lt;= #{jsrq}
+                  </if>
+
+              </where>
+              ) a
+          </if>
+          <if test="wslb == 'surve'">
+                SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'违停告知单' wslb
+                FROM (
+                SELECT s.id,s.tzsh AS wsbh,s.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+                FROM biz_vio_surve s,sys_department d,sys_user u
+                <where>
+                    u.loginname = s.zqmj
+                    AND d.bmbh = #{bmbh}
+                    AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                    CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                    <if test="wsbh != null and wsbh != ''">
+                        AND s.tzsh  LIKE '%' || #{wsbh}  || '%'
+                    </if>
+                    <if test="ksrq != null and ksrq != ''">
+                        AND s.xrsj &gt;= #{ksrq}
+                    </if>
+                    <if test="jsrq != null and jsri != ''">
+                        AND s.xrsj &lt;= #{jsrq}
+                    </if>
+                </where>
+                ) a
+            </if>
+          <if test="wslb == 'violation'">
+              SELECT a.id,a.wsbh,a.scsj,a.cjry,a.glbm,'简易处罚决定书' wslb
+              FROM (
+              SELECT v.id,v.jdsbh AS wsbh,v.xrsj AS scsj,u.realname AS cjry,d.name AS glbm
+              FROM biz_vio_violation v,sys_department d,sys_user u
+              <where>
+                  u.loginname = v.zqmj
+                  AND d.bmbh = #{bmbh}
+                  AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                  CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                  <if test="wsbh != null and wsbh != ''">
+                      AND v.jdsbh LIKE '%' || #{wsbh}  || '%'
+                  </if>
+                  <if test="ksrq != null and ksrq != ''">
+                      AND v.xrsj &gt;= #{ksrq}
+                  </if>
+                  <if test="jsrq != null and jsri != ''">
+                      AND v.xrsj &lt;= #{jsrq}
+                  </if>
+
+              </where>
+              ) a
+            </if>
+        </if>
+        ORDER BY scsj DESC ) A
+        WHERE ROWNUM &lt;= #{end}
+        )
+        WHERE RN > #{start}
+    </select>
+
+    <!--删除文书-->
+    <delete id="deleteWrit" parameterType="java.util.Map">
+        DELETE FROM
+        <if test="wslb == '电子监控处罚决定书'">biz_vio_surve</if>
+        <if test="wslb == '强制措施处罚决定书'">biz_vio_force</if>
+        <if test="wslb == '简易处罚决定书'">biz_vio_violation</if>
+        WHERE id = #{id}
+    </delete>
+
+    <!--查询信息总数-->
+    <select id="selectTotal" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*)
+        FROM
+        <if test="wslb == null or wslb == ''">
+            (
+            SELECT s.id FROM
+            biz_vio_surve s,sys_user u
+            <where>
+                u.loginname = s.zqmj
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND s.tzsh LIKE '%' || #{wsbh} || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND s.wfsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND s.wfsj &lt;= #{jsrq}
+                </if>
+            </where>
+            UNION
+            SELECT f.id FROM
+            biz_vio_force f,sys_user u
+            <where>
+                u.loginname = f.zqmj
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND f.pzbh LIKE '%' || #{wsbh} || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND f.wfsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND f.wfsj &lt;= #{jsrq}
+                </if>
+            </where>
+            UNION
+            SELECT v.id FROM
+            biz_vio_violation v,sys_user u
+            <where>
+                u.loginname = v.zqmj
+                AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                <if test="wsbh != null and wsbh != ''">
+                    AND v.jdsbh LIKE '%' || #{wsbh} || '%'
+                </if>
+                <if test="ksrq != null and ksrq != ''">
+                    AND v.wfsj &gt;= #{ksrq}
+                </if>
+                <if test="jsrq != null and jsri != ''">
+                    AND v.wfsj &lt;= #{jsrq}
+                </if>
+            </where>
+            )
+        </if>
+
+        <if test="wslb != null and wslb != ''">
+            <if test="wslb == 'force'">
+                biz_vio_force f,sys_user u
+                <where>
+                    u.loginname = f.zqmj
+                    AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                    CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                    <if test="wsbh != null and wsbh != ''">
+                        AND f.pzbh LIKE '%' || #{wsbh}  || '%'
+                    </if>
+                    <if test="ksrq != null and ksrq != '' and jsrq != null and jsri != ''">
+                        AND f.xrsj &gt;= #{ksrq} AND f.xrsj &lt;= #{jsrq}
+                    </if>
+                </where>
+            </if>
+            <if test="wslb == 'surve'">
+                biz_vio_surve s,sys_user u
+                <where>
+                    u.loginname = s.zqmj
+                    AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                    CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                    <if test="wsbh != null and wsbh != ''">
+                        AND s.tzsh LIKE '%' || #{wsbh}  || '%'
+                    </if>
+                    <if test="ksrq != null and ksrq != '' and jsrq != null and jsri != ''">
+                        AND s.xrsj &gt;= #{ksrq} AND s.xrsj &lt;= #{jsrq}
+                    </if>
+                </where>
+            </if>
+            <if test="wslb == 'violation'">
+                biz_vio_violation v,sys_user u
+                <where>
+                    u.loginname = v.zqmj
+                    AND u.ssbmbh IN (SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+                    CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+                    <if test="wsbh != null and wsbh != ''">
+                        AND v.jdsbh LIKE '%' || #{wsbh}  || '%'
+                    </if>
+                    <if test="ksrq != null and ksrq != '' and jsrq != null and jsrq != ''">
+                        AND v.xrsj &gt;= #{ksrq} AND v.xrsj &lt;= #{jsrq}
+                    </if>
+                </where>
+            </if>
+        </if>
+    </select>
+    <resultMap id="SurveDetailMessage" type="com.scxd.beans.biz.SurveExtend">
+        <result column="ID" property="id"/>
+        <result column="TZSH" property="tzsh"/>
+        <result column="SYXZNAME" property="syxzname"/>
+        <result column="CSYSNAME" property="csysname"/>
+        <result column="CLFLNAME" property="clflname"/>
+        <result column="CJFSNAME" property="cjfsname"/>
+        <result column="JDSBH" property="jdsbh"/>
+        <result column="CJJG" property="cjjg"/>
+        <result column="CLFL" property="clfl"/>
+        <result column="HPZL" property="hpzl"/>
+        <result column="HPHM" property="hphm"/>
+        <result column="JDCSYR" property="jdcsyr"/>
+        <result column="SYXZ" property="syxz"/>
+        <result column="FDJH" property="fdjh"/>
+        <result column="CLSBDH" property="clsbdh"/>
+        <result column="CSYS" property="csys"/>
+        <result column="CLPP" property="clpp"/>
+        <result column="JTFS" property="jtfs"/>
+        <result column="FZJG" property="fzjg"/>
+        <result column="ZSXZQH" property="zsxzqh"/>
+        <result column="ZSXXDZ" property="zsxxdz"/>
+        <result column="DH" property="dh"/>
+        <result column="LXFS" property="lxfs"/>
+        <result column="TZRQ" property="tzrq"/>
+        <result column="CJFS" property="cjfs"/>
+        <result column="WFSJ" property="wfsj"/>
+        <result column="XZQH" property="xzqh"/>
+        <result column="WFDD" property="wfdd"/>
+        <result column="LDDM" property="lddm"/>
+        <result column="DDMS" property="ddms"/>
+        <result column="DDGLS" property="ddgls"/>
+        <result column="WFDZ" property="wfdz"/>
+        <result column="WFXW" property="wfxw"/>
+        <result column="SCZ" property="scz"/>
+        <result column="BZZ" property="bzz"/>
+        <result column="ZQMJ" property="zqmj"/>
+        <result column="SPDZ" property="spdz"/>
+        <result column="SBBH" property="sbbh"/>
+        <result column="WFNR" property="wfnr"/>
+        <result column="FLYJ" property="flyj"/>
+        <result column="DYBJ" property="dybj"/>
+        <result column="DYCS" property="dycs"/>
+        <result column="LRR" property="lrr"/>
+        <result column="CJSJ" property="cjsj"/>
+        <result column="HPZLNAME" property="hpzlname"/>
+        <result column="LRRNAME" property="lrrname"/>
+        <result column="BMQC" property="bmqc"/>
+        <result column="CLLX" property="cllx"/>
+        <collection property="zps" ofType="java.lang.String" select="getSurvePhotos" column="id">
+        </collection>
+    </resultMap>
+    <!--查询电子监控文书详情-->
+    <select id="checkSurve" parameterType="String" resultMap="SurveDetailMessage">
+     SELECT v.*,c.fltw AS flyj,c.wfnr,u.realname AS lrrname,d.dmmc AS hpzlname,
+     e.dmmc AS syxzname,f.dmmc AS csysname,g.dmmc AS clflname,h.dmmc AS cjfsname
+     FROM biz_vio_surve v
+     LEFT JOIN biz_codewfdm c ON v.wfxw = c.wfxw
+     LEFT JOIN sys_user u ON v.lrr = u.loginname
+     LEFT JOIN biz_code_info d ON v.hpzl = d.dmz AND d.dmlb = '1005'
+     LEFT JOIN biz_code_info e ON v.syxz = e.dmz AND e.dmlb = '1012'
+     LEFT JOIN biz_code_info f ON v.csys = f.dmz AND f.dmlb = '1003'
+     LEFT JOIN biz_code_info g ON v.clfl = g.dmz AND g.dmlb = '1024'
+     LEFT JOIN biz_code_info h ON v.cjfs = h.dmz AND h.dmlb = '1032'
+     WHERE v.tzsh = #{0}
+    </select>
+    <select id="getSurvePhotos" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+        sx1
+        FROM BIZ_PHOTO_INFO S
+        WHERE GLID = #{ID} AND ZPZL='7006'
+    </select>
+    <!--查询强制措施文书详情-->
+    <select id="checkForce" parameterType="String" resultType="com.scxd.beans.biz.ForceExtend">
+      SELECT v.*,d.dmmc AS hpzlname,u.realname AS lrrname,
+     e.dmmc AS syxzname,g.dmmc AS clflname
+     FROM biz_vio_force v
+     LEFT JOIN biz_code_info d ON v.hpzl = d.dmz AND d.dmlb = '1005'
+     LEFT JOIN sys_user u ON v.lrr = u.loginname
+     LEFT JOIN biz_code_info e ON v.syxz = e.dmz AND e.dmlb = '1012'
+     LEFT JOIN biz_code_info g ON v.clfl = g.dmz AND g.dmlb = '1024'
+     WHERE v.pzbh = #{0}
+    </select>
+
+    <!--查询强制措施类型名称-->
+    <select id="selectQzcslx" parameterType="java.lang.String" resultType="String">
+        SELECT dmmc FROM biz_code_info WHERE dmlb = '1030' AND dmz IN
+        <foreach collection="qzcs" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询违法信息-->
+    <select id="selectWfdm" parameterType="java.util.List" resultType="com.scxd.beans.biz.WfdmExtend">
+        SELECT fltw,wfnr,wfms,wfxw FROM biz_codewfdm WHERE wfxw IN
+        <foreach collection="wfxw" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询简易处罚文书详情-->
+    <select id="checkViolation" parameterType="String" resultType="com.scxd.beans.biz.ViolationExtend">
+     SELECT v.*,c.fltw AS flyj ,c.wfnr AS wfxq,d.dmmc AS hpzlname,u.realname AS lrrname,
+     e.dmmc AS syxzname,g.dmmc AS clflname,f.dmmc AS cfzlname,h.dmmc AS jkfsname,
+     i.dmmc AS jkbjname,j.dmmc AS jsjqbjname
+     FROM biz_vio_violation v
+     LEFT JOIN biz_codewfdm c  ON v.wfxw = c.wfxw
+     LEFT JOIN sys_user u ON v.lrr = u.loginname
+     LEFT JOIN biz_code_info d ON v.hpzl = d.dmz AND d.dmlb = '1005'
+     LEFT JOIN biz_code_info e ON v.syxz = e.dmz AND e.dmlb = '1012'
+     LEFT JOIN biz_code_info g ON v.clfl = g.dmz AND g.dmlb = '1024'
+     LEFT JOIN biz_code_info f ON v.cfzl = f.dmz AND f.dmlb = '1026'
+     LEFT JOIN biz_code_info h ON v.jkfs = h.dmz AND h.dmlb = '1027'
+     LEFT JOIN biz_code_info i ON v.jkbj = i.dmz AND i.dmlb = '1028'
+     LEFT JOIN biz_code_info j ON v.jsjqbj = j.dmz AND j.dmlb = '1036'
+     WHERE v.jdsbh = #{0}
+    </select>
+
+</mapper>
+
+
+

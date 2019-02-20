@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/role.css"/>
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/layer.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../js/common/pression.js"></script>
+    <script type="text/javascript" src="roleManage.js"></script>
+
+
+</head>
+<body>
+<!--顶部查询-->
+<div id="search">
+    <table class="s_table" width="100%">
+        <tr>
+            <td class="s_head">角色名称：</td>
+            <td>
+                <input class="inputtext" type="text" id="search_roleName">
+            </td>
+            <td class="s_head">角色类型：</td>
+            <td>
+                <select name="" id="search_roleType" class="inputtext">
+                    <option value="">全部</option>
+                    <option value="1">业务办理</option>
+                    <option value="2">系统管理</option>
+                    <option value="3">安全管理</option>
+                    <option value="4">审计管理</option>
+                </select>
+            </td>
+            <td class="s_head">
+                <span>角色层级：</span>
+            </td>
+            <td>
+
+                <select name="" id="search_roleLev" class="inputtext ">
+                    <option value="">全部</option>
+                    <option value="1">总队</option>
+                    <option value="2">支队</option>
+                    <option value="3">大队</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                <button type="button" id="addNew" class="filterBtn query">新增</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--正文内容-->
+<div id="content">
+    <table class="table table-bordered showChartsTable menuTable">
+        <thead id="thead">
+            <tr style="height: 36px;">
+                <td>角色名称</td>
+                <td>角色类型</td>
+                <td>角色层级</td>
+                <td>状态</td>
+                <td>操作人员</td>
+                <td>操作时间</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <!--分页-->
+    <div id="page"></div>
+</div>
+
+
+<!--弹出层  新增-->
+<div id="addNewDiv" class="hidden">
+    <table class="addNewTable">
+        <tr>
+            <td class="s_head">角色名称：</td>
+            <td><input id="roleName" type="text" class="inputtext"></td>
+            <td class="s_head">角色状态：</td>
+            <td>
+                <select name="" id= "roleState" class="inputtext">
+                    <option value="1">正常</option>
+                    <option value="0">停用</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="s_head">所属类别：</td>
+            <td>
+                <select name="" id="roleType" class="inputtext">
+                    <option value="1">业务办理</option>
+                    <option value="2">系统管理</option>
+                    <option value="3">安全管理</option>
+                    <option value="4">审计管理</option>
+                </select>
+            </td>
+            <td class="s_head">角色层级：</td>
+            <td>
+                <select name="" id="roleLev" class="inputtext">
+                    <option value="1">总队</option>
+                    <option value="2">支队</option>
+                    <option value="3">大队</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+<div id="addNewDiv2" class="hidden">
+    <table >
+        <tr>
+            <!-- 左边树 -->
+            <td class="deptLefts">
+                <div class="content_wrap">
+                    <div class="zTreeDemoBackground left">
+                        <ul id="deptTree" class="ztree"></ul>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scxd.dao.mapper.CodeDao">
+    <!--获取字典信息  bmbh = #{0} AND-->
+    <select id="selectCode" parameterType="String" resultType="com.scxd.beans.biz.Q11Return">
+       SELECT dmmc AS name,dmz AS code,dmlb AS type FROM biz_code_info WHERE  zt = 1 order by type, sx3
+    </select>
+    <select id="getKeyValueByDmlb" parameterType="String" resultType="com.scxd.beans.common.KeyValueBean">
+       SELECT dmmc AS value,dmz AS key FROM biz_code_info WHERE  dmlb=#{dmlb} and zt = 1
+    </select>
+</mapper>

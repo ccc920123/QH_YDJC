@@ -1,0 +1,22 @@
+{
+  "data": {
+    "cllx": "K31",
+    "gcsj": "2018-08-05 17:28:21",
+    "hphm": "青A00810",
+    "hpzl": "02",
+    "kkmc": "西和高速34公里810米",
+    "qszt": 0,
+    "syxz": "A",
+    "yjlx": "04",
+    "yjsj": "2018-08-05 17:34:24",
+    "zpid": [
+      "http://10.192.12.84:9995/Web/getPhotos?id=bc787e9f-ee7f-4ebb-a885-c7e116babda8"
+    ]
+  },
+  "meta": {
+    "message": "ok",
+    "success": true
+  }
+}
+
+

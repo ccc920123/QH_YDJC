@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.BizLawsInfoBeanMapper">
+    <resultMap id="BaseResultMap" type="com.scxd.beans.pojo.BizLawsInfoBean">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="OTHER"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="LAWS_TYPE" property="lawsType" jdbcType="DECIMAL"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.scxd.beans.pojo.BizLawsInfoBean" extends="BaseResultMap">
+        <result column="CONTENT" property="content" jdbcType="CLOB"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+    <insert id="insert" parameterType="com.scxd.beans.pojo.BizLawsInfoBean">
+    insert into BIZ_LAWS_INFO (ID, NAME, STATUS, 
+      CREATE_DATE, CREATE_USER, LAWS_TYPE, 
+      CONTENT)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=OTHER}, #{status,jdbcType=DECIMAL}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{lawsType,jdbcType=DECIMAL}, 
+      #{content,jdbcType=CLOB})
+  </insert>
+    <insert id="insertSelective" parameterType="com.scxd.beans.pojo.BizLawsInfoBean">
+        insert into BIZ_LAWS_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="createUser != null">
+                CREATE_USER,
+            </if>
+            <if test="lawsType != null">
+                LAWS_TYPE,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=OTHER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=DECIMAL},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="lawsType != null">
+                #{lawsType,jdbcType=DECIMAL},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=CLOB},
+            </if>
+        </trim>
+    </insert>
+    <select id="getLawListTotal" resultType="java.lang.Integer">
+    select count(*) from BIZ_LAWS_INFO where name like concat(concat('%',#{name}),'%')
+  </select>
+    <select id="getLawList" resultType="com.scxd.beans.pojo.BizLawsInfoBean">
+select * from (
+    select rownum rn ,id,name from BIZ_LAWS_INFO where name like concat(concat('%',#{name}),'%')) t
+    where t.rn BETWEEN #{start} and #{end}
+  </select>
+    <select id="getLawDetail" resultType="com.scxd.beans.pojo.BizLawsInfoBean">
+    select name ,content from BIZ_LAWS_INFO where id=#{id}
+  </select>
+</mapper>

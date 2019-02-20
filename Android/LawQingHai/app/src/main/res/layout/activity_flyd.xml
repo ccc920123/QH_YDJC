@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include
+        layout="@layout/ic_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="法律名称"
+            android:layout_alignLeft="@+id/wfdm"
+            android:textSize="15sp"
+            android:textColor="@color/black_text01"/>
+
+        <EditText
+            android:id="@+id/flmc"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/black_text01"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/login_edit_style"/>
+
+        <Button
+            android:id="@+id/query"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/ic_button_blue"
+            android:layout_marginLeft="10dp"
+            android:text="@string/text_query"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/xxts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="共有：0条"
+        android:textSize="13sp"
+        android:paddingLeft="15dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/black_text02"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d4d3d3"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/no_datas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/no_datas"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_datas"
+            android:textSize="17sp"
+            android:textColor="@color/blue3"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</LinearLayout>

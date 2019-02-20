@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <title>台账详情</title>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+
+    <!--<script src="./alarmDetail.js"/>-->
+
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script src="./loginShowMessage.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+<table  class="addNewTable">
+    <tr>
+        <td class="s_head" >当前在线人数：</td>
+        <td ><input type="text" id="online" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >当前登录时间：</td>
+        <td ><input type="text" id="dqdlsj" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head" >上次登录成功时间：</td>
+        <td ><input type="text" id="scdlcgsj" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >当前登录IP：</td>
+        <td ><input type="text" id="dqdlip" class="inputtext" readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td class="s_head" >上次登录成功IP：</td>
+        <td ><input type="text" id="scdlcgip" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >用户账号有效期：</td>
+        <td ><input type="text" id="yhyxq" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+    <tr>
+        <td class="s_head" >密码有效期：</td>
+        <td ><input type="text" id="mmyxq" class="inputtext" readonly="readonly"></td>
+
+    </tr>
+
+    <tr>
+        <td class="s_head" >近期登录失败记录：</td>
+        <td   style="text-align: left;height: 300px">
+            <textarea  style="height: 300px" id="layer-photos-tzzp" class="layer-photos-demo"readonly="readonly">
+
+            </textarea>
+        </td>
+    </tr>
+</table>
+
+<div class="filterBtnDiv">
+    <button id="close" class="filterBtn"  style="width: 60px">关闭</button>
+    </br>
+</div>
+</body>
+</html>

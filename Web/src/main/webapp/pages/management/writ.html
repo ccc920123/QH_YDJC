@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../../plugs/ztree/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="../../plugs/layui-v2.2.6/layui/css/modules/laydate/default/laydate.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/displayTable.css">
+    <link type="text/css" rel="stylesheet" href="../../css/dept.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/user.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="../../plugs/layer-v3.1.1/layer/theme/default/layer.css">-->
+
+    <title>文书管理</title>
+
+
+   <!-- <script type="text/javascript" src="../../plugs/layer-v3.1.1/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../plugs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../plugs/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/common/utilAjax.js"></script>
+    <script type="text/javascript" src="../../plugs/layui-v2.2.6/layui/lay/modules/laydate.js"></script>
+    <script type="text/javascript" src="../../js/common/map.js"></script>
+    <script type="text/javascript" src="../../js/management/writ.js"></script>
+
+    <script type="text/javascript" src="../../js/common/InitDate.js"></script>
+    <script type="text/javascript" src="../../js/common/FormatTime.js"></script>
+
+   <style type="text/css">
+       .imgck{
+           width:15px;
+           height:15px;
+           max-width:100%;
+           max-height:100%;
+       }
+   </style>
+
+
+</head>
+<body>
+<table class="dept">
+    <tr>
+
+        <!-- 右边内容 -->
+        <td class="deptRight">
+            <!--顶部查询-->
+            <div id="search">
+                <table class="s_table" width="100%" style="text-align: center;">
+                    <tr>
+                        <td>生成时间：</td>
+                        <td>
+                            <input type="text"  id="ksrq" class="inputtext"  readonly style="width: 90%;">
+                        </td>
+                        <td>
+                           &nbsp; - &nbsp;
+                        </td>
+                        <td>
+                            <input type="text" id="jsrq" class="inputtext" readonly style="width: 90%;">
+                        </td>
+                        <td>文书类型：</td>
+                        <td>
+                            <select id="wslb" class="inputtext" >
+                                <option value=""></option>
+                                <option value="force">强制处罚文书</option>
+                                <option value="violation">简易处罚文书</option>
+                                <option value="surve">违停告知单</option>
+                            </select>
+                        </td>
+                        <td>文书编号：</td>
+                        <td>
+                            <input class="inputtext" type="text" id="wsbh" style="width: 90%;">
+                        </td>
+                        <td  style="text-align: center;">
+                            <button type="button" id="queryBtn" class="filterBtn query">查询</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div>&nbsp;查询信息条数&nbsp;:&nbsp;<span id="total"></span></div>
+
+            <!--正文内容-->
+            <div id="content">
+                <table class="table table-bordered showChartsTable">
+                    <thead id="thead">
+                    <tr style="height: 36px;">
+                        <td>序号</td>
+                        <td>文书编号</td>
+                        <td>管理部门</td>
+                        <td>生成时间</td>
+                        <td>文书类型</td>
+                        <td>创建人员</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody"></tbody>
+                </table>
+
+                <!--分页-->
+                <div id="page"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.AlarmDao">
+    <select id="selectAlarm" resultType="com.scxd.beans.management.AlarmTableBean">
+        WITH TS AS(
+        select rownum rn ,H.* FROM (
+        select yjxh, hphm,d.dmmc hpzl,b.dmmc bklx, kkmc,yjsj,
+        case when a.zt=0 then '未签收' when a.zt=1 then '已签收' when a.zt=2 then '已反馈' end zt
+        from biz_alarm_info A
+        left join biz_code_info d ON d.dmz = A.hpzl AND d.dmlb = '1005'
+        left join biz_code_info b ON b.dmz = A.bklx AND b.dmlb = '1010'
+        <where>
+            a.qsbm in(
+            select bmbh from sys_department a
+
+            START WITH a.bmbh=#{bmbh}
+
+            CONNECT BY PRIOR a.bmbh=a.sjzdbmbh
+            )
+            <if test="yjzt!=null and yjzt!=''">
+                AND a.zt=#{yjzt}
+            </if>
+            <if test="hphm!=null and hphm!=''">
+                AND a.hphm=#{hphm}
+            </if>
+            <if test="yjlx!=null and yjlx!=''">
+                AND a.bklx=#{yjlx}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND a.yjsj BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND a.yjsj <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND a.yjsj  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+
+        </where>
+        order by zt desc,a.yjsj desc) H)
+        SELECT * FROM TS WHERE RN BETWEEN #{start} AND #{end}
+    </select>
+
+    <!--查询预警信息条数-->
+    <select id="selectAlarmNum" parameterType="java.util.Map" resultType="int">
+        select count(*)
+        from biz_alarm_info A
+        left join biz_code_info d ON d.dmz = A.hpzl AND d.dmlb = '1005'
+        left join biz_code_info b ON b.dmz = A.bklx AND b.dmlb = '1010'
+        <where>
+            a.qsbm in(
+            select bmbh from sys_department a
+
+            START WITH a.bmbh=#{bmbh}
+
+            CONNECT BY PRIOR a.bmbh=a.sjzdbmbh
+            )
+            <if test="yjzt!=null and yjzt!=''">
+                AND a.zt=#{yjzt}
+            </if>
+            <if test="hphm!=null and hphm!=''">
+                AND a.hphm=#{hphm}
+            </if>
+            <if test="yjlx!=null and yjlx!=''">
+                AND a.bklx=#{yjlx}
+            </if>
+            <choose>
+                <when test="ksrq!=null and ksrq!='' and jsrq!=null and jsrq!=''">
+                    AND a.yjsj BETWEEN TO_DATE(#{ksrq},'YYYY-MM-DD') AND TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <when test="ksrq!=null and ksrq!='' and (jsrq==null or jsrq=='')">
+                    AND a.yjsj <![CDATA[>=]]> TO_DATE(#{ksrq},'YYYY-MM-DD')
+                </when>
+                <when test="(ksrq==null or ksrq=='') and jsrq!=null and jsrq!=''">
+                    AND a.yjsj  <![CDATA[<=]]> TO_DATE(#{jsrq}, 'YYYY-MM-DD') +1
+                </when>
+                <otherwise>
+
+                </otherwise>
+
+            </choose>
+        </where>
+    </select>
+
+
+    <resultMap id="FeedBackDetailMessage" type="com.scxd.beans.common.AlarmBean">
+        <result column="YJXH" property="yjxh"/>
+        <result column="HPHM" property="hphm"/>
+        <result column="HPZL" property="hpzl"/>
+        <result column="BKLX" property="bklx"/>
+        <result column="BKZLX" property="bkzlx"/>
+        <result column="YJSJ" property="yjsj"/>
+        <result column="GCSJ" property="gcsj"/>
+        <result column="KKMC" property="kkmc"/>
+        <result column="CLPP1" property="clpp1"/>
+        <result column="SYXZ" property="syxz"/>
+        <result column="FZJG" property="fzjg"/>
+        <result column="SYR" property="syr"/>
+        <result column="PLGL" property="plgl"/>
+        <result column="FDJH" property="fdjh"/>
+        <result column="CLSBDH" property="clsbdh"/>
+        <result column="SFCJLJ" property="sfcjlj"/>
+        <result column="LJCLQK" property="ljclqk"/>
+        <result column="SFXYCL" property="sfxycl"/>
+        <result column="CZR" property="czr"/>
+        <result column="CLJG" property="cljg"/>
+        <result column="LJQKMS" property="ljqkms"/>
+        <result column="CZJG" property="czjg"/>
+        <result column="CZQKMS" property="czqkms"/>
+        <result column="WSLB" property="wslb"/>
+        <result column="WSLBNUM" property="wslbnum"/>
+        <result column="WSBH" property="wsbh"/>
+        <result column="YJZP" property="yjzp"/>
+        <collection property="ljzp" ofType="java.lang.String" select="getFeedBackPhotos" column="yjxh">
+        </collection>
+    </resultMap>
+    <select id="getFeedBackPhotos" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+        sx1
+        FROM BIZ_PHOTO_INFO S
+        WHERE GLID = #{ID} AND ZPZL='7002'
+    </select>
+
+    <select id="getAlarmDetail" resultMap="FeedBackDetailMessage">
+        SELECT
+        A.YJXH,
+        A.HPHM,
+        D.DMMC HPZL,
+        B.DMMC BKLX,
+        C.DMMC BKZLX,
+        A.YJSJ,
+        A.GCSJ,
+        A.KKMC,
+        B.CLPP1,
+        h.dmmc SYXZ,
+        B.FZJG,
+        B.SYR,
+        B.PL ||'/'|| B.GL PLGL,
+        B.FDJH,
+        B.CLSBDH,
+        CASE
+        WHEN A.QSJG = 1 THEN
+        '有效'
+        WHEN A.QSJG = 2 THEN
+        '无效'
+        ELSE
+        ''
+        END QSJG,
+        CASE
+        WHEN A.SFCJLJ = 0 THEN
+        '否'
+        WHEN A.SFCJLJ = 1 THEN
+        '是'
+        ELSE
+        ''
+        END SFCJLJ,
+        CASE
+        WHEN A.LJCLQK = 0 THEN
+        '未拦截到'
+        WHEN A.LJCLQK = 1 THEN
+        '已拦截到'
+        ELSE
+        ''
+        END LJCLQK,
+        CASE
+        WHEN A.CHJG = 0 THEN
+        '否'
+        WHEN A.CHJG = 1 THEN
+        '是'
+        ELSE
+        ''
+        END SFXYCL,
+        A.CZR,
+        A.CLJG,
+        A.ljqkms,
+        G.DMMC CZJG,
+        A.CZQKMS,
+        E.DMMC WSLB,
+        A.WSLB WSLBNUM,
+        A.WSBH,
+        F.SX1 YJZP
+        FROM BIZ_ALARM_INFO A
+
+        LEFT JOIN (SELECT DISTINCT HPHM,
+        HPZL,
+        CLPP1,
+        SYXZ,
+        FZJG,
+        SYR,
+        PL,
+        GL,
+        FDJH,
+        CLSBDH
+        FROM BIZ_VEH_INFO) B
+        ON A.HPHM = B.HPHM
+        AND A.HPZL = B.HPZL
+        LEFT JOIN BIZ_CODE_INFO D
+        ON D.DMZ = A.HPZL
+        AND D.DMLB = '1005'
+        LEFT JOIN BIZ_CODE_INFO B
+        ON B.DMZ = A.BKLX
+        AND B.DMLB = '1010'
+        LEFT JOIN BIZ_CODE_INFO C
+        ON C.DMZ = A.BKZLX
+        AND C.DMLB = '1037'
+        LEFT JOIN BIZ_CODE_INFO E
+        ON E.DMZ = A.WSLB
+        AND E.DMLB = '1016'
+        LEFT JOIN(
+         SELECT DMZ,DMMC  FROM BIZ_CODE_INFO WHERE DMLB=1008)G
+         ON A.CHJG=G.DMZ
+        LEFT JOIN BIZ_PHOTO_INFO F
+        ON F.GLID=A.YJXH AND F.ZPZL='7001'
+         left join biz_code_info h
+   on h.dmz=a.syxz
+   and h.dmlb='1012'
+        where a.yjxh=#{0}
+    </select>
+
+    <select id="queryStatistics" resultType="java.util.Map">
+          WITH
+ bm as(
+select a.bmbh  ,a.name from sys_department a
+where a.levelnum = (select  decode(levelnum,1,2,2,3,3,3)from sys_department where bmbh= #{ssbmbh} ) or
+ a.levelnum=(select levelnum from sys_department where bmbh= #{ssbmbh})
+ START WITH a.bmbh=#{ssbmbh}
+ CONNECT BY PRIOR a.bmbh=a.sjzdbmbh ),
+ D as(
+ Select bmbh, bmmc,Count(*) total From (
+Select yjxh,
+Case When b.levelnum= (select decode(levelnum,1,2,2,3,3,3)from sys_department where bmbh= #{ssbmbh} )or  
+  b.levelnum= (select levelnum from sys_department where bmbh= #{ssbmbh} )
+  Then b.bmbh
+ Else c.bmbh
+ End As bmbh,
+Case When b.levelnum= (select decode(levelnum,1,2,2,3,3,3)from sys_department where bmbh= #{ssbmbh} ) or 
+   b.levelnum= (select levelnum from sys_department where bmbh= #{ssbmbh} )
+  Then b.name
+ Else c.name
+ End As bmmc
+From biz_alarm_info a
+Inner Join sys_department b On a.czdw = b.bmbh
+Inner Join sys_department c On b.sjzdbmbh = c.bmbh
+ where a.zt=2 and trunc(a.czsj)=trunc(sysdate)
+)
+Group By bmbh, bmmc
+ )
+ select bm.bmbh,bm.NAME ,NVL(d.total,0) total from d left join  bm on bm.bmbh=d.bmbh
+    </select>
+
+    <select id="queryStatistics_Piechart" resultType="java.util.Map">
+        SELECT A.*, B.DMMC NAME
+  FROM (SELECT BKLX, COUNT(*) TOTAL
+          FROM BIZ_ALARM_INFO A
+         WHERE QSBM IN (SELECT A.BMBH
+                          FROM SYS_DEPARTMENT A
+                         START WITH A.BMBH = #{ssbmbh}
+                        CONNECT BY PRIOR A.BMBH = A.SJZDBMBH)
+           AND ZT = 2
+           AND TRUNC(CZSJ) = TRUNC(SYSDATE)
+         GROUP BY BKLX) A
+  LEFT JOIN (SELECT DMZ, DMMC FROM BIZ_CODE_INFO WHERE DMLB = 1010) B
+    ON A.BKLX = B.DMZ
+    </select>
+    <select id="getStatistic_docment" resultType="java.util.Map">
+        SELECT NVL(A.TOTAL,0) TOTAL, B.DMMC  NAME
+        FROM (SELECT WSLB, NVL(COUNT(*),0) TOTAL
+        FROM V_VIO_DOCUMENT A
+        WHERE GLBM IN (SELECT A.BMBH
+        FROM SYS_DEPARTMENT A
+        START WITH A.BMBH = #{ssbmbh}
+        CONNECT BY PRIOR A.BMBH = A.SJZDBMBH)
+        AND TRUNC(SCSJ) = TRUNC(SYSDATE)
+        GROUP BY WSLB) A
+        RIGHT JOIN (SELECT DMZ, DMMC FROM BIZ_CODE_INFO WHERE DMLB = 1016 AND DMZ <![CDATA[<>]]>6) B
+        ON A.WSLB = B.DMZ
+
+    </select>
+    <select id="getOperationLastTime" resultType="java.util.Map">
+        SELECT A.OPTYPE,A.WFXW,A.SCSJ, B.NAME, C.REALNAME
+        FROM (SELECT OPTYPE, WFXW, GLBM,TO_CHAR(SCSJ,'hh24:MI:SS') SCSJ, CJRY
+        FROM V_OPERATION A
+        WHERE GLBM IN (SELECT A.BMBH
+        FROM SYS_DEPARTMENT A
+        START WITH A.BMBH =#{ssbmbh}
+        CONNECT BY PRIOR A.BMBH = A.SJZDBMBH)
+        AND TRUNC(SCSJ) = TRUNC(SYSDATE)
+        ORDER BY SCSJ DESC) A
+        LEFT JOIN SYS_DEPARTMENT B
+        ON A.GLBM = B.BMBH
+        LEFT JOIN SYS_USER C
+        ON A.CJRY = C.LOGINNAME where rownum BETWEEN 1 AND 5
+    </select>
+    <select id="getTenDayData" resultType="java.util.Map">
+WITH T AS
+ (SELECT YJXH, CZSJ
+    FROM BIZ_ALARM_INFO
+   WHERE ZT = 2
+     AND TRUNC(CZSJ) >= TRUNC(SYSDATE - 10)
+     AND CZDW IN (SELECT A.BMBH
+                    FROM SYS_DEPARTMENT A
+                   START WITH A.BMBH = #{ssbmbh}
+                  CONNECT BY PRIOR A.BMBH = A.SJZDBMBH))
+SELECT '今天' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE)
+UNION ALL
+SELECT '昨天' AS NAME , COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 1)
+UNION ALL
+SELECT '前天' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 2)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 3, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 3)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 4, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 4)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 5, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 5)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 6, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 6)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 7, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 7)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 8, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 8)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 9, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 9)
+UNION ALL
+SELECT TO_CHAR(SYSDATE - 10, 'DD') || '日' AS NAME, COUNT(*) TOTAL
+  FROM T
+ WHERE TRUNC(CZSJ) = TRUNC(SYSDATE - 10)</select>
+</mapper>

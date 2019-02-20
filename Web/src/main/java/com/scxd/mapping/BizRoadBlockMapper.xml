@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scxd.dao.mapper.BizRoadBlock">
+    <!--删除来源为1的数据-->
+    <delete id="deleteBizRoadBlockByLy">
+        DELETE FROM biz_road_blocks WHERE ly = 1;
+    </delete>
+
+    <!--批量插入-->
+    <insert id="insertRoadBlocks" parameterType="java.util.List">
+
+        INSERT ALL
+        <foreach collection="listmap" item="map" index="index">
+            INTO  biz_road_blocks
+            <foreach collection="listmap[0]" item="value" index="key" separator="," open="(" close=")">
+                ${key}
+            </foreach>
+            VALUES
+            <foreach collection="map" item="value" index="key" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+   <!--查询信息总数-->
+    <select id="selectTotal" parameterType="java.util.Map" resultType="int">
+     SELECT COUNT(*) FROM biz_road_blocks r
+     <where>
+         r.glbm IN(SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+         CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+         <if test="kkmc != null and kkmc != ''">AND r.kkmc LIKE '%' || #{kkmc} || '%'</if>
+         <if test="fwzbh != null and fwzbh != ''">AND r.zfzbh = #{fwzbh}</if>
+     </where>
+    </select>
+
+    <!--分页查询卡口信息-->
+    <select id="selectRoadblock" parameterType="java.util.Map" resultType="com.scxd.beans.common.RoadblockExtend">
+        SELECT DISTINCT  * FROM
+        ( SELECT A.*,ROWNUM RN FROM
+        (SELECT r.*,q.fwzjc fwzmc,d.name AS bmmc
+        FROM biz_road_blocks r
+        LEFT JOIN ( select distinct fwzbh  ,fwzjc from biz_qstation) q ON r.zfzbh = q.fwzbh
+        LEFT JOIN sys_department d ON r.glbm = d.bmbh
+        <where>
+            r.glbm IN(SELECT d.bmbh FROM sys_department d START WITH d.bmbh = #{bmbh}
+            CONNECT BY PRIOR d.bmbh = d.sjzdbmbh)
+            <if test="kkmc != null and kkmc != ''">AND r.kkmc LIKE '%' || #{kkmc} || '%'</if>
+            <if test="fwzbh != null and fwzbh != ''">AND r.zfzbh = #{fwzbh}</if>
+        </where>) A WHERE ROWNUM &lt;= #{end})
+        WHERE RN &gt; #{start}
+    </select>
+</mapper>
